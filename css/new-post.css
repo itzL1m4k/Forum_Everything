@@ -1,0 +1,280 @@
+.entries {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.list-choose {
+  color: var(--accent-color);
+}
+.create-new-post {
+  width: 75%;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 15px;
+  padding-right: 20px;
+  margin: 20px 20px 20px 12%;
+}
+form {
+  border-radius: 10px;
+  color: var(--primary-color);
+}
+label {
+  color: var(--primary-color);
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+input[type="text"],
+textarea {
+  background-color: #1e1e1e;
+  border: none;
+  border-radius: 10px;
+  color: var(--primary-color);
+  padding: 10px;
+  width: 99%;
+  margin-bottom: 20px;
+}
+.comment,
+p {
+  margin: 10px 0;
+}
+input[type="text"]:hover,
+input[type="text"]:hover:focus,
+textarea:hover,
+textarea:hover:focus {
+  background-color: rgba(#333, #333, #333, 0.4);
+  border: none;
+  transition: 0.3s;
+}
+#post-content {
+  min-height: 125px;
+}
+button[type="button"],
+button[type="reset"],
+button[type="submit"] {
+  background-color: var(--primary-button-color);
+  border: none;
+  border-radius: 10px;
+  color: var(--primary-color);
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.comment hr,
+hr {
+  border-color: #666;
+}
+button[type="button"]:hover,
+button[type="reset"]:hover,
+button[type="submit"]:hover {
+  transition: 0.5s;
+  background-color: var(--secondary-button-color);
+}
+h2,
+strong {
+  color: var(--accent-color);
+}
+hr {
+  margin: 20px 0;
+}
+.comment {
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 10px;
+  border-radius: 10px;
+  width: 70%;
+  margin-left: 15%;
+}
+.comment p {
+  margin: 0;
+  color: var(--primary-color);
+}
+.comment hr {
+  margin: 10px 0;
+}
+.comment-add {
+  background-color: transparent;
+  margin-bottom: 15px;
+  width: 71%;
+  margin-left: 15%;
+  border-radius: 10px;
+}
+.comment-add input[type="submit"] {
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.show-comments {
+  background-color: var(--primary-button-color);
+  color: var(--primary-color);
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-left: 15%;
+  margin-bottom: 20px;
+}
+.edit-any {
+  background-color: var(--primary-button-color);
+  color: var(--primary-color);
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-right: 10px;
+}
+.edit-any:hover {
+  background-color: var(--secondary-button-color);
+  transition: 0.3s;
+}
+.edit-any a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+.title-comment {
+  margin-left: 16%;
+}
+p {
+  margin: 10px 0;
+  color: var(--primary-color);
+}
+.comment {
+  background-color: #2d2d2d;
+}
+.comment hr .comment p {
+  color: var(--primary-color);
+}
+.comment-add textarea {
+  background-color: #1f1f1f;
+  color: var(--primary-color);
+}
+.comment-add input[type="submit"],
+.show-comments {
+  background-color: var(--primary-button-color);
+  color: var(--primary-color);
+}
+.comment-add input[type="submit"]:hover,
+.show-comments:hover {
+  background-color: var(--secondary-button-color);
+  transition: 0.3s;
+}
+.post-section {
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 10px;
+  padding-top: 1px;
+  border-radius: 10px;
+  width: 70%;
+  margin-left: 15%;
+}
+select {
+  width: 130px;
+  height: 35px;
+  background-color: #121212;
+  color: var(--primary-color);
+  font-size: medium;
+  border-radius: 15px;
+}
+form {
+  margin-bottom: 15px;
+}
+option:checked {
+  background-color: var(--primary-button-color);
+}
+label {
+  margin-right: 10px;
+}
+select {
+  padding: 5px;
+  border: 1px solid var(--primary-color);
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+select:hover {
+  background-color: #2f2f2f;
+}
+option {
+  background-color: #1a1a1a;
+}
+option:hover {
+  background-color: #2f2f2f;
+}
+option:checked {
+  background-color: var(--primary-button-color);
+}
+input[type="submit"] {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  background-color: var(--primary-button-color);
+  color: var(--primary-color);
+  cursor: pointer;
+}
+input[type="submit"]:hover {
+  background-color: var(--secondary-button-color);
+}
+.form-bg {
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+}
+label {
+  color: var(--primary-button-color);
+}
+select {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: var(--primary-color);
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  outline: none;
+  transition: background-color 0.3s ease;
+  width: 133px;
+  margin-right: 15px;
+}
+select:hover {
+  background-color: #333;
+}
+select option {
+  background-color: transparent;
+  color: var(--primary-color);
+}
+select option:hover {
+  background-color: #333;
+}
+.non-posts {
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 15px;
+  margin: 10px 10px 35px 15%;
+  width: 70%;
+  border-radius: 10px;
+  text-align: center;
+}
+.message-posts {
+  color: var(--primary-button-color);
+  font-size: 20px;
+}
+#overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+}
+#enlarged-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 90%;
+  max-height: 90%;
+}
+.image-container {
+  position: relative;
+}
+.post-image {
+  cursor: pointer;
+}
+::selection {
+  background-color: var(--accent-color);
+}

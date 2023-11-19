@@ -1,0 +1,179 @@
+#user-settings-nav {
+	background-color: rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	float: left;
+	justify-content: space-around;
+	height: 596px;
+	padding: 10px 0 10px 10px;
+	width: 20%;
+	text-align: left;
+}
+#user-settings-nav button {
+	background-color: rgba(0, 0, 0, 0.3);
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
+	color: var(--primary-color);
+	font-size: 20px;
+	margin: 25px 0;
+	padding: 16px;
+}
+#user-settings-nav button:hover {
+	color: var(--primary-button-color);
+	background-color: var(--secondary-button-color);
+	transition: 0.5s;
+}
+.settings {
+	background-color: var(--secondary-color);
+	border-radius: 10px;
+	color: var(--primary-color);
+}
+.settings__notify,
+.settings__privacy,
+.settings__user {
+	color: var(--primary-color);
+	background-color: rgba(0, 0, 0, 0.3);
+	margin-left: 35%;
+	padding: 10px;
+	height: 596px;
+	width: 50%;
+}
+.error-message,
+.message,
+.password-input:focus + .password-toggle-button .fa-eye,
+.password-input:focus + .password-toggle-button .fa-eye-slash,
+.password-toggle-button:hover .fa-eye,
+.password-toggle-button:hover .fa-eye-slash {
+	color: var(--primary-button-color);
+}
+.change-user-data button,
+.save-changes button,
+.delete-account button {
+	background-color: rgba(255, 255, 255, 0.05);
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
+	color: var(--primary-color);
+	font-size: 20px;
+	margin: 25px 0;
+	padding: 16px;
+}
+.delete-account button {
+	color: var(--primary-button-color);
+}
+.change-user-data button:hover,
+.save-changes button:hover {
+	background-color: var(--secondary-button-color);
+	color: var(--primary-button-color);
+	transition: 0.5s;
+}
+.delete-account button:hover {
+	background-color: var(--secondary-button-color);
+	color: var(--accent-color);
+	transition: 0.5s;
+}
+.login-form-content {
+	margin-top: 100px;
+}
+#save-pass {
+	margin-top: 10px;
+	margin-left: 39%;
+}
+.buttons-form {
+	margin-top: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+}
+.change-user-data,
+.save-changes {
+	float: left;
+}
+footer {
+	margin-top: 25px;
+}
+.form-item {
+	margin-top: 50px;
+}
+input[type="password"],
+input[type="text"] {
+	background: 0 0;
+	border: 2px solid var(--secondary-button-color);
+	border-radius: 100px;
+	box-shadow: 0 0 8px 8px rgba(0, 0, 0, 0.3);
+	color: var(--primary-color);
+	font-size: 18px;
+	height: 55px;
+	padding: 0 2rem;
+	transition: background 0.5s;
+	width: 50%;
+}
+input[type="password"]:hover,
+input[type="text"]:hover {
+	background-color: rgba(0, 0, 0, 0.4);
+	border: 2px solid var(--primary-button-color);
+	box-shadow: 0 0 8px 8px rgba(0, 0, 0, 0.4);
+	transition: 0.5s;
+}
+input[type="password"]:focus,
+input[type="text"]:focus {
+	border: 3px solid var(--primary-button-color);
+	box-shadow: 0 0 8px 8px rgba(0, 0, 0, 0.4);
+	outline: 0;
+}
+input[type="password"]:not(:placeholder-shown) + label,
+input[type="text"]:not(:placeholder-shown) + label {
+	background-color: var(--secondary-color);
+	font-size: 14px;
+	opacity: 1;
+	padding: 0 10px;
+	transform: translate(30px, -30px);
+	color: var(--primary-color);
+}
+.form-item label:not(.checkboxLabel) {
+	background-color: var(--secondary-color);
+	display: flex;
+	font-size: 14px;
+	margin-bottom: 10px;
+	position: absolute;
+	padding: 0 10px;
+	transform: translate(200px, -10px);
+	color: var(--primary-color);
+}
+label {
+	border-radius: 20px;
+}
+.error-message,
+.message {
+	background-color: var(--secondary-button-color);
+	font-weight: 700;
+	font-size: 18px;
+	margin: 12px;
+	padding: 12px;
+	border-radius: 10px;
+	color: var(--primary-button-color);
+}
+.password-container {
+	position: relative;
+}
+.password-toggle-button {
+	background: 0 0;
+	border: none;
+	cursor: pointer;
+	font-size: 28px;
+	position: absolute;
+	outline: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 22%;
+}
+.fa-eye,
+.fa-eye-slash {
+	color: var(--primary-button-color);
+	font-size: 28px;
+}
+::selection {
+	background-color: var(--accent-color);
+}

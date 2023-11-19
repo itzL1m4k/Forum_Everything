@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./assets/img/ikona-strony.png" type="image/x-icon" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/global-styles.css" />
+    <link rel="stylesheet" href="./assets/prism/prism.css" />
+    <title>Forum | Kod Skryptów</title>
+  </head>
+
+  <body>
+    <button id="to-top-btn" onclick="scrollToTop()">
+      <img id="arrow-up" src="./assets/img/arrow-up-solid.svg" alt="strzałka do góry" />
+    </button>
+
+    <div class="container">
+      <section class="logo">
+        <h1><a href="index.php">Forum Informatyczne</a></h1>
+      </section>
+
+      <header>
+        <ul>
+          <li><a href="index.php">Wpisy</a></li>
+          <li><a href="documentation.html">Dokumentacja</a></li>
+          <li><a href="about-code.html">Kod PHP</a></li>
+          <li><a href="about-code2.html">Kod JavaScript</a></li>
+        </ul>
+        <ul>
+          <li class="login-nav"><a href="login.php">Zaloguj się</a></li>
+          <li class="login-nav"><a href="register.php">Zarejestruj się</a></li>
+          <li class="yourAccount hidden">
+            <a href="profile-data.php">Twoje konto</a>
+          </li>
+        </ul>
+      </header>
+
+      <main>
+        <section id="navbar-code">
+          <ul>
+            <li><a class="scroll-link" href="#sekcja1">cookies</a></li>
+            <li><a class="scroll-link" href="#sekcja2">deleteAccount</a></li>
+            <li><a class="scroll-link" href="#sekcja3">passValidation</a></li>
+            <li><a class="scroll-link" href="#sekcja4">posts</a></li>
+            <li><a class="scroll-link" href="#sekcja5">showComments</a></li>
+            <li><a class="scroll-link" href="#sekcja6">showImage</a></li>
+            <li><a class="scroll-link" href="#sekcja7">smoothScroll</a></li>
+            <li><a class="scroll-link" href="#sekcja8">usetContent</a></li>
+            <li><a class="scroll-link" href="#sekcja9">userSettingsToggle</a></li>
+            <li><a class="scroll-link" href="#sekcja10">validateImage</a></li>
+          </ul>
+        </section>
+
+        <div class="code-script-all">
+          <section class="post" id="sekcja1">
+            <h2>Akceptacja ciasteczek na stronie</h2>
+            <pre>
+            <code class="language-javascript">
+window.onload = function () {
+
+  var e = document.getElementById("cookies"),
+    t = document.getElementById("accept");
+
+  "true" === sessionStorage.getItem("logged")
+    ? (e.style.display = "none")
+    : (e.style.display = "block"),
+
+    (t.onclick = function () {
+
+      (e.style.display = "none"),
+
+        sessionStorage.setItem("cookies_accept", "true"),
+        sessionStorage.setItem("logged", "true");
+    }),
+
+    "true" === sessionStorage.getItem("cookies_accept") &&
+      ((e.style.display = "none"), sessionStorage.setItem("logged", "true"));
+};
+            </code>
+          </pre>
+          </section>
+          <section class="post" id="sekcja2">
+            <h2>Usuwanie konta</h2>
+            <pre>
+            <code class="language-javascript">
+function deleteAccount() {
+	Swal.fire({
+		title: "Czy na pewno chcesz usunąć konto?",
+		icon: "question",
+		showCancelButton: true,
+		confirmButtonText: "Tak, usuń",
+		cancelButtonText: "Anuluj",
+		customClass: {
+			popup: "my-custom-popup-class",
+			title: "my-custom-title-class",
+			content: "my-custom-content-class",
+			confirmButton: "my-custom-button-class",
+			cancelButton: "my-custom-button-class",
+		},
+	}).then((result) =&gt; {
+		if (result.isConfirmed) {
+			var xhr = new XMLHttpRequest();
+			xhr.open("POST", "./php/delete-account.php", true);
+			xhr.onreadystatechange = function () {
+				if (xhr.readyState === 4 && xhr.status === 200) {
+					window.location.href = "notify.php?info=account-delete";
+					localStorage.removeItem("cookies_accept");
+				}
+			};
+			xhr.send();
+		}
+	});
+}
+            </code>
+          </pre>
+          </section>
+          <section class="post" id="sekcja3">
+            <h2>Walidacja hasła</h2>
+            <pre>
+            <code class="language-javascript">
+const togglePasswordVisibility = (e) =&gt; {
+		let a = document.getElementById(e),
+			t = a.nextElementSibling;
+		(a.type = "password" === a.type ? "text" : "password"),
+			(t.innerHTML =
+				"password" === a.type
+					? '&lt;i class="fa fa-eye-slash"&gt;&lt;/i&gt;'
+					: '&lt;i class="fa fa-eye"&gt;&lt;/i&gt;');
+	},
+	validatePassword = () =&gt; {
+		let e = document.getElementById("password").value,
+			a = document.getElementById("again-password").value,
+			t = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,})/,
+			s;
+		e !== a
+			? (s = "Hasła nie są takie same!")
+			: !t.test(e) &&
+			  (s = `Hasło nie spełnia wymagań
+- 8 znak\xf3w
+- Jedna cyfra (0-9)
+- Jedna mała litera (a-z)
+- Jedna duża litera (A-Z)
+- Jeden znak specjalny (!@#$%^&*)`),
+			s &&
+				(Swal.fire({
+					icon: "error",
+					title: s,
+					customClass: {
+						popup: "my-custom-popup-class",
+						title: "my-custom-title-class",
+						content: "my-custom-content-class",
+						confirmButton: "my-custom-button-class",
+					},
+				}),
+				event.preventDefault());
+	};
+            </code>
+          </pre>
+          </section>
+          <section class="post" id="sekcja4">
+            <h2>Ukazywanie bloku tworzenia posta</h2>
+            <pre>
+            <code class="language-javascript">
+const showNewPostEl = document.querySelector(".show-new-post"),
+  createNewPostEl = document.querySelector(".create-new-post"),
+  postButtonEl = document.querySelector("#post-button"),
+  declineButtonEl = document.querySelector("#post-button-decline"),
+  togglePostView = () =&gt; {
+    showNewPostEl.classList.toggle("hidden"),
+      createNewPostEl.classList.toggle("hidden");
+  };
+postButtonEl.addEventListener("click", togglePostView),
+  declineButtonEl.addEventListener("click", togglePostView);
+            </code>
+          </pre>
+          </section>
+          <section class="post" id="sekcja5">
+            <h2>Pokazywanie komentarzy poprzec kliknięcie</h2>
+            <pre>
+            <code class="language-javascript">
+const buttons = document.querySelectorAll(".show-comments");
+
+buttons.forEach((button) =&gt; {
+	button.addEventListener("click", () =&gt; {
+		const postId = button.dataset.postId;
+		const comments = document.querySelectorAll(
+			`.comment[data-post-id="${postId}"]`
+		);
+
+		comments.forEach((comment) =&gt; {
+			comment.classList.toggle("hidden");
+		});
+
+		button.textContent =
+			button.textContent === "Pokaż komentarze"
+				? "Ukryj komentarze"
+				: "Pokaż komentarze";
+	});
+});
+            </code>
+          </pre>
+          </section>
+          <section class="post" id="sekcja6">
+            <h2>Pokazywanie obrazka na środku ekranu</h2>
+            <pre>
+            <code class="language-javascript">
+function showImage(e) {
+  var l = e.src;
+  (document.getElementById("enlarged-image").src = l),
+    (document.getElementById("overlay").style.display = "block");
+}
+function hideImage() {
+  document.getElementById("overlay").style.display = "none";
+}
+            </code>
+          </pre>
+          </section>
+          <section class="post" id="sekcja7">
+            <h2>Płynna animacja scrola na stronie</h2>
+            <pre>
+            <code class="language-javascript">
+function scrollToTop() {
+  var e = window.scrollY,
+    t = 0 - e,
+    l = null;
+  function n(o) {
+    l || (l = o);
+    var r = o - l,
+      s = easeInOutQuad(r, e, t, 500);
+    window.scrollTo(0, s), r &lt; 500 && window.requestAnimationFrame(n);
+  }
+  window.requestAnimationFrame(n);
+}
+window.addEventListener("scroll", function () {
+  var e = document.getElementById("to-top-btn");
+  window.scrollY &gt; 20
+    ? (e.style.display = "block")
+    : (e.style.display = "none");
+});
+for (
+  var scrollLinks = document.getElementsByClassName("scroll-link"), i = 0;
+  i &lt; scrollLinks.length;
+  i++
+)
+  scrollLinks[i].addEventListener("click", function (e) {
+    e.preventDefault(),
+      smoothScrollTo(
+        document.querySelector(this.getAttribute("href")).offsetTop
+      );
+  });
+function smoothScrollTo(e) {
+  var t = window.scrollY,
+    l = e - t,
+    n = null;
+  function o(e) {
+    n || (n = e);
+    var r = e - n,
+      s = easeInOutQuad(r, t, l, 500);
+    window.scrollTo(0, s), r &lt; 500 && window.requestAnimationFrame(o);
+  }
+  window.requestAnimationFrame(o);
+}
+function easeInOutQuad(e, t, l, n) {
+  return (e /= n / 2) &lt; 1
+    ? (l / 2) * e * e + t
+    : (-l / 2) * (--e * (e - 2) - 1) + t;
+}
+            </code>
+          </pre>
+          </section>
+          <section class="post" id="sekcja8">
+            <h2>Zmiana zawartości strony podczas aktywnego zalogowania</h2>
+            <pre>
+            <code class="language-javascript">
+function getCookie(e) {
+	let o = document.cookie.match("(^|[^;]+)\\s*" + e + "\\s*=\\s*([^;]+)");
+	return o ? o.pop() : "";
+}
+
+const cookieName = getCookie("login_cookie");
+const accountElements = document.querySelectorAll(
+	".yourAccount, .about-code, .show-new-post, .comment-add"
+);
+const loginNavElements = document.querySelectorAll(".login-nav");
+const notLoginElements = document.querySelectorAll(".not-login");
+
+if ("" === cookieName) {
+	fetch("./php/check-session.php")
+		.then((e) =&gt; e.json())
+		.then((e) =&gt; {
+			if (!0 === e.login) {
+				accountElements.forEach((e) =&gt; {
+					e.classList.remove("hidden");
+				});
+				loginNavElements.forEach((e) =&gt; {
+					e.classList.add("hidden");
+				});
+				notLoginElements.forEach((e) =&gt; {
+					e.classList.add("hidden");
+				});
+			}
+		})
+		.catch((e) =&gt; {
+			console.log("Błąd podczas sprawdzania sesji:", e);
+		});
+} else {
+	accountElements.forEach((e) =&gt; {
+		e.classList.remove("hidden");
+	});
+	loginNavElements.forEach((e) =&gt; {
+		e.classList.add("hidden");
+	});
+	notLoginElements.forEach((e) =&gt; {
+		e.classList.add("hidden");
+	});
+}
+            </code>
+          </pre>
+          </section>
+          <section class="post" id="sekcja9">
+            <h2>Zamiana klas pomiędzy sekcjami w 'Twoje konto'</h2>
+            <pre>
+            <code class="language-javascript">
+const sections = document.querySelectorAll(".settings &gt; div");
+const showSection = (e) =&gt; {
+	sections.forEach((t) =&gt; t.classList.toggle("hidden", t !== e));
+};
+const userButton = document.getElementById("user-button");
+const privacyButton = document.getElementById("privacy-button");
+const sectionUser = document.querySelector(".settings__user");
+const sectionPrivacy = document.querySelector(".settings__privacy");
+
+const removeReadonlyAttribute = (e) =&gt; {
+	e.removeAttribute("readonly");
+};
+
+const changeUserData = () =&gt; {
+	let e = document.querySelector("#settings-email");
+	let t = document.querySelector("#settings-nick");
+	removeReadonlyAttribute(e);
+	removeReadonlyAttribute(t);
+	let n = document.querySelector(".message");
+	n.classList.remove("hidden");
+};
+
+userButton.addEventListener("click", () =&gt; showSection(sectionUser));
+privacyButton.addEventListener("click", () =&gt; showSection(sectionPrivacy));
+            </code>
+          </pre>
+          </section>
+          <section class="post" id="sekcja10">
+            <h2>Walidacja rozmiaru dodawanego obrazka w poście</h2>
+            <pre>
+            <code class="language-javascript">
+function validateImageSize(fileInput) {
+	var maxFileSize = 10 * 1024 * 1024;
+	var files = fileInput.files;
+
+	for (var i = 0; i &lt; files.length; i++) {
+		var file = files[i];
+		if (file.size &gt; maxFileSize) {
+			Swal.fire({
+				title: "Przepraszamy",
+				text:
+					"Rozmiar pliku " +
+					file.name +
+					" przekracza limit 10 megabajtów. Wybierz mniejszy plik.",
+				icon: "error",
+				confirmButtonText: "OK",
+				customClass: {
+					popup: "my-custom-popup-class",
+					title: "my-custom-title-class",
+					content: "my-custom-content-class",
+					confirmButton: "my-custom-button-class",
+				},
+			});
+
+			fileInput.value = "";
+			return false;
+		}
+	}
+	return true;
+}
+            </code>
+          </pre>
+          </section>
+        </div>
+      </main>
+
+      <footer>
+        <p
+          >&copy; Copyright 2023 by
+          <span><a href="https://github.com/ItzLimak"> Kamil Popiołek</a></span></p
+        >
+      </footer>
+    </div>
+
+    <div id="cookies">
+      <p
+        >Strona wykorzystuje pliki cookies. Klikając "<b>Akceptuję</b>", zgadzasz się na ich
+        użycie.</p
+      >
+      <button id="accept"><b>Akceptuję</b></button>
+    </div>
+
+    <script>
+      Prism.highlightAll();
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="./assets/prism/prism.js"></script>
+    <script src="./js/user-content.js"></script>
+    <script src="./js/smooth-scroll.js"></script>
+    <script src="./js/cookies.js"></script>
+  </body>
+</html>
