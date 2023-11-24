@@ -20,7 +20,7 @@ label {
   font-size: 18px;
   margin-bottom: 10px;
 }
-input[type="text"],
+input[type='text'],
 textarea {
   background-color: #1e1e1e;
   border: none;
@@ -34,8 +34,8 @@ textarea {
 p {
   margin: 10px 0;
 }
-input[type="text"]:hover,
-input[type="text"]:hover:focus,
+input[type='text']:hover,
+input[type='text']:hover:focus,
 textarea:hover,
 textarea:hover:focus {
   background-color: rgba(#333, #333, #333, 0.4);
@@ -45,9 +45,9 @@ textarea:hover:focus {
 #post-content {
   min-height: 125px;
 }
-button[type="button"],
-button[type="reset"],
-button[type="submit"] {
+button[type='button'],
+button[type='reset'],
+button[type='submit'] {
   background-color: var(--primary-button-color);
   border: none;
   border-radius: 10px;
@@ -60,9 +60,9 @@ button[type="submit"] {
 hr {
   border-color: #666;
 }
-button[type="button"]:hover,
-button[type="reset"]:hover,
-button[type="submit"]:hover {
+button[type='button']:hover,
+button[type='reset']:hover,
+button[type='submit']:hover {
   transition: 0.5s;
   background-color: var(--secondary-button-color);
 }
@@ -94,7 +94,7 @@ hr {
   margin-left: 15%;
   border-radius: 10px;
 }
-.comment-add input[type="submit"] {
+.comment-add input[type='submit'] {
   border: none;
   padding: 10px;
   cursor: pointer;
@@ -145,12 +145,12 @@ p {
   background-color: #1f1f1f;
   color: var(--primary-color);
 }
-.comment-add input[type="submit"],
+.comment-add input[type='submit'],
 .show-comments {
   background-color: var(--primary-button-color);
   color: var(--primary-color);
 }
-.comment-add input[type="submit"]:hover,
+.comment-add input[type='submit']:hover,
 .show-comments:hover {
   background-color: var(--secondary-button-color);
   transition: 0.3s;
@@ -198,7 +198,7 @@ option:hover {
 option:checked {
   background-color: var(--primary-button-color);
 }
-input[type="submit"] {
+input[type='submit'] {
   padding: 5px 10px;
   border: none;
   border-radius: 3px;
@@ -206,7 +206,7 @@ input[type="submit"] {
   color: var(--primary-color);
   cursor: pointer;
 }
-input[type="submit"]:hover {
+input[type='submit']:hover {
   background-color: var(--secondary-button-color);
 }
 .form-bg {

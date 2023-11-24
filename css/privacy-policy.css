@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;600&display=swap');
+:root {
+  --primary-color: #fcfcfc;
+  --secondary-color: #151515;
+  --primary-button-color: #f54c28;
+  --secondary-button-color: #1b1918;
+  --accent-color: #689775;
+}
+body,
+h2,
+h3 {
+  color: var(--primary-color);
+}
+body {
+  background: linear-gradient(145deg, #191919, rgba(0, 0, 0, 0.9));
+  font-family: Inter, sans-serif;
+}
+.privacy-policy {
+  background-color: var(--secondary-color);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+h3 {
+  font-size: 1.5em;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+p {
+  line-height: 1.5em;
+  margin-bottom: 15px;
+}
+::selection {
+  background-color: var(--accent-color);
+}

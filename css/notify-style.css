@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;600&display=swap');
+:root {
+  --primary-color: #fcfcfc;
+  --secondary-color: #151515;
+  --primary-button-color: #f54c28;
+  --secondary-button-color: #1b1918;
+  --accent-color: #689775;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: var(--secondary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.error-message {
+  background-color: rgba(0, 0, 0, 0.4);
+  color: var(--primary-color);
+  padding: 30px;
+  border-radius: 10px;
+  width: 25%;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  font-size: 25px;
+  line-height: 1.5;
+  font-family: 'Inter', sans-serif;
+}
+.error-message a {
+  color: var(--accent-color);
+  text-decoration: none;
+  position: relative;
+}
+.error-message a::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--accent-color);
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: transform 0.3s ease, visibility 0 linear 0.3s;
+}
+.error-message a:hover::before {
+  transform: scaleX(1);
+  visibility: visible;
+  transition-delay: 0;
+}
+::selection {
+  background-color: var(--accent-color);
+}

@@ -2,11 +2,7 @@ $(document).ready(function () {
   var $e = $("#cookies"),
     $t = $("#accept");
 
-  if (sessionStorage.getItem("logged") === "true") {
-    $e.hide();
-  } else {
-    $e.show();
-  }
+  sessionStorage.getItem("logged") === "true" ? $e.hide() : $e.show();
 
   $t.on("click", function () {
     $e.hide();

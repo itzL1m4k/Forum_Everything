@@ -8,43 +8,7 @@
   <link rel="shortcut icon" href="./assets/img/ikona-strony.png" type="image/x-icon" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: #343a40;
-      color: white;
-    }
-
-    .custom-form {
-      max-width: 400px;
-      margin: auto;
-      background-color: #495057;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .login-form-footer {
-      margin-top: 10px;
-    }
-
-    .password-container {
-      position: relative;
-    }
-
-    .password-toggle-button {
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      background-color: transparent;
-      border: none;
-      cursor: pointer;
-    }
-  </style>
+  <link rel="stylesheet" href="css/auth-pages.css">
   <title>Forum | Zresetuj hasło</title>
 </head>
 
@@ -54,21 +18,21 @@
 
     <section class="login-section">
 
-      <header class="login-header text-center">
+      <header class="login-header">
         <h1>Zmiana hasła</h1>
       </header>
 
-      <form class="login-form custom-form" action="./php/reset-pass.php" method="POST" onsubmit="return validatePassword();">
+      <form class="login-form" action="./php/reset-pass.php" method="POST" onsubmit="return validatePassword();">
 
         <div class="login-form-content">
 
-          <div class="mb-3">
-            <label for="email" class="form-label">Podaj Email</label>
-            <input type="text" class="form-control" id="email" name="email" required />
+          <div>
+            <label for="email">Podaj Email</label>
+            <input type="text" id="email" name="email" required />
           </div>
 
-          <div class="mb-3">
-            <label for="password" class="form-label">Podaj Nowe Hasło</label>
+          <div>
+            <label for="password">Podaj Nowe Hasło</label>
             <div class="input-group">
               <input type="password" class="form-control" id="password" name="password" />
               <button type="button" class="btn btn-outline-light" onclick="togglePasswordVisibility('password')"><i class="fa fa-eye-slash"></i></button>
