@@ -1,20 +1,19 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="pl-PL">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" href="./assets/img/ikona-strony.png" type="image/x-icon" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="./css/global-styles.css" />
-  <link rel="stylesheet" href="./css/new-post.css">
+  <link rel="shortcut icon" href="assets/img/page_icon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="css/global_styles.css" />
+  <link rel="stylesheet" href="css/new_post_styles.css">
   <title>Forum Informatyczne</title>
 </head>
 
 <body>
-
   <button id="to-top-btn" onclick="scrollToTop()">
-    <img id="arrow-up" src="./assets/img/arrow-up-solid.svg" alt="strzałka do góry" />
+    <img id="arrow-up" src="assets/img/arrow_up.svg" alt="strzałka do góry" />
   </button>
 
   <div class="container">
@@ -26,13 +25,13 @@
       <ul>
         <li><a href="index.php">Wpisy</a></li>
         <li><a href="documentation.html">Dokumentacja</a></li>
-        <li><a href="about-code.html">Kod PHP</a></li>
-        <li><a href="about-code2.html">Kod JavaScript</a></li>
+        <li><a href="about_code.html">Kod PHP</a></li>
+        <li><a href="about_code_2.html">Kod JavaScript</a></li>
       </ul>
       <ul>
-        <li class="login-nav"><a href="login.php">Zaloguj się</a></li>
-        <li class="login-nav"><a href="register.php">Zarejestruj się</a></li>
-        <li class="yourAccount hidden"><a href="profile-data.php">Twoje konto</a></li>
+        <li class="login-nav"><a href="user_login.php">Zaloguj się</a></li>
+        <li class="login-nav"><a href="user_registration.php">Zarejestruj się</a></li>
+        <li class="yourAccount hidden"><a href="user_profile.php">Twoje konto</a></li>
       </ul>
     </header>
 
@@ -44,7 +43,7 @@
 
       <div class="create-new-post hidden">
 
-        <form action="./php/new-post.php" method="POST" enctype="multipart/form-data">
+        <form action="php/new_post_handler.php" method="POST" enctype="multipart/form-data">
 
           <label for="post-title">Tytuł:</label>
           <input type="text" id="post-title" name="post-title" placeholder="Napisz tutaj tytuł swojego postu!" required>
@@ -52,7 +51,7 @@
           <label for="post-content">Treść:</label>
           <textarea id="post-content" name="post-content" placeholder="Napisz treść swojego postu!" required></textarea>
 
-          <label for="post-image">Obrazek: &lt; 10Mb </label>
+          <label for="image-input">Obrazek: &lt; 10Mb </label>
           <input type="file" name="post-image" accept="image/*" id="image-input" onchange="validateImageSize(this)">
 
           <button type="submit">Dodaj post</button>
@@ -112,7 +111,7 @@
               },
             }).then((result) => {
               if (result.isConfirmed) {
-                var url = './php/delete-post.php?id=' + postId;
+                var url = 'php/delete_post.php?id=' + postId;
                 window.location.href = url;
               }
             });
@@ -134,7 +133,7 @@
               },
             }).then((result) => {
               if (result.isConfirmed) {
-                var url = './php/delete-comment.php?id=' + commentId;
+                var url = 'php/delete_comment.php?id=' + commentId;
                 window.location.href = url;
               }
             });
@@ -142,9 +141,8 @@
         </script>
         <?php
       }
+      require_once("php/database_connection.php");
 
-      require_once("./php/connect.php");
-      session_start();
       $currentUserId = $_SESSION['user_id'] ?? null;
 
       $order = $_POST['order'] ?? 'DESC';
@@ -185,8 +183,8 @@
             <p><strong>Data publikacji:</strong><?= $row["data_publikacji"] ?></p>
 
         <?php
-          if ($currentUserId && $row["autor_id"] === $currentUserId) {
-            echo "<button class='edit-any'><a href='./php/edit-post.php?id=" . $row["id"] . "'>Edytuj</a></button>";
+          if ($currentUserId == $row["autor_id"]) {
+            echo "<button class='edit-any'><a href='php/edit_post.php?id=" . $row["id"] . "'>Edytuj</a></button>";
             echo "<button class='edit-any' onclick='deletePost(" . $row["id"] . ")'>Usuń</button>";
 
             generateDeleteScript($row["id"]);
@@ -198,7 +196,7 @@
           $comments_result = mysqli_query($conn, $comments_sql);
 
           echo '<div class="comment-add comment-add-' . $row["id"] . ' hidden">';
-          echo '<form method="POST" action="./php/add-comment.php">';
+          echo '<form method="POST" action="php/add_comment.php">';
           echo '<input type="hidden" name="wpis_id" value="' . $row["id"] . '">';
           echo '<textarea name="tresc" required placeholder="Napisz swoją opinie na temat tego postu!"></textarea>';
           echo '<br>';
@@ -213,8 +211,8 @@
               echo "<p>" . $comment_row["tresc"] . "</p>" . "<br>";
               echo "<p><strong>Data publikacji:</strong> " . $comment_row["data_publikacji"] . "</p>";
 
-              if ($currentUserId && $comment_row["autor_id"] === $currentUserId) {
-                echo "<button class='edit-any'><a href='./php/edit-comment.php?id=" . $comment_row["id"] . "'>Edytuj</a></button>";
+              if ($currentUserId == $comment_row["autor_id"]) {
+                echo "<button class='edit-any'><a href='php/edit_comment.php?id=" . $comment_row["id"] . "'>Edytuj</a></button>";
                 echo "<button class='edit-any' onclick='deleteComment(" . $comment_row["id"] . ")'>Usuń</button>";
                 generateDeleteScript($comment_row["id"]);
               }
@@ -234,7 +232,7 @@
     </section>
 
     <footer>
-      <p>&copy; Copyright by <span><a href="https://github.com/ItzLimak">Kamil Popiołek</a></span></p>
+      <p>&copy; Copyright by <span><a href="https://github.com/itzL1m4k">Kamil Popiołek</a></span></p>
     </footer>
 
   </div>
@@ -243,18 +241,15 @@
     <p>Strona wykorzystuje pliki cookies. Klikając "<b>Akceptuję</b>", zgadzasz się na ich użycie.</p>
     <button id="accept"><b>Akceptuję</b></button>
   </div>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/showdown@1.9.1/dist/showdown.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="./js/user-content.js"></script>
-  <script src="./js/show-comments.js"></script>
-  <script src="./js/smooth-scroll.js"></script>
-  <script src="./js/cookies.js"></script>
-  <script src="./js/posts.js"></script>
-  <script src="./js/show-image.js"></script>
-  <script src="./js/validate-image.js"></script>
-
+  <script src="js/user_content_handler.js"></script>
+  <script src="js/comment_display.js"></script>
+  <script src="js/smooth_scroll.js"></script>
+  <script src="js/cookies_handler.js"></script>
+  <script src="js/post_handler.js"></script>
+  <script src="js/image_display.js"></script>
+  <script src="js/image_validation.js"></script>
 </body>
 
 </html>

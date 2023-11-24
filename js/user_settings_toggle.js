@@ -1,13 +1,13 @@
 $(document).ready(function () {
-  const sections = $(".settings > div");
-  const userButton = $("#user-button");
-  const privacyButton = $("#privacy-button");
-  const sectionUser = $(".settings__user");
-  const sectionPrivacy = $(".settings__privacy");
-  const emailInput = $("#settings-email");
-  const nickInput = $("#settings-nick");
-  const message = $(".message");
-  const changebtn = $("#change-data");
+  const sections = $(".settings > div"),
+    userButton = $("#user-button"),
+    privacyButton = $("#privacy-button"),
+    sectionUser = $(".settings__user"),
+    sectionPrivacy = $(".settings__privacy"),
+    emailInput = $("#settings-email"),
+    nickInput = $("#settings-nick"),
+    message = $(".message"),
+    changebtn = $("#change-data");
 
   const showSection = (element) => {
     sections.not(element).addClass("hidden");

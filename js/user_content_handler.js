@@ -10,7 +10,7 @@ const notLoginElements = $(".not-login");
 
 if ("" === cookieName) {
   $.ajax({
-    url: "./php/check-session.php",
+    url: "/php/check_session.php",
     dataType: "json",
     success: function (data) {
       if (!0 === data.login) {

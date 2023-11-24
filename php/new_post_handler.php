@@ -1,5 +1,5 @@
 <?php
-require_once("connect.php");
+require_once("database_connection.php");
 
 if (isset($_POST['post-title'], $_POST['post-content'])) {
   session_start();
@@ -16,12 +16,11 @@ if (isset($_POST['post-title'], $_POST['post-content'])) {
   $sql = "INSERT INTO wpisy (autor_id, tytul, tresc, obrazek) VALUES ('$user_id', '$title', '$content', '$image_data')";
 
   if (mysqli_query($conn, $sql)) {
-    header('Location: ../notify.php?info=post-added');
+    header('Location: ../notification.php?info=post_added');
     exit;
   } else {
-    header('Location: ../notify.php?info=post-error');
+    header('Location: ../notification.php?info=post_error');
     exit;
   }
 }
-
 mysqli_close($conn);

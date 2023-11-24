@@ -14,9 +14,9 @@ let deleteAccount = () => {
     },
   }).then((result) => {
     if (result.isConfirmed) {
-      $.post("./php/delete-account.php", function (data, status) {
+      $.post("./php/delete_account.php", function (data, status) {
         if (status === "success") {
-          window.location.href = "./notify.php?info=account-delete";
+          window.location.href = "./notification.php?info=account_delete";
           localStorage.removeItem("cookies_accept");
         }
       });

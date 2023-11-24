@@ -1,28 +1,31 @@
 <?php
-require_once("connect.php");
+require_once("database_connection.php");
 
 $nickname = $_POST['nickname'] ?? '';
 $email = $_POST['email'] ?? '';
 $password = $_POST['password'] ?? '';
 $policy = $_POST['privacyPolicy'];
 
-if (!filter_var($email, FILTER_VALIDATE_EMAIL) || !$policy) {
-  redirectToRegister('invalid-email');
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+  redirectToRegister('invalid_email');
+}
+if (!$policy) {
+  redirectToRegister('accept_policy');
 }
 
 if (userExists($conn, $email, $nickname)) {
-  redirectToRegister('user-exists');
+  redirectToRegister('user_exists');
 }
 
 $hashedPass = password_hash($password, PASSWORD_DEFAULT);
 
 if (insertUser($conn, $nickname, $email, $hashedPass)) {
   $password = $hashedPass = '';
-  header('Location: ../login.php');
+  header('Location: ../user_login.php');
   exit;
 }
 
-redirectToRegister('register-failed');
+redirectToRegister('register_failed');
 
 function redirectToRegister($error)
 {
@@ -32,7 +35,7 @@ function redirectToRegister($error)
     'email' => $_POST['email']
   ]);
 
-  header("Location: ../register.php?$queryParams");
+  header("Location: ../user_registration.php?$queryParams");
   exit;
 }
 

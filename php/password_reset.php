@@ -1,5 +1,5 @@
 <?php
-require_once("connect.php");
+require_once("database_connection.php");
 
 $email = $_POST['email'] ?? '';
 $pass = $_POST['password'] ?? '';
@@ -13,7 +13,7 @@ if (empty($email) && !empty($user_id)) {
 } elseif (!empty($email)) {
   handlePasswordChangeByEmail($conn, $email, $hashedPass);
 } else {
-  redirectToNotify('invalid-user-id');
+  redirectToNotify('invalid_user');
 }
 
 function handlePasswordChangeById($conn, $user_id, $hashedPass)
@@ -22,9 +22,9 @@ function handlePasswordChangeById($conn, $user_id, $hashedPass)
 
   if (mysqli_num_rows($result) > 0) {
     $sql = "UPDATE uzytkownicy SET haslo = '$hashedPass' WHERE user_id = '$user_id'";
-    executeQueryAndRedirect($conn, $sql, 'change-success', 'change-failed');
+    executeQueryAndRedirect($conn, $sql, 'change_success', 'change_failed');
   } else {
-    redirectToNotify('invalid-user-id');
+    redirectToNotify('invalid_user');
   }
 }
 
@@ -36,7 +36,7 @@ function handlePasswordChangeByEmail($conn, $email, $hashedPass)
     $sql = "UPDATE uzytkownicy SET haslo = '$hashedPass' WHERE email = '$email'";
     executeQueryAndRedirect($conn, $sql, 'change_success', 'invalid-email');
   } else {
-    redirectToReset('invalid-email');
+    redirectToReset('invalid_email');
   }
 }
 
@@ -51,12 +51,12 @@ function executeQueryAndRedirect($conn, $sql, $successMessage, $failureMessage)
 
 function redirectToNotify($info)
 {
-  header("Location: ../notify.php?info=$info");
+  header("Location: ../notification.php?info=$info");
   exit;
 }
 
 function redirectToReset($error)
 {
-  header("Location: ../reset.php?error=$error");
+  header("Location: ../password_reset.php?error=$error");
   exit;
 }

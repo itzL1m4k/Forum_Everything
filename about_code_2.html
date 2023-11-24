@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="shortcut icon" href="assets/img/page_icon.png" type="image/x-icon" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+	<link rel="stylesheet" href="css/global_styles.css" />
+	<link rel="stylesheet" href="assets/prism/prism_styles.css" />
+	<title>Forum | Kod Skryptów</title>
+</head>
+
+<body>
+	<button id="to-top-btn" onclick="scrollToTop()">
+		<img id="arrow-up" src="assets/img/arrow_up.svg" alt="strzałka do góry" />
+	</button>
+	<div class="container">
+		<section class="logo">
+			<h1><a href="index.php">Forum Informatyczne</a></h1>
+		</section>
+		<header>
+			<ul>
+				<li><a href="index.php">Wpisy</a></li>
+				<li><a href="documentation.html">Dokumentacja</a></li>
+				<li><a href="about_code.html">Kod PHP</a></li>
+				<li><a href="about_code_2.html">Kod JavaScript</a></li>
+			</ul>
+			<ul>
+				<li class="login-nav"><a href="user_login.php">Zaloguj się</a></li>
+				<li class="login-nav"><a href="user_registration.php">Zarejestruj się</a></li>
+				<li class="yourAccount hidden">
+					<a href="user_profile.php">Twoje konto</a>
+				</li>
+			</ul>
+		</header>
+		<main>
+			<section id="navbar-code">
+				<ul>
+					<li><a class="scroll-link" href="#sekcja1">cookies</a></li>
+					<li><a class="scroll-link" href="#sekcja2">deleteAccount</a></li>
+					<li><a class="scroll-link" href="#sekcja3">passValidation</a></li>
+					<li><a class="scroll-link" href="#sekcja4">posts</a></li>
+					<li><a class="scroll-link" href="#sekcja5">showComments</a></li>
+					<li><a class="scroll-link" href="#sekcja6">showImage</a></li>
+					<li><a class="scroll-link" href="#sekcja7">smoothScroll</a></li>
+					<li><a class="scroll-link" href="#sekcja8">usetContent</a></li>
+					<li><a class="scroll-link" href="#sekcja9">userSettingsToggle</a></li>
+					<li><a class="scroll-link" href="#sekcja10">validateImage</a></li>
+				</ul>
+			</section>
+			<div class="code-script-all">
+				<section class="post" id="sekcja1">
+					<h2>Akceptacja ciasteczek na stronie</h2>
+					<pre>
+            <code class="language-javascript">
+$(document).ready(function () {
+	var $e = $("#cookies"),
+	$t = $("#accept");
+
+sessionStorage.getItem("logged") === "true" ? $e.hide() : $e.show();
+
+$t.on("click", function () {
+	e.hide();
+	essionStorage.setItem("cookies_accept", "true");
+	essionStorage.setItem("logged", "true");
+});
+
+if (sessionStorage.getItem("cookies_accept") === "true") {
+	$e.hide();
+	sessionStorage.setItem("logged", "true");
+}
+});
+            </code>
+          </pre>
+				</section>
+				<section class="post" id="sekcja2">
+					<h2>Usuwanie konta</h2>
+					<pre>
+            <code class="language-javascript">
+let deleteAccount = () =&gt; {
+  Swal.fire({
+    title: "Czy na pewno chcesz usunąć konto?",
+    icon: "question",
+    showCancelButton: true,
+    confirmButtonText: "Tak, usuń",
+    cancelButtonText: "Anuluj",
+    customClass: {
+      popup: "my-custom-popup-class",
+      title: "my-custom-title-class",
+      content: "my-custom-content-class",
+      confirmButton: "my-custom-button-class",
+      cancelButton: "my-custom-button-class",
+    },
+  }).then((result) =&gt; {
+    if (result.isConfirmed) {
+      $.post("./php/delete_account.php", function (data, status) {
+        if (status === "success") {
+          window.location.href = "./notification.php?info=account_delete";
+          localStorage.removeItem("cookies_accept");
+        }
+      });
+    }
+  });
+};
+            </code>
+          </pre>
+				</section>
+				<section class="post" id="sekcja3">
+					<h2>Walidacja hasła</h2>
+					<pre>
+            <code class="language-javascript">
+const togglePasswordVisibility = (e) =&gt; {
+  let $a = $("#" + e),
+    $t = $a.next();
+  $a.attr("type", $a.attr("type") === "password" ? "text" : "password");
+  $t.html(
+    $a.attr("type") === "password" ? '&lt;i class="fa fa-eye-slash"&gt;&lt;/i&gt;' : '&lt;i class="fa fa-eye"&gt;&lt;/i&gt;'
+  );
+};
+
+const validatePassword = () =&gt; {
+  let $e = $("#password").val(),
+    $a = $("#again-password").val(),
+    pattern = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,})/,
+    errorMsg;
+
+  if ($e !== $a) {
+    errorMsg = "Hasła nie są takie same!";
+  } else if (!pattern.test($e)) {
+    errorMsg =
+      "Hasło nie spełnia wymagań:\n" +
+      "- 8 znaków\n" +
+      "- Jedna cyfra (0-9)\n" +
+      "- Jedna mała litera (a-z)\n" +
+      "- Jedna duża litera (A-Z)\n" +
+      "- Jeden znak specjalny (!@#$%^&*)";
+  }
+
+  if (errorMsg) {
+    Swal.fire({
+      icon: "error",
+      title: errorMsg,
+      customClass: {
+        popup: "my-custom-popup-class",
+        title: "my-custom-title-class",
+        content: "my-custom-content-class",
+        confirmButton: "my-custom-button-class",
+      },
+    });
+    event.preventDefault();
+  }
+};
+            </code>
+          </pre>
+				</section>
+				<section class="post" id="sekcja4">
+					<h2>Ukazywanie bloku tworzenia posta</h2>
+					<pre>
+            <code class="language-javascript">
+const showNewPostEl = $(".show-new-post"),
+  createNewPostEl = $(".create-new-post"),
+  postButtonEl = $("#post-button"),
+  declineButtonEl = $("#post-button-decline");
+
+const togglePostView = () =&gt; {
+  showNewPostEl.toggleClass("hidden");
+  createNewPostEl.toggleClass("hidden");
+};
+
+postButtonEl.on("click", togglePostView);
+declineButtonEl.on("click", togglePostView);
+            </code>
+          </pre>
+				</section>
+				<section class="post" id="sekcja5">
+					<h2>Pokazywanie komentarzy poprzec kliknięcie</h2>
+					<pre>
+            <code class="language-javascript">
+$(".show-comments").on("click", function () {
+  const postId = $(this).data("postId");
+  const comments = $(`.comment[data-post-id="${postId}"]`);
+
+  comments.toggleClass("hidden");
+
+  $(this).text(function (i, text) {
+    return text === "Pokaż komentarze" ? "Ukryj komentarze" : "Pokaż komentarze";
+  });
+});
+            </code>
+          </pre>
+				</section>
+				<section class="post" id="sekcja6">
+					<h2>Pokazywanie obrazka na środku ekranu</h2>
+					<pre>
+            <code class="language-javascript">
+let showImage = (e) =&gt; {
+  var src = $(e).attr("src");
+  $("#enlarged-image").attr("src", src);
+  $("#overlay").css("display", "block");
+};
+
+let hideImage = () =&gt; {
+  $("#overlay").css("display", "none");
+};
+            </code>
+          </pre>
+				</section>
+				<section class="post" id="sekcja7">
+					<h2>Płynna animacja scrola na stronie</h2>
+					<pre>
+            <code class="language-javascript">
+let scrollToTop = () =&gt; {
+  var currentScroll = window.scrollY,
+    targetScroll = 0 - currentScroll,
+    animationFrame = null;
+
+  let scrollAnimation = (timestamp) =&gt; {
+    animationFrame || (animationFrame = timestamp);
+    var progress = timestamp - animationFrame,
+      newPosition = easeInOutQuad(progress, currentScroll, targetScroll, 500);
+
+    window.scrollTo(0, newPosition);
+
+    if (progress &lt; 500) {
+      window.requestAnimationFrame(scrollAnimation);
+    }
+  };
+
+  window.requestAnimationFrame(scrollAnimation);
+};
+
+$(window).scroll(function () {
+  var $toTopBtn = $("#to-top-btn");
+  window.scrollY &gt; 20 ? $toTopBtn.css("display", "block") : $toTopBtn.css("display", "none");
+});
+
+$(".scroll-link").click(function (e) {
+  e.preventDefault();
+  var targetOffset = $(this.getAttribute("href")).offset().top;
+  smoothScrollTo(targetOffset);
+});
+
+let smoothScrollTo = (targetOffset) =&gt; {
+  var currentScroll = window.scrollY,
+    scrollDifference = targetOffset - currentScroll,
+    animationFrame = null;
+
+  let scrollAnimation = (timestamp) =&gt; {
+    animationFrame || (animationFrame = timestamp);
+    var progress = timestamp - animationFrame,
+      newPosition = easeInOutQuad(progress, currentScroll, scrollDifference, 500);
+
+    window.scrollTo(0, newPosition);
+
+    if (progress &lt; 500) {
+      window.requestAnimationFrame(scrollAnimation);
+    }
+  };
+
+  window.requestAnimationFrame(scrollAnimation);
+};
+
+let easeInOutQuad = (progress, current, change, duration) =&gt; {
+  return (progress /= duration / 2) &lt; 1
+    ? (change / 2) * progress * progress + current
+    : (-change / 2) * (--progress * (progress - 2) - 1) + current;
+};
+						</code>
+          </pre>
+				</section>
+				<section class="post" id="sekcja8">
+					<h2>Zmiana zawartości strony podczas aktywnego zalogowania</h2>
+					<pre>
+            <code class="language-javascript">
+let getCookie = (e) =&gt; {
+  let match = document.cookie.match("(^|[^;]+)\\s*" + e + "\\s*=\\s*([^;]+)");
+  return match ? match.pop() : "";
+};
+
+const cookieName = getCookie("login_cookie");
+const accountElements = $(".yourAccount, .about-code, .show-new-post, .comment-add");
+const loginNavElements = $(".login-nav");
+const notLoginElements = $(".not-login");
+
+if ("" === cookieName) {
+  $.ajax({
+    url: "/php/check_session.php",
+    dataType: "json",
+    success: function (data) {
+      if (!0 === data.login) {
+        accountElements.removeClass("hidden");
+        loginNavElements.addClass("hidden");
+        notLoginElements.addClass("hidden");
+      }
+    },
+    error: function (error) {
+      console.log("Błąd podczas sprawdzania sesji:", error);
+    },
+  });
+} else {
+  accountElements.removeClass("hidden");
+  loginNavElements.addClass("hidden");
+  notLoginElements.addClass("hidden");
+}
+            </code>
+          </pre>
+				</section>
+				<section class="post" id="sekcja9">
+					<h2>Zamiana klas pomiędzy sekcjami w 'Twoje konto'</h2>
+					<pre>
+            <code class="language-javascript">
+$(document).ready(function () {
+  const sections = $(".settings &gt; div"),
+    userButton = $("#user-button"),
+    privacyButton = $("#privacy-button"),
+    sectionUser = $(".settings__user"),
+    sectionPrivacy = $(".settings__privacy"),
+    emailInput = $("#settings-email"),
+    nickInput = $("#settings-nick"),
+    message = $(".message"),
+    changebtn = $("#change-data");
+
+  const showSection = (element) =&gt; {
+    sections.not(element).addClass("hidden");
+    element.removeClass("hidden");
+  };
+
+  const changeUserData = () =&gt; {
+    emailInput.removeAttr("readonly");
+    nickInput.removeAttr("readonly");
+    message.removeClass("hidden");
+  };
+
+  changebtn.on("click", function () {
+    changeUserData();
+  });
+
+  userButton.on("click", function () {
+    showSection(sectionUser);
+  });
+
+  privacyButton.on("click", function () {
+    showSection(sectionPrivacy);
+  });
+});
+            </code>
+          </pre>
+				</section>
+				<section class="post" id="sekcja10">
+					<h2>Walidacja rozmiaru dodawanego obrazka w poście</h2>
+					<pre>
+            <code class="language-javascript">
+let validateImageSize = (fileInput) =&gt; {
+  var maxFileSize = 10 * 1024 * 1024;
+  var files = fileInput.files;
+
+  for (var i = 0; i &lt; files.length; i++) {
+    var file = files[i];
+    if (file.size &gt; maxFileSize) {
+      Swal.fire({
+        title: "Przepraszamy",
+        text:
+          "Rozmiar pliku " + file.name + " przekracza limit 10 megabajtów. Wybierz mniejszy plik.",
+        icon: "error",
+        confirmButtonText: "OK",
+        customClass: {
+          popup: "my-custom-popup-class",
+          title: "my-custom-title-class",
+          content: "my-custom-content-class",
+          confirmButton: "my-custom-button-class",
+        },
+      });
+
+      $(fileInput).val("");
+      return false;
+    }
+  }
+  return true;
+};
+            </code>
+          </pre>
+				</section>
+			</div>
+		</main>
+		<footer>
+			<p>
+				&copy; Copyright 2023 by
+				<span><a href="https://github.com/itzL1m4k"> Kamil Popiołek</a></span>
+			</p>
+		</footer>
+	</div>
+	<div id="cookies">
+		<p>
+			Strona wykorzystuje pliki cookies. Klikając "<b>Akceptuję</b>", zgadzasz się na ich użycie.
+		</p>
+		<button id="accept"><b>Akceptuję</b></button>
+	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script src="assets/prism/prism_script.js"></script>
+	<script src="js/user_content_handler.js"></script>
+	<script src="js/smooth_scroll.js"></script>
+	<script src="js/cookies_handler.js"></script>
+	<script>
+		Prism.highlightAll();
+	</script>
+</body>
+
+</html>

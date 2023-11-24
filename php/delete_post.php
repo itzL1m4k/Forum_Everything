@@ -1,5 +1,5 @@
 <?php
-require_once("connect.php");
+require_once("database_connection.php");
 
 if (isset($_GET['id'])) {
   $post_id = $_GET['id'];
@@ -21,28 +21,28 @@ if (isset($_GET['id'])) {
       mysqli_stmt_bind_param($stmt_delete_post, "i", $post_id);
 
       if (mysqli_stmt_execute($stmt_delete_post)) {
-        header('Location: ../notify.php?info=post-deleted');
+        header('Location: ../notification.php?info=post_deleted');
         exit;
       } else {
-        header('Location: ../notify.php?info=delete-error-post');
+        header('Location: ../notification.php?info=delete_error_post');
         exit;
       }
 
       mysqli_stmt_close($stmt_delete_post);
     } else {
-      header('Location: ../notify.php?info=delete-error-comments');
+      header('Location: ../notification.php?info=delete_error_comments');
       exit;
     }
 
     mysqli_stmt_close($stmt_delete_comments);
   } else {
-    header('Location: ../notify.php?info=post-not-found');
+    header('Location: ../notification.php?info=post_not_found');
     exit;
   }
 
   mysqli_stmt_close($stmt_check);
 } else {
-  header('Location: ./notify.php?info=invalid-request');
+  header('Location: ../notification.php?info=invalid_request');
   exit;
 }
 

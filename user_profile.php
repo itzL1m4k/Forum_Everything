@@ -14,17 +14,16 @@ if (isset($_POST['log-out'])) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" href="./assets/img/ikona-strony.png" type="image/x-icon" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="./css/global-styles.css" />
-  <link rel="stylesheet" href="./css/profile-data.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <link rel="shortcut icon" href="assets/img/page_icon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="css/global_styles.css" />
+  <link rel="stylesheet" href="css/profile_data_styles.css" />
   <title>Forum | Twoje Konto</title>
 </head>
 
 <body>
   <button id="to-top-btn" onclick="scrollToTop()">
-    <img id="arrow-up" src="./assets/img/arrow-up-solid.svg" alt="strzałka do góry" />
+    <img id="arrow-up" src="assets/img/arrow_up.svg" alt="strzałka do góry" />
   </button>
   <div class="container">
     <div class="logo">
@@ -34,13 +33,13 @@ if (isset($_POST['log-out'])) {
       <ul>
         <li><a href="index.php">Wpisy</a></li>
         <li><a href="documentation.html">Dokumentacja</a></li>
-        <li><a href="about-code.html">Kod PHP</a></li>
-        <li><a href="about-code2.html">Kod JavaScript</a></li>
+        <li><a href="about_code.html">Kod PHP</a></li>
+        <li><a href="about_code_2.html">Kod JavaScript</a></li>
       </ul>
       <ul>
-        <li class="login-nav"><a href="login.php">Zaloguj się</a></li>
-        <li class="login-nav"><a href="register.php">Zarejestruj się</a></li>
-        <li class="yourAccount hidden"><a href="profile-data.php">Twoje konto</a></li>
+        <li class="login-nav"><a href="user_login.php">Zaloguj się</a></li>
+        <li class="login-nav"><a href="user_registration.php">Zarejestruj się</a></li>
+        <li class="yourAccount hidden"><a href="user_profile.php">Twoje konto</a></li>
       </ul>
     </header>
     <main>
@@ -59,10 +58,9 @@ if (isset($_POST['log-out'])) {
         <section class="settings">
           <div class="settings__user">
             <h2>Dane Użytkownika</h2>
-            <form action="./php/save-data.php" method="POST">
-
+            <form action="php/save_data.php" method="POST">
               <?php
-              require_once("./php/connect.php");
+              require_once("php/database_connection.php");
 
               session_start();
               $user_id = $_SESSION['user_id'] ?? null;
@@ -75,7 +73,6 @@ if (isset($_POST['log-out'])) {
 
               $row = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
               ?>
-
               <div class="form-item">
                 <label for="settings-email">Twój E-mail</label>
                 <input type="text" id="settings-email" name="settings-email" value="<?= htmlspecialchars($row['email']) ?>" readonly>
@@ -102,24 +99,22 @@ if (isset($_POST['log-out'])) {
               <div class="message hidden">
                 Możesz teraz edytować swoje dane
               </div>
-
               <?php
               $error_messages = [
                 'invalid-email' => 'Adres e-mail jest niepoprawny!',
-                'change-failed' => 'Nieudało się zapisać zmian',
-                'change-success' => 'Zmiany zostały zapisane'
+                'change_failed' => 'Nieudało się zapisać zmian',
+                'change_success' => 'Zmiany zostały zapisane'
               ];
               if (isset($_GET['error']) && array_key_exists($_GET['error'], $error_messages)) {
                 echo '<div class="error-message">' . $error_messages[$_GET['error']] . '</div>';
               }
               ?>
-
             </form>
           </div>
           <div class="settings__privacy hidden">
             <h2>Zapomniałeś swojego hasła? Chcesz je zmienić?</h2>
             <p>Wystarczy, że napiszesz jakie chcesz mieć nowe hasło!</p>
-            <form action="./php/reset-pass.php" method="POST">
+            <form action="php/password_reset.php" method="POST">
               <div class="login-form-content">
                 <div class="form-item">
                   <div class="password-container">
@@ -147,25 +142,23 @@ if (isset($_POST['log-out'])) {
       </section>
     </main>
     <footer>
-      <p>&copy; Copyright by <span><a href="https://github.com/ItzLimak"> Kamil Popiołek</a></span></p>
+      <p>&copy; Copyright by <span><a href="https://github.com/itzL1m4k"> Kamil Popiołek</a></span></p>
     </footer>
   </div>
-
-  <script>
-    const logOutButton = document.getElementById('log-out-button');
-    logOutButton.addEventListener('click', () => {
-      localStorage.removeItem('cookies_accept');
-    });
-  </script>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="./js/user-content.js"></script>
-  <script src="./js/user-settings-toogle.js"></script>
-  <script src="./js/pass-validation.js"></script>
-  <script src="./js/delete-account.js"></script>
-  <script src="./js/smooth-scroll.js"></script>
-
+  <script src="js/user_content_handler.js"></script>
+  <script src="js/user_settings_toggle.js"></script>
+  <script src="js/password_validation.js"></script>
+  <script src="js/account_deletion.js"></script>
+  <script src="js/smooth_scroll.js"></script>
+  <script>
+    $(document).ready(function() {
+      $("#log-out-button").click(function() {
+        localStorage.removeItem("cookies_accept")
+      })
+    })
+  </script>
 </body>
 
 </html>

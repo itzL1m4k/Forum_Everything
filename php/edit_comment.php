@@ -1,28 +1,42 @@
 <?php
-require_once("connect.php");
+require_once("database_connection.php");
+
+function sanitizeInput($input)
+{
+  global $conn;
+  return mysqli_real_escape_string($conn, $input);
+}
+
+function closeConnection()
+{
+  global $conn;
+  mysqli_close($conn);
+}
 
 if (isset($_GET['id']) && isset($_POST['tresc'])) {
-  $postId = $_GET['id'];
-  $tresc = $_POST['tresc'];
+  $postId = sanitizeInput($_GET['id']);
+  $tresc = sanitizeInput($_POST['tresc']);
 
   $updateSql = "UPDATE komentarze SET tresc = ? WHERE id = ?";
   $stmt = mysqli_prepare($conn, $updateSql);
+
   mysqli_stmt_bind_param($stmt, "si", $tresc, $postId);
 
   if (mysqli_stmt_execute($stmt) && mysqli_stmt_affected_rows($stmt) > 0) {
     header("Location: ../index.php");
     exit();
   } else {
-    echo "Wystąpił błąd podczas aktualizacji komentarza.";
+    echo "Wystąpił błąd podczas aktualizacji komentarza: " . mysqli_error($conn);
   }
 
   mysqli_stmt_close($stmt);
 } else {
   if (isset($_GET['id'])) {
-    $postId = $_GET['id'];
+    $postId = sanitizeInput($_GET['id']);
 
     $selectSql = "SELECT * FROM komentarze WHERE id = ?";
     $stmtSelect = mysqli_prepare($conn, $selectSql);
+
     mysqli_stmt_bind_param($stmtSelect, "i", $postId);
     mysqli_stmt_execute($stmtSelect);
 
@@ -40,7 +54,8 @@ if (isset($_GET['id']) && isset($_POST['tresc'])) {
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../css/edit-content.css">
+        <link rel="shortcut icon" href="../assets/img/page_icon.png" type="image/x-icon">
+        <link rel="stylesheet" href="../css/content_edit_styles.css">
         <title>Forum | Edytuj komentarz</title>
       </head>
 
@@ -67,5 +82,6 @@ if (isset($_GET['id']) && isset($_POST['tresc'])) {
   }
 }
 
-mysqli_close($conn);
+// Zamykanie połączenia z bazą danych
+closeConnection();
 ?>

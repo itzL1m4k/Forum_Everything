@@ -1,5 +1,5 @@
 <?php
-require_once("connect.php");
+require_once("database_connection.php");
 
 session_start();
 $userId = $_SESSION['user_id'];
@@ -28,7 +28,7 @@ if ($stmtDeleteUser && mysqli_stmt_execute($stmtDeleteUser)) {
   session_destroy();
   setcookie('login_cookie', '', time() - 3600 * 7, '/');
 } else {
-  header("Location: ../notify.php?info=account-error");
+  header("Location: ../notification.php?info=account-error");
 }
 
 mysqli_stmt_close($stmtDeleteUser);

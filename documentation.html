@@ -1,215 +1,190 @@
 <!DOCTYPE html>
 <html lang="pl-PL">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="./assets/img/ikona-strony.png" type="image/x-icon" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="./css/global-styles.css" />
-    <title>Forum | Dokumentacja</title>
-  </head>
 
-  <body>
-    <button id="to-top-btn" onclick="scrollToTop()">
-      <img id="arrow-up" src="./assets/img/arrow-up-solid.svg" alt="strzałka do góry" />
-    </button>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+	<link rel="shortcut icon" href="assets/img/page_icon.png" type="image/x-icon" />
+	<link rel="stylesheet" href="css/global_styles.css" />
+	<title>Forum | Dokumentacja</title>
+</head>
 
-    <div class="container">
-      <section class="logo">
-        <h1><a href="index.php">Forum Informatyczne</a></h1>
-      </section>
+<body>
+	<button id="to-top-btn" onclick="scrollToTop()">
+		<img id="arrow-up" src="assets/img/arrow_up.svg" alt="strzałka do góry" />
+	</button>
+	<div class="container">
+		<section class="logo">
+			<h1><a href="index.php">Forum Informatyczne</a></h1>
+		</section>
+		<header>
+			<ul>
+				<li><a href="index.php">Wpisy</a></li>
+				<li><a href="documentation.html">Dokumentacja</a></li>
+				<li><a href="about_code.html">Kod PHP</a></li>
+				<li><a href="about_code_2.html">Kod JavaScript</a></li>
+			</ul>
+			<ul>
+				<li class="login-nav"><a href="user_login.php">Zaloguj się</a></li>
+				<li class="login-nav"><a href="user_registration.php">Zarejestruj się</a></li>
+				<li class="yourAccount hidden"><a href="user_profile.php">Twoje konto</a></li>
+			</ul>
+		</header>
+		<main>
+			<section class="post">
+				<h2>Struktura plików</h2> <br />
+				<h3>Wszystkie foldery:</h3> <br />
+				<img src="assets/img/screen_1.png" alt="pliki1" /> <br /><br />
+				<h3>Foldery w folderze assets:</h3> <br />
+				<img src="assets/img/screen_2.png" alt="pliki2" /> <br /><br />
+				<ul>
+					<li>1. Folder <b>css</b> jest na css od czcionki Font-awesome</li> <br /><br /><br /><br />
+					<li>2. Folder <b>fonts</b> jest na pliki svg i inne również of Font-awesome</li> <br /><br />
+					<li>3. Folder <b>img</b> jest na zdjęcia takie jak favicon i inne</li> <br /><br />
+					<li>4. Folder <b>prism</b> jest przeznaczony dla biblioteki prism</li> <br /><br />
+					<li>5. Plik <b>database.sql</b> to cała baza danych, która zosatła użyta w tym projekcie</li><br /><br />
+				</ul>
+				<h3>Pliki w folderze css</h3>
+				<img src="assets/img/screen_3.png" alt="pliki3" />
+				<h3>Pliki w folderze javascript</h3>
+				<img src="assets/img/screen_4.png" alt="pliki4" />
+				<h3>Pliki w folderze pages</h3>
+				<img src="assets/img/screen_5.png" alt="pliki5" />
+				<h3>Pliki w folderze php-scripts</h3>
+				<img src="assets/img/screen_6.png" alt="pliki6" />
+				<h3>Główny plik strony: Index.php</h3>
+				<img src="assets/img/screen_7.png" alt="pliki7" />
+				<h2>Założenia projektu:</h2>
+				<p>
+					Projekt ma pozwalać na rejestrację użytkownika w bazie danych z informacjami takimi jak 'email', 'nickname'
+					oraz 'password'
+				</p> <br />
+				<p>
+					Projekt ma pozwalać na logowanie użytkownika na stronie za pośrednictiwem danych, które użytkownik użył do
+					rejestracji na stronie rejestrowania
+				</p> <br />
+				<p>
+					Projekt ma stronę, na której można zobaczyć politykę prywatności strony
+				</p> <br />
+				<p>
+					Projekt ma pozwalać na zmianę hasła po kliknięciu linku na stronie logowania lub w
+					zakładce 'hasło' w stronie 'Twoje konto'
+				</p> <br />
+				<p>
+					Projekt ma pozwalać na zapamiętanie użytkownika za pomocą sesji lub ciasteczka jeżeli
+					zostało one zaznaczone
+				</p> <br />
+				<p>
+					Projekt ma pozwalać na obejrzenie właśnie tej strony, którą czytasz użytkowniku
+				</p> <br />
+				<p>
+					Projekt ma pozwalać na obejrzenie kodu skryptów użytych na stronie takich jak np.
+					Logowanie użytkownika czy rejestracja
+				</p> <br />
+				<p>
+					Projekt ma pozwalać na przeglądanie swoich informacji takich jak 'emial' oraz 'nickname'
+					oraz do ich edytowania na stronie 'Twoje konto'
+				</p> <br />
+				<p>
+					Projekt ma pozwalać na wylogowanie użytkownika ze strony
+				</p> <br />
+				<p>
+					Projekt ma pozwalać na usunięcie konta użytkownika z bazy danych
+				</p> <br />
+				<p>
+					Projekt ma pozwalać na tworzenie wpisów, edytowanie własnych i ich usunięcie
+				</p> <br />
+				<p>
+					Projekt ma pozwalać na tworzenie komentarzy do wpisów, ich edytowanie oraz usuwanie
+				</p> <br />
+				<p>
+					Projekt ma pozwalać użytkownikowi na wybranie czy chce widzieć najnowsze czy najstarsze
+					wpisy
+				</p> <br />
+				<p>
+					Projekt ma pozwalać na dodawanie do wpisów własnych zdjęć oraz prostych animacji, które
+					wagą są mniejsze niż 10 megabajtów
+				</p> <br />
+				<p>
+					Projekt ma pozwalać na powiększenie obrazu lub animacji z przyciemnionym tłem poprzez
+					jej kliknięcie
+				</p> <br />
+				<p>
+					Wszystkie inne rzeczy, które są możliwe do wykonania, a nie są tutaj zawarte to rzeczy
+					nowo dodane
+				</p> <br /><br />
+				<h2>Co działa?</h2>
+				<p>Wszystkie rzeczy, które zostały wymienione wyżej powinny działać</p>
+				<br /><br />
+				<h2>Błędy?</h2>
+				<p>Na stronie nie ma znalezionych błędów, które mogłyby zakłócić funkcjonalność strony</p>
+				<br /><br />
 
-      <header>
-        <ul>
-          <li><a href="index.php">Wpisy</a></li>
-          <li><a href="documentation.html">Dokumentacja</a></li>
-          <li><a href="about-code.html">Kod PHP</a></li>
-          <li><a href="about-code2.html">Kod JavaScript</a></li>
-        </ul>
+				<h2>Użyte narzędzia do tworzenia projektu to:</h2>
 
-        <ul>
-          <li class="login-nav"><a href="login.php">Zaloguj się</a></li>
-          <li class="login-nav"><a href="register.php">Zarejestruj się</a></li>
-          <li class="yourAccount hidden"><a href="profile-data.php">Twoje konto</a></li>
-        </ul>
-      </header>
+				<p>Narzędzie do edytowania: - Visual Studio Code</p>
+				<br />
 
-      <main>
-        <section class="post">
-          <h2>Struktura plików</h2> <br />
+				<p>Pakiet wampserver do testowania strony na localhost</p>
+				<br />
 
-          <h3>Wszystkie foldery:</h3> <br />
+				<p>Czcionki oraz ikony Font-awesome</p>
+				<br />
 
-          <img src="./assets/img/screen-pliki-1.png" alt="pliki1" /> <br /><br />
+				<p>Biblioteka sweetalert</p>
+				<br />
 
-          <h3>Foldery w folderze assets:</h3> <br />
+				<p>Prism syntax highlighter</p>
+				<br />
 
-          <img src="./assets/img/screen-pliki-2.png" alt="pliki2" /> <br /><br />
+				<p>Czcionki Google-Fonts 'Inter'</p>
+				<br />
 
-          <ul>
-            <li>1. Folder <b>css</b> jest na css od czcionki Font-awesome</li>
-            <br /><br />
-            <br /><br />
-            <li> 2. Folder <b>fonts</b> jest na pliki svg i inne również of Font-awesome </li>
-            <br /><br />
-            <li> 3. Folder <b>img</b> jest na zdjęcia takie jak favicon i inne </li>
-            <br /><br />
-            <li> 4. Folder <b>prism</b> jest przeznaczony dla biblioteki prism </li>
-            <br /><br />
-            <li>
-              5. Plik <b>database.sql</b> to cała baza danych, która zosatła użyta w tym projekcie
-            </li>
-            <br /><br />
-          </ul>
+				<p>JavaScript Minifier do kompresowania kodu JavaScript</p>
+				<br />
 
-          <h3>Pliki w folderze css</h3>
-          <img src="./assets/img/screen-pliki-3.png" alt="pliki3" />
-          <h3>Pliki w folderze javascript</h3>
-          <img src="./assets/img/screen-pliki-4.png" alt="pliki4" />
-          <h3>Pliki w folderze pages</h3>
-          <img src="./assets/img/screen-pliki-5.png" alt="pliki5" />
-          <h3>Pliki w folderze php</h3>
-          <img src="./assets/img/screen-pliki-6.png" alt="pliki6" />
-          <h3>Główny plik strony: Index.php</h3>
-          <img src="./assets/img/screen-pliki-7.png" alt="pliki7" />
-          <h2>Założenia projektu:</h2>
-          <p>
-            Projekt ma pozwalać na rejestrację użytkownika w bazie danych z informacjami takimi jak
-            'email', 'nickname' oraz 'password'
-          </p>
-          <br />
-          <p>
-            Projekt ma pozwalać na logowanie użytkownika na stronie za pośrednictiwem danych, które
-            użytkownik użył do rejestracji na stronie rejestrowania
-          </p>
-          <br />
-          <p> Projekt ma stronę, na której można zobaczyć politykę prywatności strony </p>
-          <br />
-          <p>
-            Projekt ma pozwalać na zmianę hasła po kliknięciu linku na stronie logowania lub w
-            zakładce 'hasło' w stronie 'Twoje konto'
-          </p>
-          <br />
-          <p>
-            Projekt ma pozwalać na zapamiętanie użytkownika za pomocą sesji lub ciasteczka jeżeli
-            zostało one zaznaczone
-          </p>
-          <br />
-          <p> Projekt ma pozwalać na obejrzenie właśnie tej strony, którą czytasz użytkowniku </p>
-          <br />
-          <p>
-            Projekt ma pozwalać na obejrzenie kodu skryptów użytych na stronie takich jak np.
-            Logowanie użytkownika czy rejestracja
-          </p>
-          <br />
-          <p>
-            Projekt ma pozwalać na przeglądanie swoich informacji takich jak 'emial' oraz 'nickname'
-            oraz do ich edytowania na stronie 'Twoje konto'
-          </p>
-          <br />
-          <p>Projekt ma pozwalać na wylogowanie użytkownika ze strony</p>
-          <br />
-          <p> Projekt ma pozwalać na usunięcie konta użytkownika z bazy danych </p>
-          <br />
-          <p> Projekt ma pozwalać na tworzenie wpisów, edytowanie własnych i ich usunięcie </p>
-          <br />
-          <p>
-            Projekt ma pozwalać na tworzenie komentarzy do wpisów, ich edytowanie oraz usuwanie
-          </p>
-          <br />
-          <p>
-            Projekt ma pozwalać użytkownikowi na wybranie czy chce widzieć najnowsze czy najstarsze
-            wpisy
-          </p>
-          <br />
-          <p>
-            Projekt ma pozwalać na dodawanie do wpisów własnych zdjęć oraz prostych animacji, które
-            wagą są mniejsze niż 10 megabajtów
-          </p>
-          <br />
-          <p>
-            Projekt ma pozwalać na powiększenie obrazu lub animacji z przyciemnionym tłem poprzez
-            jej kliknięcie
-          </p>
-          <br />
-          <p>
-            Wszystkie inne rzeczy, które są możliwe do wykonania, a nie są tutaj zawarte to rzeczy
-            nowo dodane
-          </p>
-          <br /><br />
-          <h2>Co działa?</h2>
-          <p> Wszystkie rzeczy, które zostały wymienione wyżej powinny działać </p>
-          <br /><br />
-          <h2>Błędy?</h2>
-          <p>
-            Na stronie nie ma znalezionych błędów, które mogłyby zakłócić funkcjonalność strony
-          </p>
-          <br /><br />
+				<p>CSS Compressor do kompresowania kodu CSS</p>
+				<br /><br />
 
-          <h2>Użyte narzędzia do tworzenia projektu to:</h2>
+				<div class="links-docm">
+					<h2>Linki:</h2>
 
-          <p>Narzędzie do edytowania: - Visual Studio Code</p> <br />
+					<a href="assets/Database.sql" target="_blank">Baza danych</a><br /><br />
 
-          <p>Pakiet wampserver do testowania strony na localhost</p> <br />
+					<a href="https://fontawesome.com/" target="_blank">Font-awesome</a><br /><br />
 
-          <p>Czcionki oraz ikony Font-awesome</p> <br />
+					<a href="https://sweetalert2.github.io/" target="_blank">Biblioteka sweetalert</a><br /><br />
 
-          <p>Biblioteka sweetalert</p> <br />
+					<a href="https://prismjs.com/" target="_blank">Prism syntax highlighter</a><br /><br />
 
-          <p>Prism syntax highlighter</p> <br />
+					<a href="https://fonts.google.com/" target="_blank">Google Fonts</a><br /><br />
 
-          <p>Czcionki Google-Fonts 'Inter'</p> <br />
+					<a href="https://www.toptal.com/developers/javascript-minifier" target="_blank">JavaScript
+						Minifier</a><br /><br />
 
-          <p>JavaScript Minifier do kompresowania kodu JavaScript</p> <br />
+					<a href="https://csscompressor.com/" target="_blank">CSS Compressor</a><br /><br />
 
-          <p>CSS Compressor do kompresowania kodu CSS</p> <br /><br />
+					<a href="https://github.com/itzL1m4k/project" target="_blank">Repozytorium GitHub</a><br /><br />
+				</div>
+			</section>
+		</main>
+		<footer>
+			<p>
+				&copy; Copyright by <span><a href="https://github.com/itzL1m4k"> Kamil Popiołek</a></span>
+			</p>
+		</footer>
+	</div>
+	<div id="cookies">
+		<p>
+			Strona wykorzystuje pliki cookies. Klikając "<b>Akceptuję</b>", zgadzasz się na ich użycie.
+		</p>
+		<button id="accept"><b>Akceptuję</b></button>
+	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script src="js/user_content_handler.js"></script>
+	<script src="js/cookies_handler.js"></script>
+	<script src="js/smooth_scroll.js"></script>
+</body>
 
-          <div class="links-docm">
-            <h2>Linki:</h2>
-
-            <a href="./assets/Database.sql" target="_blank">Baza danych</a><br /><br />
-
-            <a href="https://fontawesome.com/" target="_blank">Font-awesome</a><br /><br />
-
-            <a href="https://sweetalert2.github.io/" target="_blank">Biblioteka sweetalert</a
-            ><br /><br />
-
-            <a href="https://prismjs.com/" target="_blank">Prism syntax highlighter</a><br /><br />
-
-            <a href="https://fonts.google.com/" target="_blank">Google Fonts</a><br /><br />
-
-            <a href="https://www.toptal.com/developers/javascript-minifier" target="_blank"
-              >JavaScript Minifier</a
-            ><br /><br />
-
-            <a href="https://csscompressor.com/" target="_blank">CSS Compressor</a><br /><br />
-
-            <a href="https://github.com/ItzLimak/project-forum" target="_blank"
-              >Repozytorium GitHub</a
-            ><br /><br />
-          </div>
-        </section>
-      </main>
-
-      <footer>
-        <p
-          >&copy; Copyright by
-          <span><a href="https://github.com/ItzLimak"> Kamil Popiołek</a></span></p
-        >
-      </footer>
-    </div>
-
-    <div id="cookies">
-      <p>
-        Strona wykorzystuje pliki cookies. Klikając "<b>Akceptuję</b>", zgadzasz się na ich
-        użycie.</p
-      >
-      <button id="accept"><b>Akceptuję</b></button>
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="./js/user-content.js"></script>
-    <script src="./js/cookies.js"></script>
-    <script src="./js/smooth-scroll.js"></script>
-  </body>
 </html>
