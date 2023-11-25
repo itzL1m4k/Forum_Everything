@@ -1,4 +1,4 @@
-let scrollToTop = () => {
+function scrollToTop() {
   var currentScroll = window.scrollY,
     targetScroll = 0 - currentScroll,
     animationFrame = null;
@@ -16,7 +16,7 @@ let scrollToTop = () => {
   };
 
   window.requestAnimationFrame(scrollAnimation);
-};
+}
 
 $(window).scroll(function () {
   var $toTopBtn = $("#to-top-btn");
@@ -29,12 +29,12 @@ $(".scroll-link").click(function (e) {
   smoothScrollTo(targetOffset);
 });
 
-let smoothScrollTo = (targetOffset) => {
+function smoothScrollTo(targetOffset) {
   var currentScroll = window.scrollY,
     scrollDifference = targetOffset - currentScroll,
     animationFrame = null;
 
-  let scrollAnimation = (timestamp) => {
+  function scrollAnimation() {
     animationFrame || (animationFrame = timestamp);
     var progress = timestamp - animationFrame,
       newPosition = easeInOutQuad(progress, currentScroll, scrollDifference, 500);
@@ -44,13 +44,12 @@ let smoothScrollTo = (targetOffset) => {
     if (progress < 500) {
       window.requestAnimationFrame(scrollAnimation);
     }
-  };
-
+  }
   window.requestAnimationFrame(scrollAnimation);
-};
+}
 
-let easeInOutQuad = (progress, current, change, duration) => {
+function easeInOutQuad() {
   return (progress /= duration / 2) < 1
     ? (change / 2) * progress * progress + current
     : (-change / 2) * (--progress * (progress - 2) - 1) + current;
-};
+}

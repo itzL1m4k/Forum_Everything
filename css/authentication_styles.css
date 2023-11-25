@@ -1,275 +1,367 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+
 :root {
-  --text: #fafcff;
-  --background: #010a18;
-  --primary: #220cca;
-  --secondary: #25033a;
-  --accent: #9e18f2;
+  --primary-color: #512da8;
+  --background-gradient: linear-gradient(to right, #e2e2e2, #c9d6ff);
+  --container-background: #fff;
+  --text-color: #fff;
+  --shadow-color: rgba(0, 0, 0, 0.35);
+  --link-hover-color: #512da8;
+  --form-background: #eee;
+  --checkbox-border: 2px solid #512da8;
+  --checkbox-bg: #fff;
 }
-.login-header h1,
-.login-header p {
-  text-shadow: 8px 8px var(--secondary);
-}
-#login-in-button,
-#register-button,
-.login-section {
-  background-color: var(--background);
-  text-align: center;
-}
+
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
+
 body {
-  background-color: var(--background);
-  color: var(--text);
-  font-family: "Poppins";
-  padding: 2%;
+  background: var(--background-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
 }
+
 .container {
-  align-items: center;
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  min-height: calc(100vh - 80px);
-  overflow: hidden;
-}
-.login-section {
-  align-items: center;
-  border-radius: 3%;
-  border: 2px solid var(--background);
-  box-shadow: 0 0 16px 16px var(--secondary);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 3.5%;
-}
-.login-header {
-  margin-bottom: 14%;
-}
-.login-header h1 {
-  font-size: 250%;
-  margin-bottom: 2%;
-}
-.login-header p {
-  opacity: 0.7;
-}
-.login-form {
-  width: 110%;
-}
-.login-form-content {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
-.login-form-footer {
-  display: flex;
-  justify-content: center;
-  margin-top: 5%;
-}
-.login-form a {
+  background-color: var(--container-background);
+  border-radius: 30px;
+  box-shadow: 0 5px 15px var(--shadow-color);
   position: relative;
-  color: inherit;
-  font-weight: 600;
-  text-decoration: none;
-  transition: color 0.3s ease-in-out;
+  overflow: hidden;
+  width: 768px;
+  max-width: 100%;
+  min-height: 480px;
 }
-.login-form a::after {
+
+.container p {
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.3px;
+  margin: 20px 0;
+}
+
+.container span {
+  font-size: 14px;
+}
+
+.container a {
+  color: var(--primary-color);
+  font-size: 15px;
+  text-decoration: none;
+  margin: 15px 0 10px;
+  position: relative;
+  transition: color 0.3s;
+  font-weight: 700;
+}
+
+.container a:hover {
+  color: var(--link-hover-color);
+}
+
+.container a::before {
   content: "";
   position: absolute;
-  bottom: -2px;
-  left: 0;
   width: 100%;
   height: 2px;
-  background-color: var(--accent);
+  bottom: 0;
+  left: 0;
+  background-color: var(--primary-color);
+  visibility: hidden;
   transform: scaleX(0);
-  transition: transform 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out 0s;
 }
-.login-form a:hover {
-  color: var(--accent);
-}
-.login-form a:hover::after {
+
+.container a:hover::before {
+  visibility: visible;
   transform: scaleX(1);
 }
-.form-item-options {
-  display: flex;
-  justify-content: space-around;
-}
-.form-item label:not(.checkboxLabel) {
-  background-color: var(--background);
-  display: flex;
+
+.container #register-button,
+#login-in-button,
+#login,
+#register,
+#change-password {
+  background-color: var(--primary-color);
+  color: var(--text-color);
   font-size: 14px;
-  margin-bottom: 10px;
-  position: absolute;
-  padding: 0 10px;
-  transform: translate(30px, -10px);
-  color: var(--text);
-}
-label {
-  border-radius: 20px;
+  padding: 10px 45px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-top: 10px;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
 }
+
+.container #register-button::before,
+#login-in-button::before,
+#login::before,
+#register::before,
+#change-password::before {
+  content: "";
+  position: absolute;
+  background-color: var(--text-color);
+  z-index: -1;
+  transition: transform 0.3s;
+}
+
+.container #register-button::before,
+#register::before,
+#login-in-button::before,
+#login::before,
+#change-password::before {
+  width: 0;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.container #register-button:hover::before,
+#register:hover::before {
+  width: 100%;
+}
+
+.container #login-in-button:hover::before,
+#login:hover::before,
+##change-password::before {
+  height: 100%;
+}
+
+.container #register-button:hover,
+#login-in-button:hover,
+#change-password:hover {
+  color: var(--primary-color);
+  background-color: transparent;
+  box-shadow: 0px 0px 25px -5px var(--primary-color);
+  transition: 0.3s;
+}
+
+.container #login:hover,
+#register:hover {
+  color: var(--primary-color);
+  background-color: transparent;
+  box-shadow: 0px 0px 25px -5px var(--text-color);
+  transition: 0.3s;
+}
+
+.container #login:hover {
+  background-color: var(--text-color);
+}
+
+.container #register-button.hidden,
+#login-in-button.hidden,
+#login.hidden,
+#register.hidden,
+#change-password.hidden {
+  background-color: transparent;
+  border-color: var(--text-color);
+}
+
+.container form {
+  background-color: var(--container-background);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 40px;
+  height: 100%;
+}
+
+.container input {
+  background-color: var(--form-background);
+  border: none;
+  margin: 8px 0;
+  padding: 10px 15px;
+  font-size: 15px;
+  border-radius: 8px;
+  width: 100%;
+  outline: none;
+}
+
 .password-container {
   position: relative;
 }
+
+.password-container input {
+  padding-right: 129px;
+}
+
 .password-toggle-button {
-  background: 0 0;
-  border: none;
-  cursor: pointer;
-  font-size: 28px;
   position: absolute;
-  outline: 0;
   top: 50%;
+  right: 10px;
   transform: translateY(-50%);
-  right: 15px;
-}
-.fa-eye,
-.fa-eye-slash {
-  color: var(--primary);
-  font-size: 28px;
-}
-.error-message,
-.password-input:focus + .password-toggle-button .fa-eye,
-.password-input:focus + .password-toggle-button .fa-eye-slash,
-.password-toggle-button:hover .fa-eye,
-.password-toggle-button:hover .fa-eye-slash {
-  color: var(--primary);
-}
-input[type="password"],
-input[type="text"] {
-  background: 0 0;
-  border: 2px solid var(--secondary);
-  border-radius: 100px;
-  box-shadow: 0 0 8px 8px rgba(0, 0, 0, 0.3);
-  color: var(--text);
-  font-size: 18px;
-  height: 55px;
-  padding: 0 2rem;
-  transition: background 0.5s;
-  width: 100%;
-}
-input[type="password"]:hover,
-input[type="text"]:hover {
-  background-color: rgba(0, 0, 0, 0.4);
-  border: 2px solid var(--primary);
-  box-shadow: 0 0 8px 8px rgba(0, 0, 0, 0.4);
-  transition: 0.5s;
-}
-input[type="password"]:focus,
-input[type="text"]:focus {
-  border: 3px solid var(--primary);
-  box-shadow: 0 0 8px 8px rgba(0, 0, 0, 0.4);
-  outline: 0;
-}
-input[type="password"]:not(:placeholder-shown) + label,
-input[type="text"]:not(:placeholder-shown) + label {
-  background-color: var(--background);
-  font-size: 14px;
-  opacity: 1;
-  padding: 0 10px;
-  transform: translate(30px, -30px);
-  color: var(--text);
-}
-.checkbox {
-  align-items: center;
-  display: flex;
-  gap: 7px;
-}
-.checkbox input[type="checkbox"] {
-  position: relative;
-  width: 20px;
-  height: 20px;
-  -webkit-appearance: none;
-  appearance: none;
-  outline: none;
-  border: 2px solid var(--accent);
-  border-radius: 4px;
   cursor: pointer;
-  transition: border-color 0.3s ease-in-out;
+  user-select: none;
 }
-.checkbox input[type="checkbox"]:hover {
-  border-color: var(--primary);
+
+.password-toggle-button i {
+  font-size: 20px;
+  color: var(--primary-color);
 }
-.checkbox input[type="checkbox"]:before {
+
+.form-container {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transition: all 0.6s ease-in-out;
+}
+
+.checkboxLabel {
+  display: block;
+  position: relative;
+  padding-left: 25px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#privacyPolicy {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkboxLabel:before {
   content: "";
   position: absolute;
+  left: 0;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 12px;
-  height: 12px;
-  background-color: var(--accent);
-  border-radius: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  border: var(--checkbox-border);
+  background-color: var(--checkbox-bg);
+  border-radius: 4px;
+}
+
+#privacyPolicy:checked + .checkboxLabel:before {
+  background-color: var(--primary-color);
+  border: var(--checkbox-border);
+}
+
+.checkboxLabel:after {
+  content: "\002714";
+  font-family: "Font Awesome 5 Free";
+  position: absolute;
+  left: 4.5%;
+  top: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  font-size: 16px;
+  color: var(--text-color);
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
 }
-.checkbox input[type="checkbox"]:checked:before {
+
+#privacyPolicy:checked + .checkboxLabel:after {
   opacity: 1;
 }
-.forgot {
-  float: left;
-  position: relative;
+
+.sign-in {
+  left: 0;
+  width: 50%;
+  z-index: 2;
 }
-#login-in-button,
-#register-button {
-  border: 1px solid var(--secondary);
-  box-shadow: 0 0 16px 16px rgba(0, 0, 0, 0.2);
-  border-radius: 100px;
-  color: var(--text);
-  cursor: pointer;
-  font-size: 18px;
-  height: 55px;
-  padding: 1rem;
-  text-transform: uppercase;
+
+.container.active .sign-in {
+  transform: translateX(100%);
 }
-#login-in-button:hover,
-#register-button:hover {
-  color: var(--accent);
-  animation: 1s infinite pulse;
-  transition: 0.2s;
+
+.sign-up {
+  left: 0;
+  width: 50%;
+  opacity: 0;
+  z-index: 1;
 }
-@keyframes pulse {
+
+.container.active .sign-up {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+  animation: move 0.6s;
+}
+
+@keyframes move {
   0%,
+  49.99% {
+    opacity: 0;
+    z-index: 1;
+  }
+  50%,
   100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.02);
+    opacity: 1;
+    z-index: 5;
   }
 }
-.error-message {
-  background-color: var(--background);
-  font-weight: 700;
-  font-size: 18px;
-  margin: 12px;
-  margin-top: 26px;
-  padding: 12px;
-  box-shadow: 0 0 16px 16px var(--secondary);
-  border: none;
-  border-radius: 10px;
+
+.toggle-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transition: all 0.6s ease-in-out;
+  border-radius: 150px 0 0 100px;
+  z-index: 1000;
 }
-.my-custom-popup-class {
-  background-color: var(--background) !important;
-  color: var(--text) !important;
-  font-family: Inter, sans-serif !important;
-  font-size: 16px !important;
+
+.container.active .toggle-container {
+  transform: translateX(-100%);
+  border-radius: 0 150px 100px 0;
 }
-.my-custom-title-class {
-  font-size: 24px !important;
-  color: var(--text) !important;
+
+.toggle {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  position: relative;
+  left: -100%;
+  height: 100%;
+  width: 200%;
+  transform: translateX(0);
+  transition: all 0.6s ease-in-out;
 }
-.my-custom-content-class {
-  margin-top: 20px !important;
-  margin-bottom: 20px !important;
-  font-weight: 700 !important;
-  color: var(--text) !important;
+
+.container.active .toggle {
+  transform: translateX(50%);
 }
-.my-custom-button-class {
-  background-color: var(--primary) !important;
-  color: var(--text) !important;
-  font-weight: 700 !important;
+
+.toggle-panel {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 30px;
+  text-align: center;
+  top: 0;
+  transform: translateX(0);
+  transition: all 0.6s ease-in-out;
 }
-::selection {
-  background-color: var(--accent);
+
+.toggle-left {
+  transform: translateX(-200%);
+}
+
+.container.active .toggle-left {
+  transform: translateX(0);
+}
+.toggle-right {
+  right: 0;
+  transform: translateX(0);
+}
+.container.active .toggle-right {
+  transform: translateX(200%);
 }

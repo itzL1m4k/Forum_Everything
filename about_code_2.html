@@ -2,57 +2,57 @@
 <html lang="pl-PL">
 
 <head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="shortcut icon" href="assets/img/page_icon.png" type="image/x-icon" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-	<link rel="stylesheet" href="css/global_styles.css" />
-	<link rel="stylesheet" href="assets/prism/prism_styles.css" />
-	<title>Forum | Kod Skryptów</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="assets/img/page_icon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <link rel="stylesheet" href="css/global_styles.css" />
+  <link rel="stylesheet" href="assets/prism/prism_styles.css" />
+  <title>Forum | Kod Skryptów</title>
 </head>
 
 <body>
-	<button id="to-top-btn" onclick="scrollToTop()">
-		<img id="arrow-up" src="assets/img/arrow_up.svg" alt="strzałka do góry" />
-	</button>
-	<div class="container">
-		<section class="logo">
-			<h1><a href="index.php">Forum Informatyczne</a></h1>
-		</section>
-		<header>
-			<ul>
-				<li><a href="index.php">Wpisy</a></li>
-				<li><a href="documentation.html">Dokumentacja</a></li>
-				<li><a href="about_code.html">Kod PHP</a></li>
-				<li><a href="about_code_2.html">Kod JavaScript</a></li>
-			</ul>
-			<ul>
-				<li class="login-nav"><a href="user_login.php">Zaloguj się</a></li>
-				<li class="login-nav"><a href="user_registration.php">Zarejestruj się</a></li>
-				<li class="yourAccount hidden">
-					<a href="user_profile.php">Twoje konto</a>
-				</li>
-			</ul>
-		</header>
-		<main>
-			<section id="navbar-code">
-				<ul>
-					<li><a class="scroll-link" href="#sekcja1">cookies</a></li>
-					<li><a class="scroll-link" href="#sekcja2">deleteAccount</a></li>
-					<li><a class="scroll-link" href="#sekcja3">passValidation</a></li>
-					<li><a class="scroll-link" href="#sekcja4">posts</a></li>
-					<li><a class="scroll-link" href="#sekcja5">showComments</a></li>
-					<li><a class="scroll-link" href="#sekcja6">showImage</a></li>
-					<li><a class="scroll-link" href="#sekcja7">smoothScroll</a></li>
-					<li><a class="scroll-link" href="#sekcja8">usetContent</a></li>
-					<li><a class="scroll-link" href="#sekcja9">userSettingsToggle</a></li>
-					<li><a class="scroll-link" href="#sekcja10">validateImage</a></li>
-				</ul>
-			</section>
-			<div class="code-script-all">
-				<section class="post" id="sekcja1">
-					<h2>Akceptacja ciasteczek na stronie</h2>
-					<pre>
+  <button id="to-top-btn" onclick="scrollToTop()">
+    <img id="arrow-up" src="assets/img/arrow_up.svg" alt="strzałka do góry" />
+  </button>
+  <div class="container">
+    <section class="logo">
+      <h1><a href="index.php">Forum Informatyczne</a></h1>
+    </section>
+    <header>
+      <ul>
+        <li><a href="index.php">Wpisy</a></li>
+        <li><a href="documentation.html">Dokumentacja</a></li>
+        <li><a href="about_code.html">Kod PHP</a></li>
+        <li><a href="about_code_2.html">Kod JavaScript</a></li>
+      </ul>
+      <ul>
+        <li class="login-nav"><a href="user_authentication.php">Zaloguj się</a></li>
+        <li class="login-nav"><a href="user_authentication.php">Zarejestruj się</a></li>
+        <li class="yourAccount hidden">
+          <a href="user_profile.php">Twoje konto</a>
+        </li>
+      </ul>
+    </header>
+    <main>
+      <section id="navbar-code">
+        <ul>
+          <li><a class="scroll-link" href="#sekcja1">cookies</a></li>
+          <li><a class="scroll-link" href="#sekcja2">deleteAccount</a></li>
+          <li><a class="scroll-link" href="#sekcja3">passValidation</a></li>
+          <li><a class="scroll-link" href="#sekcja4">posts</a></li>
+          <li><a class="scroll-link" href="#sekcja5">showComments</a></li>
+          <li><a class="scroll-link" href="#sekcja6">showImage</a></li>
+          <li><a class="scroll-link" href="#sekcja7">smoothScroll</a></li>
+          <li><a class="scroll-link" href="#sekcja8">usetContent</a></li>
+          <li><a class="scroll-link" href="#sekcja9">userSettingsToggle</a></li>
+          <li><a class="scroll-link" href="#sekcja10">validateImage</a></li>
+        </ul>
+      </section>
+      <div class="code-script-all">
+        <section class="post" id="sekcja1">
+          <h2>Akceptacja ciasteczek na stronie</h2>
+          <pre>
             <code class="language-javascript">
 $(document).ready(function () {
 	var $e = $("#cookies"),
@@ -73,10 +73,10 @@ if (sessionStorage.getItem("cookies_accept") === "true") {
 });
             </code>
           </pre>
-				</section>
-				<section class="post" id="sekcja2">
-					<h2>Usuwanie konta</h2>
-					<pre>
+        </section>
+        <section class="post" id="sekcja2">
+          <h2>Usuwanie konta</h2>
+          <pre>
             <code class="language-javascript">
 let deleteAccount = () =&gt; {
   Swal.fire({
@@ -105,10 +105,10 @@ let deleteAccount = () =&gt; {
 };
             </code>
           </pre>
-				</section>
-				<section class="post" id="sekcja3">
-					<h2>Walidacja hasła</h2>
-					<pre>
+        </section>
+        <section class="post" id="sekcja3">
+          <h2>Walidacja hasła</h2>
+          <pre>
             <code class="language-javascript">
 const togglePasswordVisibility = (e) =&gt; {
   let $a = $("#" + e),
@@ -153,10 +153,10 @@ const validatePassword = () =&gt; {
 };
             </code>
           </pre>
-				</section>
-				<section class="post" id="sekcja4">
-					<h2>Ukazywanie bloku tworzenia posta</h2>
-					<pre>
+        </section>
+        <section class="post" id="sekcja4">
+          <h2>Ukazywanie bloku tworzenia posta</h2>
+          <pre>
             <code class="language-javascript">
 const showNewPostEl = $(".show-new-post"),
   createNewPostEl = $(".create-new-post"),
@@ -172,10 +172,10 @@ postButtonEl.on("click", togglePostView);
 declineButtonEl.on("click", togglePostView);
             </code>
           </pre>
-				</section>
-				<section class="post" id="sekcja5">
-					<h2>Pokazywanie komentarzy poprzec kliknięcie</h2>
-					<pre>
+        </section>
+        <section class="post" id="sekcja5">
+          <h2>Pokazywanie komentarzy poprzec kliknięcie</h2>
+          <pre>
             <code class="language-javascript">
 $(".show-comments").on("click", function () {
   const postId = $(this).data("postId");
@@ -189,10 +189,10 @@ $(".show-comments").on("click", function () {
 });
             </code>
           </pre>
-				</section>
-				<section class="post" id="sekcja6">
-					<h2>Pokazywanie obrazka na środku ekranu</h2>
-					<pre>
+        </section>
+        <section class="post" id="sekcja6">
+          <h2>Pokazywanie obrazka na środku ekranu</h2>
+          <pre>
             <code class="language-javascript">
 let showImage = (e) =&gt; {
   var src = $(e).attr("src");
@@ -205,10 +205,10 @@ let hideImage = () =&gt; {
 };
             </code>
           </pre>
-				</section>
-				<section class="post" id="sekcja7">
-					<h2>Płynna animacja scrola na stronie</h2>
-					<pre>
+        </section>
+        <section class="post" id="sekcja7">
+          <h2>Płynna animacja scrola na stronie</h2>
+          <pre>
             <code class="language-javascript">
 let scrollToTop = () =&gt; {
   var currentScroll = window.scrollY,
@@ -268,10 +268,10 @@ let easeInOutQuad = (progress, current, change, duration) =&gt; {
 };
 						</code>
           </pre>
-				</section>
-				<section class="post" id="sekcja8">
-					<h2>Zmiana zawartości strony podczas aktywnego zalogowania</h2>
-					<pre>
+        </section>
+        <section class="post" id="sekcja8">
+          <h2>Zmiana zawartości strony podczas aktywnego zalogowania</h2>
+          <pre>
             <code class="language-javascript">
 let getCookie = (e) =&gt; {
   let match = document.cookie.match("(^|[^;]+)\\s*" + e + "\\s*=\\s*([^;]+)");
@@ -305,10 +305,10 @@ if ("" === cookieName) {
 }
             </code>
           </pre>
-				</section>
-				<section class="post" id="sekcja9">
-					<h2>Zamiana klas pomiędzy sekcjami w 'Twoje konto'</h2>
-					<pre>
+        </section>
+        <section class="post" id="sekcja9">
+          <h2>Zamiana klas pomiędzy sekcjami w 'Twoje konto'</h2>
+          <pre>
             <code class="language-javascript">
 $(document).ready(function () {
   const sections = $(".settings &gt; div"),
@@ -346,10 +346,10 @@ $(document).ready(function () {
 });
             </code>
           </pre>
-				</section>
-				<section class="post" id="sekcja10">
-					<h2>Walidacja rozmiaru dodawanego obrazka w poście</h2>
-					<pre>
+        </section>
+        <section class="post" id="sekcja10">
+          <h2>Walidacja rozmiaru dodawanego obrazka w poście</h2>
+          <pre>
             <code class="language-javascript">
 let validateImageSize = (fileInput) =&gt; {
   var maxFileSize = 10 * 1024 * 1024;
@@ -380,30 +380,30 @@ let validateImageSize = (fileInput) =&gt; {
 };
             </code>
           </pre>
-				</section>
-			</div>
-		</main>
-		<footer>
-			<p>
-				&copy; Copyright 2023 by
-				<span><a href="https://github.com/itzL1m4k"> Kamil Popiołek</a></span>
-			</p>
-		</footer>
-	</div>
-	<div id="cookies">
-		<p>
-			Strona wykorzystuje pliki cookies. Klikając "<b>Akceptuję</b>", zgadzasz się na ich użycie.
-		</p>
-		<button id="accept"><b>Akceptuję</b></button>
-	</div>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-	<script src="assets/prism/prism_script.js"></script>
-	<script src="js/user_content_handler.js"></script>
-	<script src="js/smooth_scroll.js"></script>
-	<script src="js/cookies_handler.js"></script>
-	<script>
-		Prism.highlightAll();
-	</script>
+        </section>
+      </div>
+    </main>
+    <footer>
+      <p>
+        &copy; Copyright 2023 by
+        <span><a href="https://github.com/itzL1m4k"> Kamil Popiołek</a></span>
+      </p>
+    </footer>
+  </div>
+  <div id="cookies">
+    <p>
+      Strona wykorzystuje pliki cookies. Klikając "<b>Akceptuję</b>", zgadzasz się na ich użycie.
+    </p>
+    <button id="accept"><b>Akceptuję</b></button>
+  </div>
+  <script src="js/jquery-3.7.1.min.js"></script>
+  <script src="assets/prism/prism_script.js"></script>
+  <script src="js/user_content_handler.js"></script>
+  <script src="js/smooth_scroll.js"></script>
+  <script src="js/cookies_handler.js"></script>
+  <script>
+    Prism.highlightAll();
+  </script>
 </body>
 
 </html>

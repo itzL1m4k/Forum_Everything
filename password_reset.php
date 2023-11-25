@@ -12,51 +12,65 @@
 </head>
 
 <body>
-  <div class="container">
-    <section class="login-section">
-      <header class="login-header">
-        <h1>Zmiana hasła</h1>
-      </header>
-      <form class="login-form" action="php/password_reset.php" method="POST" onsubmit="return validatePassword();">
-        <div class="login-form-content">
-          <div class="form-item">
-            <label for="email">Podaj Email</label>
-            <input type="text" id="email" name="email" required />
-          </div>
-          <div class="form-item">
-            <div class="password-container">
-              <label for="password">Podaj Nowe Hasło</label>
-              <input class="password-input" type="password" id="password" name="password" required />
-              <button type="button" class="password-toggle-button" onclick="togglePasswordVisibility('password')"><i class="fa fa-eye-slash"></i></button>
-            </div>
-          </div>
-          <div class="form-item">
-            <div class="password-container">
-              <label for="again-password">Powtórz Nowe Hasło</label>
-              <input class="password-input" type="password" id="again-password" name="again-password" required />
-              <button type="button" class="password-toggle-button" onclick="togglePasswordVisibility('again-password')"><i class="fa fa-eye-slash"></i></button>
-            </div>
-          </div>
-          <button id="login-in-button" type="submit">Zmień Hasło</button>
+  <div class="container" id="container">
+    <div class="form-container sign-in">
+      <form action="php/password_reset.php" method="POST">
+        <h1>Zmień hasło</h1>
+        <span>Zmień hasło dla swojego adresu email</span>
+        <input type="email" name="email" placeholder="Email" autocomplete="email" required>
+        <div class="password-container">
+          <input type="password" id="password" name="password" placeholder="Nowe Hasło" required>
+          <span class="password-toggle-button" onclick="togglePasswordFieldVisibility('password')">
+            <i class="fa fa-eye-slash"></i>
+          </span>
         </div>
-        <?php
-        $errors = [
-          'change_failed' => 'Zmiana hasła niepowiodła się',
-          'invalid_email' => 'Nie ma użytkownika z tym adresem e-mail'
-        ];
-        $error = $_GET['error'] ?? '';
-        if (array_key_exists($error, $errors)) {
-          echo '<div class="error-message">' . $errors[$error] . '</div>';
-        }
-        ?>
-        <div class="login-form-footer">
-          <p>Nie posiadasz konta? <a href="php/user_registration.php"> Zarejestruj Się</a></p>
-        </div>
+        <button id="change-password" type="submit">Zmień hasło</button>
       </form>
-    </section>
+    </div>
+
+    <div class="toggle-container">
+      <div class="toggle">
+        <div class="toggle-panel toggle-right">
+          <h1>Witaj Użytkowniku!</h1>
+          <p>Tutaj możesz zmienić swoje hasło powiązane z twoim adresem e-mail</p>
+          <p>Jeżeli jesteś tutaj przez przypadek, naciśnij przycisk poniżej</p>
+          <button class="hidden" id="register" onclick="window.location.href='index.php'">Strona Główna</button>
+        </div>
+      </div>
+    </div>
   </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="js/jquery-3.7.1.min.js"></script>
+  <script src="js/sweetalert2.all.min.js"></script>
   <script src="js/password_validation.js"></script>
+
+  <?php
+  $messages = [
+    'change_failed' => 'Nie udało się zmienić hasła',
+    'invalid_email' => 'Taki adres email nie istnieje'
+  ];
+
+  if (isset($_GET['error'])) {
+    $message_key = $_GET['error'];
+    $message = array_key_exists($message_key, $messages) ? $messages[$message_key] : '';
+    $isSuccess = isset($messages[$message_key]);
+
+    echo '<script>';
+    echo 'Swal.fire({
+          icon: "error",
+          title: "' . $message . '",
+          showConfirmButton: false,
+          timer: 2000,
+          toast: true,
+          position: "top",
+          customClass: {
+              popup: "my-custom-popup-class",
+              title: "my-custom-title-class",
+              content: "my-custom-content-class",
+          }
+          });';
+    echo '</script>';
+  }
+  ?>
 </body>
 
 </html>

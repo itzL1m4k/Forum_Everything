@@ -1,12 +1,7 @@
-const showNewPostEl = $(".show-new-post"),
-  createNewPostEl = $(".create-new-post"),
-  postButtonEl = $("#post-button"),
-  declineButtonEl = $("#post-button-decline");
+function togglePostView() {
+  $(".show-new-post").toggleClass("hidden");
+  $(".create-new-post").toggleClass("hidden");
+}
 
-const togglePostView = () => {
-  showNewPostEl.toggleClass("hidden");
-  createNewPostEl.toggleClass("hidden");
-};
-
-postButtonEl.on("click", togglePostView);
-declineButtonEl.on("click", togglePostView);
+$("#post-button").on("click", togglePostView);
+$("#post-button-decline").on("click", togglePostView);

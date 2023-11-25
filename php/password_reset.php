@@ -43,10 +43,16 @@ function handlePasswordChangeByEmail($conn, $email, $hashedPass)
 function executeQueryAndRedirect($conn, $sql, $successMessage, $failureMessage)
 {
   if (mysqli_query($conn, $sql)) {
-    redirectToNotify($successMessage);
+    redirectToPage($successMessage);
   } else {
     redirectToReset($failureMessage);
   }
+}
+
+function redirectToPage($info)
+{
+  header("Location: ../user_authentication.php?success=$info");
+  exit;
 }
 
 function redirectToNotify($info)

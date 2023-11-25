@@ -1,5 +1,5 @@
-let validateImageSize = (fileInput) => {
-  var maxFileSize = 10 * 1024 * 1024;
+function validateImageSize(fileInput) {
+  var maxFileSize = 3 * 1024 * 1024;
   var files = fileInput.files;
 
   for (var i = 0; i < files.length; i++) {
@@ -8,7 +8,7 @@ let validateImageSize = (fileInput) => {
       Swal.fire({
         title: "Przepraszamy",
         text:
-          "Rozmiar pliku " + file.name + " przekracza limit 10 megabajtów. Wybierz mniejszy plik.",
+          "Rozmiar pliku " + file.name + " przekracza limit 3 megabajtów. Wybierz mniejszy plik.",
         icon: "error",
         confirmButtonText: "OK",
         customClass: {
@@ -24,4 +24,4 @@ let validateImageSize = (fileInput) => {
     }
   }
   return true;
-};
+}

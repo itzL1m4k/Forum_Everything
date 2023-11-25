@@ -3,15 +3,8 @@ require_once("database_connection.php");
 
 $nickname = $_POST['nickname'] ?? '';
 $email = $_POST['email'] ?? '';
-$password = $_POST['password'] ?? '';
+$password = $_POST['password'];
 $policy = $_POST['privacyPolicy'];
-
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-  redirectToRegister('invalid_email');
-}
-if (!$policy) {
-  redirectToRegister('accept_policy');
-}
 
 if (userExists($conn, $email, $nickname)) {
   redirectToRegister('user_exists');
@@ -21,7 +14,7 @@ $hashedPass = password_hash($password, PASSWORD_DEFAULT);
 
 if (insertUser($conn, $nickname, $email, $hashedPass)) {
   $password = $hashedPass = '';
-  header('Location: ../user_login.php');
+  header('Location: ../user_authentication.php?success=account_create&config=login');
   exit;
 }
 
@@ -31,11 +24,11 @@ function redirectToRegister($error)
 {
   $queryParams = http_build_query([
     'error' => $error,
-    'nickname' => $_POST['nickname'],
-    'email' => $_POST['email']
+    'nickname' => htmlspecialchars($_POST['nickname']),
+    'email' => htmlspecialchars($_POST['email'])
   ]);
 
-  header("Location: ../user_registration.php?$queryParams");
+  header("Location: ../user_authentication.php?$queryParams&config=register");
   exit;
 }
 

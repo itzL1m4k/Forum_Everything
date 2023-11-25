@@ -1,7 +1,7 @@
-let getCookie = (e) => {
+function getCookie(e) {
   let match = document.cookie.match("(^|[^;]+)\\s*" + e + "\\s*=\\s*([^;]+)");
   return match ? match.pop() : "";
-};
+}
 
 const cookieName = getCookie("login_cookie");
 const accountElements = $(".yourAccount, .about-code, .show-new-post, .comment-add");
@@ -10,7 +10,7 @@ const notLoginElements = $(".not-login");
 
 if ("" === cookieName) {
   $.ajax({
-    url: "/php/check_session.php",
+    url: "./php/check_session.php",
     dataType: "json",
     success: function (data) {
       if (!0 === data.login) {

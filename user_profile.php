@@ -37,8 +37,8 @@ if (isset($_POST['log-out'])) {
         <li><a href="about_code_2.html">Kod JavaScript</a></li>
       </ul>
       <ul>
-        <li class="login-nav"><a href="user_login.php">Zaloguj się</a></li>
-        <li class="login-nav"><a href="user_registration.php">Zarejestruj się</a></li>
+        <li class="login-nav"><a href="user_authentication.php?config=login">Zaloguj się</a></li>
+        <li class="login-nav"><a href="user_authentication.php?config=register">Zarejestruj się</a></li>
         <li class="yourAccount hidden"><a href="user_profile.php">Twoje konto</a></li>
       </ul>
     </header>
@@ -145,8 +145,8 @@ if (isset($_POST['log-out'])) {
       <p>&copy; Copyright by <span><a href="https://github.com/itzL1m4k"> Kamil Popiołek</a></span></p>
     </footer>
   </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="js/jquery-3.7.1.min.js"></script>
+  <script src="js/sweetalert2.all.min.js"></script>
   <script src="js/user_content_handler.js"></script>
   <script src="js/user_settings_toggle.js"></script>
   <script src="js/password_validation.js"></script>

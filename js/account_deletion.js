@@ -1,4 +1,4 @@
-let deleteAccount = () => {
+function deleteAccount() {
   Swal.fire({
     title: "Czy na pewno chcesz usunąć konto?",
     icon: "question",
@@ -22,4 +22,4 @@ let deleteAccount = () => {
       });
     }
   });
-};
+}
