@@ -9,6 +9,10 @@ Witaj w naszym społecznościowym forum. Tutaj możesz dzielić się wiedzą, za
 ## Funkcje
 
 - **Rejestracja i Logowanie:** Utwórz swoje konto i zaloguj się, aby brać udział w dyskusjach.
+- **Resetowanie hasłą:** Zapomniałeś hasłą? To nie problem, po prostu je zresetuj.
+- **Zmiana danych:** Chcesz zmienic nazwe lub email? Możesz to zrobic.
+- **Podgląd kodu:** Na naszej stronie mozesz zobaczyc caly kod.
+- **Posty:** Dodawaj posty na ktore inni moga odpowiadac.
 - **Komentarze:** Dodawaj komentarze do wątków, aby wyrazić swoją opinię lub udzielić odpowiedzi.
 
 ## Instalacja
