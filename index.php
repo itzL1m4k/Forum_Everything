@@ -11,7 +11,7 @@ session_start();
   <link rel="shortcut icon" href="assets/img/page_icon.png" type="image/x-icon" />
   <link rel="stylesheet" href="css/global_styles.css" />
   <link rel="stylesheet" href="css/new_post_styles.css">
-  <title>Forum Everything</title>
+  <title>Forum Informatyczne</title>
 </head>
 
 <body>
@@ -21,7 +21,7 @@ session_start();
 
   <div class="container">
     <div class="logo">
-      <h1><a href="index.php">Forum Everything</a></h1>
+      <h1><a href="index.php">Forum Informatyczne</a></h1>
     </div>
 
     <header>
@@ -175,7 +175,7 @@ session_start();
           <div class='post-section'>
 
             <h2><?= $row["tytul"] ?></h2>
-            <p><strong>Autor:</strong><?= $row["nickname"] ?></p>
+            <p><strong>Autor: </strong><?= $row["nickname"] ?></p>
             <p><?= $row["tresc"] ?></p>
 
             <div class='image-container'>
@@ -186,7 +186,7 @@ session_start();
               <img id="enlarged-image" src="" alt="Powiększony obrazek">
             </div>
 
-            <p><strong>Data publikacji:</strong><?= $row["data_publikacji"] ?></p>
+            <p><strong>Data publikacji: </strong><?= $row["data_publikacji"] ?></p>
 
         <?php
           if ($currentUserId == $row["autor_id"]) {

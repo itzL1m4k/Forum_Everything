@@ -85,14 +85,12 @@
     $message_key = $_GET['error'] ?? $_GET['success'];
     $message = array_key_exists($message_key, $messages) ? $messages[$message_key] : '';
     $isSuccess = isset($messages[$message_key]) && isset($_GET['success']);
-
+    echo '<script src="js/sweetalert2.all.min.js"></script>';
     echo '<script>';
     echo 'Swal.fire({
-            icon: "' . ($isSuccess ? "
-            success " : "
-            error ") . '",
-              title: "' . $message . '",
-              showConfirmButton: false,
+            icon: "' . ($isSuccess ? "success" : "error") . '",
+            title: "' . $message . '",
+            showConfirmButton: false,
               timer: 2000,
               toast: true,
               position: "top",

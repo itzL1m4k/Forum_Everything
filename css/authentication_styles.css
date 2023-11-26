@@ -20,15 +20,15 @@ body {
   transform: translateX(100%);
 }
 :root {
-  --primary-color: #512da8;
+  --primary-color: #59118d;
   --background-gradient: linear-gradient(to right, #e2e2e2, #c9d6ff);
-  --container-background: #fff;
+  --container-background: #f2f1fd;
   --text-color: #fff;
   --shadow-color: rgba(0, 0, 0, 0.35);
-  --link-hover-color: #512da8;
-  --form-background: #eee;
-  --checkbox-border: 2px solid #512da8;
-  --checkbox-bg: #fff;
+  --link-hover-color: #cd18be;
+  --form-background: #f7bbf2;
+  --checkbox-border: 2px solid #cd18be;
+  --checkbox-bg: #f2f1fd;
 }
 * {
   margin: 0;

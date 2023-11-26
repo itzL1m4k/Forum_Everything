@@ -1,8 +1,9 @@
 @import url(https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap);
 :root {
-  --background-gradient: #232323;
-  --container-background: #323232;
+  --background-gradient: linear-gradient(to right, #e2e2e2, #c9d6ff);
+  --container-background: #fff;
   --shadow-color: rgba(0, 0, 0, 0.35);
+  --primary-color: #512da8;
 }
 * {
   margin: 0;
@@ -17,11 +18,10 @@ body {
   justify-content: center;
   flex-direction: column;
   height: 100vh;
-  color: #fff;
 }
 .privacy-policy {
   background-color: var(--container-background);
-  border-radius: 30px;
+  border-radius: 10px;
   box-shadow: 0 5px 15px var(--shadow-color);
   position: relative;
   overflow: hidden;
@@ -34,11 +34,14 @@ body {
 h2 {
   font-size: 2em;
   margin-bottom: 20px;
+  text-align: center;
+  color: var(--primary-color);
 }
 h3 {
   font-size: 1.5em;
   margin-top: 30px;
   margin-bottom: 10px;
+  color: var(--primary-color);
 }
 p {
   line-height: 1.5em;

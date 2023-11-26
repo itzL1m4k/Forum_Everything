@@ -5,14 +5,14 @@
 .list-choose,
 h2,
 strong {
-  color: var(--accent);
+  color: var(--accent-color);
 }
 .comment p,
 form,
 input[type="text"],
 label,
 textarea {
-  color: var(--text);
+  color: var(--primary-color);
 }
 .create-new-post {
   width: 75%;
@@ -66,10 +66,10 @@ textarea:hover:focus {
 button[type="button"],
 button[type="reset"],
 button[type="submit"] {
-  background-color: var(--primary);
+  background-color: var(--primary-button-color);
   border: none;
   border-radius: 10px;
-  color: var(--text);
+  color: var(--primary-color);
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
@@ -87,7 +87,7 @@ button[type="button"]:hover,
 button[type="reset"]:hover,
 button[type="submit"]:hover {
   transition: 0.5s;
-  background-color: var(--secondary);
+  background-color: var(--secondary-button-color);
 }
 hr {
   margin: 20px 0;
@@ -104,9 +104,9 @@ hr {
 }
 .edit-any,
 .show-comments {
-  background-color: var(--primary);
+  background-color: var(--primary-button-color);
   padding: 10px;
-  color: var(--text);
+  color: var(--primary-color);
   cursor: pointer;
 }
 .comment-add input[type="submit"] {
@@ -129,37 +129,37 @@ hr {
 .comment-add input[type="submit"]:hover,
 .edit-any:hover,
 .show-comments:hover {
-  background-color: var(--secondary);
+  background-color: var(--secondary-button-color);
   transition: 0.3s;
 }
 .edit-any a {
-  color: var(--text);
+  color: var(--primary-color);
   text-decoration: none;
 }
 .title-comment {
   margin-left: 16%;
 }
 p {
-  color: var(--text);
+  color: var(--primary-color);
 }
 .comment {
   background-color: #2d2d2d;
 }
 .comment hr .comment p {
-  color: var(--text);
+  color: var(--primary-color);
 }
 .comment-add textarea {
   background-color: #1f1f1f;
-  color: var(--text);
+  color: var(--primary-color);
 }
 input[type="submit"],
 option:checked {
-  background-color: var(--primary);
+  background-color: var(--primary-button-color);
 }
 .comment-add input[type="submit"],
 .show-comments {
-  background-color: var(--primary);
-  color: var(--text);
+  background-color: var(--primary-button-color);
+  color: var(--primary-color);
 }
 .form-bg,
 .non-posts,
@@ -174,13 +174,13 @@ option:checked {
 }
 select {
   height: 35px;
-  color: var(--text);
+  color: var(--primary-color);
   font-size: medium;
-  border: 1px solid var(--text);
+  border: 1px solid var(--primary-color);
 }
 .message-posts,
 label {
-  color: var(--primary);
+  color: var(--primary-button-color);
 }
 option {
   background-color: #1a1a1a;
@@ -192,11 +192,11 @@ input[type="submit"] {
   padding: 5px 10px;
   border: none;
   border-radius: 3px;
-  color: var(--text);
+  color: var(--primary-color);
   cursor: pointer;
 }
 input[type="submit"]:hover {
-  background-color: var(--secondary);
+  background-color: var(--secondary-button-color);
 }
 .form-bg {
   padding: 10px;
@@ -205,7 +205,7 @@ input[type="submit"]:hover {
 }
 select {
   background-color: rgba(0, 0, 0, 0.2);
-  color: var(--text);
+  color: var(--primary-color);
   border: none;
   padding: 5px 10px;
   border-radius: 3px;
@@ -219,7 +219,7 @@ select:hover {
   background-color: #333;
 }
 select option {
-  color: var(--text);
+  color: var(--primary-color);
 }
 .non-posts {
   padding: 15px;
@@ -256,5 +256,5 @@ select option {
   cursor: pointer;
 }
 ::selection {
-  background-color: var(--accent);
+  background-color: var(--accent-color);
 }

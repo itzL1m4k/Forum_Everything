@@ -5,7 +5,7 @@
 body,
 footer,
 footer span {
-  color: var(--text);
+  color: var(--primary-color);
 }
 a,
 footer,
@@ -43,7 +43,7 @@ ul li a:hover:before {
 .info-code,
 .post,
 header {
-  box-shadow: 0 0 24px 24px var(--secondary);
+  box-shadow: 0 0 24px 24px var(--secondary-button-color);
 }
 #to-top-btn:hover,
 ul li a:hover {
@@ -51,14 +51,14 @@ ul li a:hover {
 }
 #to-top-btn,
 #to-top-btn:hover {
-  box-shadow: 0 4px 8px var(--secondary);
+  box-shadow: 0 4px 8px var(--secondary-button-color);
 }
 :root {
-  --text: #fafcff;
-  --background: #010a18;
-  --primary: #220cca;
-  --secondary: #25033a;
-  --accent: #9e18f2;
+  --primary-color: #f2f1fd;
+  --secondary-color: #151515;
+  --primary-button-color: #cd18be;
+  --secondary-button-color: #1b1918;
+  --accent-color: #f7bbf2;
 }
 .logo,
 header {
@@ -69,24 +69,24 @@ header {
   border-radius: 5px;
 }
 #image-input::file-selector-button {
-  background-color: var(--primary);
-  color: var(--text);
+  background-color: var(--primary-button-color);
+  color: var(--primary-color);
   padding: 8px 16px;
   border-radius: 5px;
   border: none;
   cursor: pointer;
 }
 #image-input::file-selector-button:hover {
-  background-color: var(--secondary);
+  background-color: var(--secondary-button-color);
   transition: background-color 0.3s;
 }
 #image-input::file-selector-button:active {
-  background-color: var(--accent);
+  background-color: var(--accent-color);
   transition: background-color 0.3s;
 }
 #image-input:focus {
   outline: 0;
-  box-shadow: 0 0 0 2px var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-color);
 }
 .image-container {
   max-width: 100%;
@@ -104,11 +104,11 @@ header {
 }
 #cookies button,
 ul li a:before {
-  background-color: var(--accent);
+  background-color: var(--primary-button-color);
 }
 .not-login,
 ul li a:hover {
-  color: var(--accent);
+  color: var(--accent-color);
 }
 #cookies,
 #navbar-code {
@@ -152,7 +152,7 @@ a {
 .post p,
 footer a,
 header {
-  color: var(--text);
+  color: var(--primary-color);
 }
 a:before {
   height: 1px;
@@ -160,11 +160,11 @@ a:before {
   background-color: #000;
 }
 footer a:hover {
-  color: var(--accent);
+  color: var(--accent-color);
   transition: 0.5s;
 }
 body {
-  background-color: var(--background);
+  background-color: var(--secondary-color);
   font-family: Poppins;
 }
 .container {
@@ -228,7 +228,7 @@ header {
   cursor: pointer;
 }
 #cookies button:hover {
-  background-color: var(--secondary);
+  background-color: var(--secondary-button-color);
 }
 @keyframes pulse {
   0%,
@@ -263,11 +263,11 @@ main {
 .post {
   margin-bottom: 20px;
   padding: 20px;
-  background: var(--background);
+  background: var(--secondary-color);
 }
 .non-posts,
 footer {
-  box-shadow: 0 0 28px 28px var(--secondary);
+  box-shadow: 0 0 28px 28px var(--secondary-button-color);
 }
 .code-script-all {
   display: flex;
@@ -294,7 +294,7 @@ footer {
 }
 .info-code b,
 .info-code code {
-  color: var(--text);
+  color: var(--primary-color);
   margin: 5px;
 }
 .info-code p {
@@ -313,7 +313,7 @@ footer {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: var(--text);
+  background-color: var(--primary-color);
   border: none;
   border-radius: 50%;
   cursor: pointer;
@@ -356,14 +356,14 @@ footer {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background-color: var(--background);
+  background-color: var(--secondary-color);
 }
 ::-webkit-scrollbar-thumb {
-  background-color: var(--secondary);
+  background-color: var(--secondary-button-color);
   border-radius: 5px;
 }
 .non-posts {
-  background-color: var(--background);
+  background-color: var(--secondary-color);
   padding: 15px;
   margin: 10px 10px 35px 15%;
   width: 70%;
@@ -371,15 +371,15 @@ footer {
   text-align: center;
 }
 .message-posts {
-  color: var(--accent);
+  color: var(--accent-color);
   font-size: 20px;
 }
 .my-custom-popup-class {
-  background-color: var(--background) !important;
-  color: var(--text) !important;
+  background-color: var(--secondary-color) !important;
+  color: var(--primary-color) !important;
   border-radius: 10px !important;
   padding: 20px !important;
-  box-shadow: 0 2px 8px var(--secondary) !important;
+  box-shadow: 0 2px 8px var(--secondary-button-color) !important;
 }
 .my-custom-title-class {
   font-size: 24px !important;
@@ -391,8 +391,8 @@ footer {
   margin-bottom: 20px !important;
 }
 .my-custom-button-class {
-  background-color: var(--accent) !important;
-  color: var(--text) !important;
+  background-color: var(--accent-color) !important;
+  color: var(--primary-color) !important;
   padding: 10px 20px !important;
   border: none !important;
   border-radius: 5px !important;
@@ -401,12 +401,12 @@ footer {
   margin-right: 10px !important;
 }
 .my-custom-button-class:hover {
-  background-color: var(--accent) !important;
+  background-color: var(--accent-color) !important;
   opacity: 0.8 !important;
 }
 .my-custom-button-class:focus {
   outline: 0 !important;
 }
 ::selection {
-  background-color: var(--accent);
+  background-color: var(--accent-color);
 }
