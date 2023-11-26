@@ -1,6 +1,6 @@
-let showImage = (e) => {
-  var src = $(e).attr("src");
-  $("#enlarged-image").attr("src", src);
+let showImage = (a) => {
+  var e = $(a).attr("src");
+  $("#enlarged-image").attr("src", e);
   $("#overlay").css("display", "block");
 };
 

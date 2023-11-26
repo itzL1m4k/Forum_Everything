@@ -1,4 +1,58 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap);
+#image-input,
+.info-code a,
+.post a,
+body,
+footer,
+footer span {
+  color: var(--text);
+}
+a,
+footer,
+ul li {
+  position: relative;
+}
+#to-top-btn,
+a:before,
+ul li a {
+  transition: 0.3s ease-in-out;
+}
+.info-code a,
+.logo h1 a,
+.post a,
+a,
+footer a,
+ul li a,
+ul li a:hover {
+  text-decoration: none;
+}
+a:before,
+ul li a:before {
+  content: "";
+  left: 0;
+  position: absolute;
+  transform: scaleX(0);
+  visibility: hidden;
+  width: 100%;
+}
+a:hover:before,
+ul li a:hover:before {
+  transform: scaleX(1);
+  visibility: visible;
+}
+.info-code,
+.post,
+header {
+  box-shadow: 0 0 24px 24px var(--secondary);
+}
+#to-top-btn:hover,
+ul li a:hover {
+  transform: scale(1.1);
+}
+#to-top-btn,
+#to-top-btn:hover {
+  box-shadow: 0 4px 8px var(--secondary);
+}
 :root {
   --text: #fafcff;
   --background: #010a18;
@@ -11,7 +65,6 @@ header {
   display: flex;
 }
 #image-input {
-  color: var(--text);
   border: none;
   border-radius: 5px;
 }
@@ -32,7 +85,7 @@ header {
   transition: background-color 0.3s;
 }
 #image-input:focus {
-  outline: none;
+  outline: 0;
   box-shadow: 0 0 0 2px var(--accent);
 }
 .image-container {
@@ -62,21 +115,9 @@ ul li a:hover {
   background-color: rgba(0, 0, 0, 0.4);
 }
 #to-top-btn,
-ul li a {
-  transition: 0.3s ease-in-out;
-}
-body,
-footer {
-  color: var(--text);
-}
-#to-top-btn,
 footer,
 header {
   padding: 10px;
-}
-footer,
-ul li {
-  position: relative;
 }
 #cookies,
 .code-script-all,
@@ -94,14 +135,6 @@ ul li a {
 .logo h1 a,
 ul li a {
   color: inherit;
-  text-decoration: none;
-}
-.info-code a,
-.logo h1 a,
-.post a,
-ul li a,
-ul li a:hover {
-  text-decoration: none;
 }
 ul {
   list-style-type: none;
@@ -112,38 +145,27 @@ li {
   margin-right: 20px;
 }
 a {
-  text-decoration: none;
-  position: relative;
   color: #000;
 }
+#cookies button,
+.info-code p,
+.post p,
+footer a,
+header {
+  color: var(--text);
+}
 a:before {
-  content: "";
-  position: absolute;
-  width: 100%;
   height: 1px;
   bottom: -3px;
-  left: 0;
   background-color: #000;
-  visibility: hidden;
-  transform: scaleX(0);
-  transition: all 0.3s ease-in-out;
-}
-a:hover:before {
-  visibility: visible;
-  transform: scaleX(1);
-}
-footer a {
-  text-decoration: none;
-  color: var(--text);
 }
 footer a:hover {
   color: var(--accent);
-  text-decoration: underline;
   transition: 0.5s;
 }
 body {
   background-color: var(--background);
-  font-family: "Poppins";
+  font-family: Poppins;
 }
 .container {
   margin: 0 auto;
@@ -178,9 +200,7 @@ footer a:hover {
 header {
   animation: 1s slide-down;
   background: rgba(0, 0, 0, 0.3);
-  box-shadow: 0 0 24px 24px var(--secondary);
   border-radius: 10px;
-  color: var(--text);
   justify-content: space-between;
   margin-bottom: 3%;
 }
@@ -201,7 +221,6 @@ header {
   transition: bottom 0.5s ease-out;
 }
 #cookies button {
-  color: var(--text);
   font-size: 16px;
   padding: 10px 20px;
   border: none;
@@ -224,23 +243,10 @@ ul li {
   display: inline-block;
   margin: 0 10px;
 }
-ul li a:hover {
-  transform: scale(1.1);
-}
 ul li a:before {
   bottom: 0;
-  content: "";
   height: 2px;
-  left: 0;
-  position: absolute;
-  transform: scaleX(0);
   transition: 0.3s ease-in-out 0;
-  visibility: hidden;
-  width: 100%;
-}
-ul li a:hover:before {
-  transform: scaleX(1);
-  visibility: visible;
 }
 header ul li a:active {
   transform: scale(0.9);
@@ -258,7 +264,10 @@ main {
   margin-bottom: 20px;
   padding: 20px;
   background: var(--background);
-  box-shadow: 0 0 24px 24px var(--secondary);
+}
+.non-posts,
+footer {
+  box-shadow: 0 0 28px 28px var(--secondary);
 }
 .code-script-all {
   display: flex;
@@ -289,15 +298,9 @@ main {
   margin: 5px;
 }
 .info-code p {
-  color: var(--text);
   font-size: 16px;
   line-height: 1.5;
   margin: 15px 12px 12px;
-}
-.info-code a,
-.post a,
-footer span {
-  color: var(--text);
 }
 .info-code a,
 .post a {
@@ -313,13 +316,8 @@ footer span {
   background-color: var(--text);
   border: none;
   border-radius: 50%;
-  box-shadow: 0 4px 8px var(--secondary);
   cursor: pointer;
   z-index: 9999;
-}
-#to-top-btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 4px 8px var(--secondary);
 }
 #arrow-up {
   width: 20px;
@@ -343,14 +341,12 @@ pre {
   margin: 0 0 18px;
 }
 .post p {
-  color: var(--text);
   font-size: 16px;
   line-height: 1.5;
   margin: 0;
 }
 footer {
   background: rgba(0, 0, 0, 0.4);
-  box-shadow: 0 0 28px 28px var(--secondary);
   bottom: 0;
   margin: 0 auto;
   border-radius: 10px;
@@ -368,7 +364,6 @@ footer {
 }
 .non-posts {
   background-color: var(--background);
-  box-shadow: 0 0 28px 28px var(--secondary);
   padding: 15px;
   margin: 10px 10px 35px 15%;
   width: 70%;
@@ -388,7 +383,7 @@ footer {
 }
 .my-custom-title-class {
   font-size: 24px !important;
-  font-weight: bold !important;
+  font-weight: 700 !important;
   margin-bottom: 10px !important;
 }
 .my-custom-content-class {
@@ -410,7 +405,7 @@ footer {
   opacity: 0.8 !important;
 }
 .my-custom-button-class:focus {
-  outline: none !important;
+  outline: 0 !important;
 }
 ::selection {
   background-color: var(--accent);

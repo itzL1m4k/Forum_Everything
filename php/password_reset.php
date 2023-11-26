@@ -57,7 +57,7 @@ function redirectToPage($info)
 
 function redirectToNotify($info)
 {
-  header("Location: ../notification.php?info=$info");
+  header("Location: ../notification.php?error=$info");
   exit;
 }
 

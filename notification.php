@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="assets/img/page_icon.png" type="image/x-icon">
   <link rel="stylesheet" href="css/notification_styles.css">
   <title>Forum | Notify</title>
 </head>
@@ -27,16 +28,14 @@
     'account_delete' => 'Konto zostało usunięte'
   ];
 
-  if (isset($_GET['info'])) {
-    $message_key = $_GET['info'];
+  if (isset($_GET['error']) || isset($_GET['success'])) {
+    $message_key = $_GET['error'] ?? $_GET['success'];
     $message = array_key_exists($message_key, $messages) ? $messages[$message_key] : '';
-    $isSuccess = isset($messages[$message_key]);
-
-    if ($isSuccess) {
-      echo "<script src='js/sweetalert2.all.min.js'></script>";
-      echo '<script>';
-      echo 'Swal.fire({
-            icon: "info",
+    $isSuccess = isset($messages[$message_key]) && isset($_GET['success']);
+    echo '<script src="js/sweetalert2.all.min.js"></script>';
+    echo '<script>';
+    echo 'Swal.fire({
+            icon: "' . ($isSuccess ? "success" : "error") . '",
             title: "' . $message . '",
             position: "center",
             showConfirmButton: true,
@@ -51,8 +50,7 @@
                 window.location.href = "index.php";
             }
         });';
-      echo '</script>';
-    }
+    echo '</script>';
   }
   ?>
 </body>

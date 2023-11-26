@@ -1,10 +1,10 @@
-function validateImageSize(fileInput) {
-  var maxFileSize = 3 * 1024 * 1024;
-  var files = fileInput.files;
+function validateImageSize(t) {
+  var files = t.files;
 
   for (var i = 0; i < files.length; i++) {
     var file = files[i];
-    if (file.size > maxFileSize) {
+
+    if (file.size > 3145728) {
       Swal.fire({
         title: "Przepraszamy",
         text:
@@ -19,9 +19,10 @@ function validateImageSize(fileInput) {
         },
       });
 
-      $(fileInput).val("");
+      $(t).val("");
       return false;
     }
   }
+
   return true;
 }

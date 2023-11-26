@@ -1,4 +1,15 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap);
+body,
+input[type="text"],
+textarea {
+  background-color: var(--background);
+  color: var(--text);
+}
+.my-custom-button-class,
+.my-custom-content-class {
+  color: var(--text) !important;
+  font-weight: 700 !important;
+}
 :root {
   --text: #fafcff;
   --background: #010a18;
@@ -10,16 +21,12 @@ input[type="text"],
 textarea {
   width: 45%;
   margin-bottom: 10px;
-  background-color: var(--background);
   box-shadow: 0 0 28px 28px var(--secondary);
-  color: var(--text);
   border: none;
   transition: box-shadow 0.3s;
 }
 body {
-  background-color: var(--background);
-  color: var(--text);
-  font-family: "Poppins";
+  font-family: Poppins;
 }
 #image-input {
   color: var(--text);
@@ -43,13 +50,13 @@ body {
   background-color: var(--accent);
 }
 #image-input:focus {
-  outline: none;
+  outline: 0;
   box-shadow: 0 0 0 2px var(--accent);
 }
 h1 {
   text-align: center;
   margin-top: 15%;
-  animation: fadeInUp 1s ease-out;
+  animation: 1s ease-out fadeInUp;
 }
 @keyframes fadeInUp {
   0% {
@@ -65,7 +72,7 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  animation: fadeIn 1s ease-out;
+  animation: 1s ease-out fadeIn;
 }
 @keyframes fadeIn {
   0% {
@@ -117,13 +124,9 @@ input[type="text"] {
 .my-custom-content-class {
   margin-top: 20px !important;
   margin-bottom: 20px !important;
-  font-weight: 700 !important;
-  color: var(--text) !important;
 }
 .my-custom-button-class {
   background-color: var(--primary) !important;
-  color: var(--text) !important;
-  font-weight: 700 !important;
 }
 ::selection {
   background-color: var(--accent);

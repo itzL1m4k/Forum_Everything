@@ -27,12 +27,12 @@ if (isset($_POST['log-out'])) {
   </button>
   <div class="container">
     <div class="logo">
-      <h1><a href="index.php">Forum Informatyczne</a></h1>
+      <h1><a href="index.php">Forum Everything</a></h1>
     </div>
     <header>
       <ul>
         <li><a href="index.php">Wpisy</a></li>
-        <li><a href="documentation.html">Dokumentacja</a></li>
+        <li><a href="https://github.com/itzL1m4k/Forum_Everything" target="_blank" rel="noopener">Dokumentacja</a></li>
         <li><a href="about_code.html">Kod PHP</a></li>
         <li><a href="about_code_2.html">Kod JavaScript</a></li>
       </ul>

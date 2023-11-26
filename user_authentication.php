@@ -15,7 +15,7 @@
   <div class="container" id="container">
     <div class="form-container sign-up">
       <form action="php/user_registration.php" method="POST">
-        <h1>Stwórz Konto</h1>
+        <h1>Stwórz konto</h1>
         <span>Użyj swojego maila do rejestracji</span>
         <input type="text" id="nickname" name="nickname" value="<?= htmlspecialchars($_GET['nickname'] ?? '') ?>" placeholder="Nazwa" autocomplete="username" required>
         <input type="email" id="email" name="email" value="<?= htmlspecialchars($_GET['email'] ?? '') ?>" placeholder="Email" autocomplete="email" required>
@@ -27,8 +27,8 @@
         </div>
         <div class="checkbox-container">
           <input type="checkbox" id="privacyPolicy" name="privacyPolicy" />
-          <label for="privacyPolicy" class="checkboxLabel">
-            Zatwierdzam <a href="privacy_policy.html" target="_blank" rel="noopener">politykę prywatności</a>
+          <label for="privacyPolicy" class="checkboxLabel"> Zatwierdzam
+            <a href="privacy_policy.html" target="_blank" rel="noopener">politykę</a>
           </label>
         </div>
         <button id="register-button" type="submit">Zarejestruj się</button>
@@ -66,11 +66,11 @@
       </div>
     </div>
   </div>
+
   <script src="js/jquery-3.7.1.min.js"></script>
   <script src="js/sweetalert2.all.min.js"></script>
   <script src="js/password_validation.js"></script>
   <script src="js/authentication.js"></script>
-
   <?php
   $messages = [
     'login_failed' => 'Logowanie nie powiodło się',
@@ -81,7 +81,6 @@
     'account_create' => "Pomyślnie utworzono konto",
     'change_success' => "Zmieniono hasło"
   ];
-
   if (isset($_GET['error']) || isset($_GET['success'])) {
     $message_key = $_GET['error'] ?? $_GET['success'];
     $message = array_key_exists($message_key, $messages) ? $messages[$message_key] : '';
@@ -89,21 +88,23 @@
 
     echo '<script>';
     echo 'Swal.fire({
-          icon: "' . ($isSuccess ? "success" : "error") . '",
-          title: "' . $message . '",
-          showConfirmButton: false,
-          timer: 2000,
-          toast: true,
-          position: "top",
-          customClass: {
-              popup: "my-custom-popup-class",
-              title: "my-custom-title-class",
-              content: "my-custom-content-class",
-          }
-      });';
+            icon: "' . ($isSuccess ? "
+            success " : "
+            error ") . '",
+              title: "' . $message . '",
+              showConfirmButton: false,
+              timer: 2000,
+              toast: true,
+              position: "top",
+              customClass: {
+                popup: "my-custom-popup-class",
+                title: "my-custom-title-class",
+                content: "my-custom-content-class",
+              }
+          });
+          ';
     echo '</script>';
-  }
-  ?>
+  } ?>
 
 </body>
 

@@ -40,6 +40,7 @@
   height: 596px;
   width: 50%;
 }
+.delete-account button,
 .error-message,
 .message,
 .password-input:focus + .password-toggle-button .fa-eye,
@@ -49,8 +50,8 @@
   color: var(--primary);
 }
 .change-user-data button,
-.save-changes button,
-.delete-account button {
+.delete-account button,
+.save-changes button {
   background-color: rgba(255, 255, 255, 0.05);
   border: none;
   border-radius: 10px;
@@ -59,9 +60,6 @@
   font-size: 20px;
   margin: 25px 0;
   padding: 16px;
-}
-.delete-account button {
-  color: var(--primary);
 }
 .change-user-data button:hover,
 .save-changes button:hover {

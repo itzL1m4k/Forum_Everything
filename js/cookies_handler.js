@@ -1,7 +1,11 @@
-var $cookies = $("#cookies");
-var $acceptBtn = $("#accept");
+var $cookies = $("#cookies"),
+  $acceptBtn = $("#accept");
 
-sessionStorage.getItem("logged") === "true" ? $cookies.hide() : $cookies.show();
+if ("true" === sessionStorage.getItem("logged")) {
+  $cookies.hide();
+} else {
+  $cookies.show();
+}
 
 $acceptBtn.on("click", function () {
   $cookies.hide();
@@ -9,7 +13,7 @@ $acceptBtn.on("click", function () {
   sessionStorage.setItem("logged", "true");
 });
 
-if (sessionStorage.getItem("cookies_accept") === "true") {
+if ("true" === sessionStorage.getItem("cookies_accept")) {
   $cookies.hide();
   sessionStorage.setItem("logged", "true");
 }

@@ -56,17 +56,17 @@
 
     echo '<script>';
     echo 'Swal.fire({
-          icon: "error",
-          title: "' . $message . '",
-          showConfirmButton: false,
-          timer: 2000,
-          toast: true,
-          position: "top",
-          customClass: {
-              popup: "my-custom-popup-class",
-              title: "my-custom-title-class",
-              content: "my-custom-content-class",
-          }
+            icon: "' . ($isSuccess ? 'success' : 'error') . '",
+            title: "' . $message . '",
+            showConfirmButton: false,
+            timer: 2000,
+            toast: true,
+            position: "top",
+            customClass: {
+                popup: "my-custom-popup-class",
+                title: "my-custom-title-class",
+                content: "my-custom-content-class",
+            }
           });';
     echo '</script>';
   }

@@ -8,9 +8,9 @@ const sections = $(".settings > div"),
   message = $(".message"),
   changebtn = $("#change-data");
 
-function showSection(element) {
-  sections.not(element).addClass("hidden");
-  element.removeClass("hidden");
+function showSection(section) {
+  sections.not(section).addClass("hidden");
+  section.removeClass("hidden");
 }
 
 function changeUserData() {

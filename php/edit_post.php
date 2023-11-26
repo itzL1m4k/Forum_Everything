@@ -23,7 +23,8 @@ if (isset($_GET['id'])) {
       header("Location: ../index.php");
       exit();
     } else {
-      echo "Wystąpił błąd podczas aktualizacji postu.";
+      header("Location ../notification.php?error=edit_post_error");
+      exit;
     }
   }
 
@@ -70,8 +71,14 @@ if (isset($_GET['id'])) {
     </html>
 
 <?php
-  } else echo "Post o podanym identyfikatorze nie istnieje.";
+  } else {
+    header("Location ../notification.php?error=invalid_request_post");
+    exit;
+  }
   mysqli_close($conn);
-} else echo "Nieprawidłowy identyfikator postu.";
+} else {
+  header("Location ../notification.php?error=invalid_request_post");
+  exit;
+}
 
 ?>

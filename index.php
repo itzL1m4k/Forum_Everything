@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="pl-PL">
 
@@ -8,7 +11,7 @@
   <link rel="shortcut icon" href="assets/img/page_icon.png" type="image/x-icon" />
   <link rel="stylesheet" href="css/global_styles.css" />
   <link rel="stylesheet" href="css/new_post_styles.css">
-  <title>Forum Informatyczne</title>
+  <title>Forum Everything</title>
 </head>
 
 <body>
@@ -18,13 +21,13 @@
 
   <div class="container">
     <div class="logo">
-      <h1><a href="index.php">Forum Informatyczne</a></h1>
+      <h1><a href="index.php">Forum Everything</a></h1>
     </div>
 
     <header>
       <ul>
         <li><a href="index.php">Wpisy</a></li>
-        <li><a href="documentation.html">Dokumentacja</a></li>
+        <li><a href="https://github.com/itzL1m4k/Forum_Everything" target="_blank" rel="noopener">Dokumentacja</a></li>
         <li><a href="about_code.html">Kod PHP</a></li>
         <li><a href="about_code_2.html">Kod JavaScript</a></li>
       </ul>
@@ -42,27 +45,26 @@
       </div>
 
       <div class="create-new-post hidden">
-
         <form action="php/new_post_handler.php" method="POST" enctype="multipart/form-data">
-
           <label for="post-title">Tytuł:</label>
           <input type="text" id="post-title" name="post-title" placeholder="Napisz tutaj tytuł swojego postu!" required>
 
           <label for="post-content">Treść:</label>
           <textarea id="post-content" name="post-content" placeholder="Napisz treść swojego postu!" required></textarea>
 
-          <label for="image-input">Obrazek: &lt; 10Mb </label>
+          <label for="image-input">Obrazek: &lt; 3Mb </label>
           <input type="file" name="post-image" accept="image/*" id="image-input" onchange="validateImageSize(this)">
 
           <button type="submit">Dodaj post</button>
           <button type="reset">Wyczyść</button>
           <button type="button" id="post-button-decline">Anuluj</button>
-
         </form>
-
       </div>
-      <?php function generateForm($order, $showUserPosts, $showAllPosts)
-      { ?>
+
+      <?php
+      function generateForm($order, $showUserPosts, $showAllPosts)
+      {
+      ?>
         <form class="form-bg" method="post" action="">
           <label class="list-choose" for="order">Sortuj według </label>
           <select name="order" id="order" onchange="this.form.submit()">
@@ -91,9 +93,12 @@
             ?>
           </select>
         </form>
-      <?php }
+      <?php
+      }
+
       function generateDeleteScript($postId, $commentId = null)
-      { ?>
+      {
+      ?>
         <script>
           function deletePost(postId) {
             Swal.fire({
@@ -141,6 +146,7 @@
         </script>
         <?php
       }
+
       require_once("php/database_connection.php");
 
       $currentUserId = $_SESSION['user_id'] ?? null;
@@ -234,13 +240,13 @@
     <footer>
       <p>&copy; Copyright by <span><a href="https://github.com/itzL1m4k">Kamil Popiołek</a></span></p>
     </footer>
-
   </div>
 
   <div id="cookies">
     <p>Strona wykorzystuje pliki cookies. Klikając "<b>Akceptuję</b>", zgadzasz się na ich użycie.</p>
     <button id="accept"><b>Akceptuję</b></button>
   </div>
+
   <script src="js/jquery-3.7.1.min.js"></script>
   <script src="js/sweetalert2.all.min.js"></script>
   <script src="js/user_content_handler.js"></script>

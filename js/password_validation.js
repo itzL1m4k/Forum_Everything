@@ -1,78 +1,57 @@
-function togglePasswordFieldVisibility(id) {
-  let $field = $("#" + id);
-  let $toggleButton = $field.next();
+function togglePasswordFieldVisibility(a) {
+  let inputField = $("#" + a);
+  let icon = inputField.next();
 
-  $field.attr("type", $field.attr("type") === "password" ? "text" : "password");
-  $toggleButton.html(
-    $field.attr("type") === "password"
+  inputField.attr("type", inputField.attr("type") === "password" ? "text" : "password");
+  icon.html(
+    inputField.attr("type") === "password"
       ? '<i class="fa fa-eye-slash"></i>'
       : '<i class="fa fa-eye"></i>'
   );
 }
-function validatePassword(passwordId, pattern, errorMsg) {
-  let password = $("#" + passwordId).val();
 
-  if (!pattern.test(password) && !errorMsg) {
-    errorMsg =
-      "Hasło nie spełnia wymagań:\n" +
-      "- 8 znaków\n" +
-      "- Jedna cyfra\n" +
-      "- Jedna mała litera\n" +
-      "- Jedna duża litera\n" +
-      "- Jeden znak specjalny";
-  }
+function validatePassword(a, regex, errorMessage) {
+  let password = $("#" + a).val();
 
-  return errorMsg;
+  return (
+    regex.test(password) ||
+      errorMessage ||
+      (errorMessage =
+        "Hasło nie spełnia wymagań:\n- 8 znaków\n- Jedna cyfra\n- Jedna mała litera\n- Jedna duża litera\n- Jeden znak specjalny"),
+    errorMessage
+  );
 }
 
-function validate1(passwordId, emailId, nicknameId, privacyPolicyId) {
-  let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+/;
-  let errorMsg;
+function validate1(a, t, e, s) {
+  let errorMessage;
 
-  errorMsg = validatePassword(
+  errorMessage = validatePassword(
     "password1",
     /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,})/,
-    errorMsg
+    errorMessage
   );
 
-  if (!$("#" + privacyPolicyId).prop("checked")) {
-    errorMsg = "Zatwierdź politykę prywatności!";
-  }
+  $("#" + s).prop("checked") || (errorMessage = "Zatwierdź politykę prywatności!");
+  /^[^\s@]+@[^\s@]+\.[^\s@]+/.test($("#" + t).val()) ||
+    (errorMessage = "Adres e-mail jest niepoprawny!");
+  $("#" + e).val().length >= 3 || (errorMessage = "Nazwa użytkownika musi być dłuższa!");
 
-  if (!emailRegex.test($("#" + emailId).val())) {
-    errorMsg = "Adres e-mail jest niepoprawny!";
-  }
-
-  if (!($("#" + nicknameId).val().length >= 3)) {
-    errorMsg = "Nazwa użytkownika musi być dłuższa!";
-  }
-
-  if (errorMsg) {
-    showErrorMessage(errorMsg);
-    return false;
-  }
-
-  return true;
+  return !errorMessage || (showErrorMessage(errorMessage), false);
 }
 
-function validate2(passwordId) {
-  let errorMsg = validatePassword(
-    passwordId,
+function validate2(a) {
+  let errorMessage = validatePassword(
+    a,
     /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,})/
   );
 
-  if (errorMsg) {
-    showErrorMessage(errorMsg);
-    return false;
-  }
-
-  return true;
+  return !errorMessage || (showErrorMessage(errorMessage), false);
 }
 
-function showErrorMessage(errorMsg) {
+function showErrorMessage(errorMessage) {
   Swal.fire({
     icon: "error",
-    title: errorMsg,
+    title: errorMessage,
     showConfirmButton: false,
     timer: 5000,
     toast: true,
@@ -86,13 +65,9 @@ function showErrorMessage(errorMsg) {
 }
 
 $("#register-button").on("click", function (event) {
-  if (!validate1("password1", "email", "nickname", "privacyPolicy")) {
-    event.preventDefault();
-  }
+  validate1("password1", "email", "nickname", "privacyPolicy") || event.preventDefault();
 });
 
 $("#change-password").on("click", function (event) {
-  if (!validate2("password")) {
-    event.preventDefault();
-  }
+  validate2("password") || event.preventDefault();
 });

@@ -16,10 +16,10 @@ if (isset($_POST['post-title'], $_POST['post-content'])) {
   $sql = "INSERT INTO wpisy (autor_id, tytul, tresc, obrazek) VALUES ('$user_id', '$title', '$content', '$image_data')";
 
   if (mysqli_query($conn, $sql)) {
-    header('Location: ../notification.php?info=post_added');
+    header('Location: ../notification.php?success=post_added');
     exit;
   } else {
-    header('Location: ../notification.php?info=post_error');
+    header('Location: ../notification.php?error=post_error');
     exit;
   }
 }

@@ -1,16 +1,9 @@
-<?php
-require_once("database_connection.php");
+<?php require_once("database_connection.php");
 
 function sanitizeInput($input)
 {
   global $conn;
   return mysqli_real_escape_string($conn, $input);
-}
-
-function closeConnection()
-{
-  global $conn;
-  mysqli_close($conn);
 }
 
 if (isset($_GET['id']) && isset($_POST['tresc'])) {
@@ -26,7 +19,8 @@ if (isset($_GET['id']) && isset($_POST['tresc'])) {
     header("Location: ../index.php");
     exit();
   } else {
-    echo "Wystąpił błąd podczas aktualizacji komentarza: " . mysqli_error($conn);
+    header("Location ../notification.php?error=edit_comment");
+    exit;
   }
 
   mysqli_stmt_close($stmt);
@@ -73,15 +67,16 @@ if (isset($_GET['id']) && isset($_POST['tresc'])) {
 
 <?php
     } else {
-      echo "Komentarz o podanym identyfikatorze nie istnieje.";
+      header("Location ../notification.php?error=invalid_request_comment");
+      exit;
     }
 
     mysqli_stmt_close($stmtSelect);
   } else {
-    echo "Nieprawidłowy identyfikator komentarza.";
+    header("Location ../notification.php?error=invalid_request_comment");
+    exit;
   }
 }
 
-// Zamykanie połączenia z bazą danych
-closeConnection();
+mysqli_close($conn);
 ?>
