@@ -11,7 +11,7 @@ session_start();
   <link rel="shortcut icon" href="assets/img/page_icon.png" type="image/x-icon" />
   <link rel="stylesheet" href="css/global_styles.css" />
   <link rel="stylesheet" href="css/new_post_styles.css">
-  <title>Forum Informatyczne</title>
+  <title>Forum Everything</title>
 </head>
 
 <body>
@@ -21,7 +21,7 @@ session_start();
 
   <div class="container">
     <div class="logo">
-      <h1><a href="index.php">Forum Informatyczne</a></h1>
+      <h1><a href="index.php">Forum Everything</a></h1>
     </div>
 
     <header>
