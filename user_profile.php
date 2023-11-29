@@ -23,7 +23,6 @@
       <ul>
         <li><a href="index.php">Wpisy</a></li>
         <li><a href="https://github.com/itzL1m4k/Forum_Everything" target="_blank" rel="noopener">Dokumentacja</a></li>
-        <li><a href="about_code.html">Kod PHP</a></li>
         <li><a href="about_code_2.html">Kod JavaScript</a></li>
       </ul>
       <ul>

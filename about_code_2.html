@@ -23,7 +23,6 @@
       <ul>
         <li><a href="index.php">Wpisy</a></li>
         <li><a href="https://github.com/itzL1m4k/Forum_Everything" target="_blank" rel="noopener">Dokumentacja</a></li>
-        <li><a href="about_code.html">Kod PHP</a></li>
         <li><a href="about_code_2.html">Kod JavaScript</a></li>
       </ul>
       <ul>
@@ -54,23 +53,21 @@
           <h2>Akceptacja ciasteczek na stronie</h2>
           <pre>
             <code class="language-javascript">
-$(document).ready(function () {
-	var $e = $("#cookies"),
-	$t = $("#accept");
+var $cookies = $("#cookies"),
+  $acceptBtn = $("#accept");
 
-sessionStorage.getItem("logged") === "true" ? $e.hide() : $e.show();
+"true" === sessionStorage.getItem("logged") ? $cookies.hide() : $cookies.show();
 
-$t.on("click", function () {
-	e.hide();
-	essionStorage.setItem("cookies_accept", "true");
-	essionStorage.setItem("logged", "true");
+$acceptBtn.on("click", function () {
+  $cookies.hide();
+  sessionStorage.setItem("cookies_accept", "true");
+  sessionStorage.setItem("logged", "true");
 });
 
-if (sessionStorage.getItem("cookies_accept") === "true") {
-	$e.hide();
-	sessionStorage.setItem("logged", "true");
+if ("true" === sessionStorage.getItem("cookies_accept")) {
+  $cookies.hide();
+  sessionStorage.setItem("logged", "true");
 }
-});
             </code>
           </pre>
         </section>
@@ -78,7 +75,7 @@ if (sessionStorage.getItem("cookies_accept") === "true") {
           <h2>Usuwanie konta</h2>
           <pre>
             <code class="language-javascript">
-let deleteAccount = () =&gt; {
+function deleteAccount() {
   Swal.fire({
     title: "Czy na pewno chcesz usunąć konto?",
     icon: "question",
@@ -102,7 +99,7 @@ let deleteAccount = () =&gt; {
       });
     }
   });
-};
+}
             </code>
           </pre>
         </section>
@@ -110,47 +107,79 @@ let deleteAccount = () =&gt; {
           <h2>Walidacja hasła</h2>
           <pre>
             <code class="language-javascript">
-const togglePasswordVisibility = (e) =&gt; {
-  let $a = $("#" + e),
-    $t = $a.next();
-  $a.attr("type", $a.attr("type") === "password" ? "text" : "password");
-  $t.html(
-    $a.attr("type") === "password" ? '&lt;i class="fa fa-eye-slash"&gt;&lt;/i&gt;' : '&lt;i class="fa fa-eye"&gt;&lt;/i&gt;'
+function togglePasswordFieldVisibility(a) {
+  let inputField = $("#" + a),
+    icon = inputField.next();
+
+  inputField.attr("type", inputField.attr("type") === "password" ? "text" : "password");
+  icon.html(
+    inputField.attr("type") === "password"
+      ? '<i class="fa fa-eye-slash"></i>'
+      : '<i class="fa fa-eye"></i>'
   );
-};
+}
 
-const validatePassword = () =&gt; {
-  let $e = $("#password").val(),
-    $a = $("#again-password").val(),
-    pattern = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,})/,
-    errorMsg;
+function validatePassword(a, regex, errorMessage) {
+  let password = $("#" + a).val();
 
-  if ($e !== $a) {
-    errorMsg = "Hasła nie są takie same!";
-  } else if (!pattern.test($e)) {
-    errorMsg =
-      "Hasło nie spełnia wymagań:\n" +
-      "- 8 znaków\n" +
-      "- Jedna cyfra (0-9)\n" +
-      "- Jedna mała litera (a-z)\n" +
-      "- Jedna duża litera (A-Z)\n" +
-      "- Jeden znak specjalny (!@#$%^&*)";
-  }
+  return (
+    regex.test(password) ||
+      errorMessage ||
+      (errorMessage =
+        "Hasło nie spełnia wymagań:\n- 8 znaków\n- Jedna cyfra\n- Jedna mała litera\n- Jedna duża litera\n- Jeden znak specjalny"),
+    errorMessage
+  );
+}
 
-  if (errorMsg) {
-    Swal.fire({
-      icon: "error",
-      title: errorMsg,
-      customClass: {
-        popup: "my-custom-popup-class",
-        title: "my-custom-title-class",
-        content: "my-custom-content-class",
-        confirmButton: "my-custom-button-class",
-      },
-    });
-    event.preventDefault();
-  }
-};
+function validate1(a, t, e, s) {
+  let errorMessage;
+
+  errorMessage = validatePassword(
+    "password1",
+    /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,})/,
+    errorMessage
+  );
+
+  $("#" + s).prop("checked") || (errorMessage = "Zatwierdź politykę prywatności!");
+  /^[^\s@]+@[^\s@]+\.[^\s@]+/.test($("#" + t).val()) ||
+    (errorMessage = "Adres e-mail jest niepoprawny!");
+  $("#" + e).val().length &gt;= 3 || (errorMessage = "Nazwa użytkownika musi być dłuższa!");
+
+  return !errorMessage || (showErrorMessage(errorMessage), false);
+}
+
+function validate2(a) {
+  let errorMessage = validatePassword(
+    a,
+    /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,})/
+  );
+
+  return !errorMessage || (showErrorMessage(errorMessage), false);
+}
+
+function showErrorMessage(errorMessage) {
+  Swal.fire({
+    icon: "error",
+    title: errorMessage,
+    showConfirmButton: false,
+    timer: 5000,
+    toast: true,
+    position: "top",
+    customClass: {
+      popup: "my-custom-popup-class",
+      title: "my-custom-title-class",
+      content: "my-custom-content-class",
+    },
+  });
+}
+
+$("#register-button").on("click", function (event) {
+  validate1("password1", "email", "nickname", "privacyPolicy") || event.preventDefault();
+});
+
+$("#change-password").on("click", function (event) {
+  validate2("password") || event.preventDefault();
+});
             </code>
           </pre>
         </section>
@@ -158,18 +187,13 @@ const validatePassword = () =&gt; {
           <h2>Ukazywanie bloku tworzenia posta</h2>
           <pre>
             <code class="language-javascript">
-const showNewPostEl = $(".show-new-post"),
-  createNewPostEl = $(".create-new-post"),
-  postButtonEl = $("#post-button"),
-  declineButtonEl = $("#post-button-decline");
+function togglePostView() {
+  $(".show-new-post").toggleClass("hidden");
+  $(".create-new-post").toggleClass("hidden");
+}
 
-const togglePostView = () =&gt; {
-  showNewPostEl.toggleClass("hidden");
-  createNewPostEl.toggleClass("hidden");
-};
-
-postButtonEl.on("click", togglePostView);
-declineButtonEl.on("click", togglePostView);
+$("#post-button").on("click", togglePostView);
+$("#post-button-decline").on("click", togglePostView);
             </code>
           </pre>
         </section>
@@ -178,12 +202,12 @@ declineButtonEl.on("click", togglePostView);
           <pre>
             <code class="language-javascript">
 $(".show-comments").on("click", function () {
-  const postId = $(this).data("postId");
-  const comments = $(`.comment[data-post-id="${postId}"]`);
+  let postId = $(this).data("postId"),
+    comments = $(`.comment[data-post-id="${postId}"]`);
 
   comments.toggleClass("hidden");
 
-  $(this).text(function (i, text) {
+  $(this).text(function (index, text) {
     return text === "Pokaż komentarze" ? "Ukryj komentarze" : "Pokaż komentarze";
   });
 });
@@ -194,9 +218,9 @@ $(".show-comments").on("click", function () {
           <h2>Pokazywanie obrazka na środku ekranu</h2>
           <pre>
             <code class="language-javascript">
-let showImage = (e) =&gt; {
-  var src = $(e).attr("src");
-  $("#enlarged-image").attr("src", src);
+let showImage = (a) =&gt; {
+  var e = $(a).attr("src");
+  $("#enlarged-image").attr("src", e);
   $("#overlay").css("display", "block");
 };
 
@@ -213,59 +237,57 @@ let hideImage = () =&gt; {
 let scrollToTop = () =&gt; {
   var currentScroll = window.scrollY,
     targetScroll = 0 - currentScroll,
-    animationFrame = null;
+    startTime = null;
 
-  let scrollAnimation = (timestamp) =&gt; {
-    animationFrame || (animationFrame = timestamp);
-    var progress = timestamp - animationFrame,
-      newPosition = easeInOutQuad(progress, currentScroll, targetScroll, 500);
+  let animateScroll = (timestamp) =&gt; {
+    startTime || (startTime = timestamp);
+    var elapsedTime = timestamp - startTime,
+      nextScroll = easeInOutQuad(elapsedTime, currentScroll, targetScroll, 500);
 
-    window.scrollTo(0, newPosition);
+    window.scrollTo(0, nextScroll);
 
-    if (progress &lt; 500) {
-      window.requestAnimationFrame(scrollAnimation);
+    if (elapsedTime &lt; 500) {
+      window.requestAnimationFrame(animateScroll);
     }
   };
 
-  window.requestAnimationFrame(scrollAnimation);
+  window.requestAnimationFrame(animateScroll);
 };
 
 $(window).scroll(function () {
-  var $toTopBtn = $("#to-top-btn");
-  window.scrollY &gt; 20 ? $toTopBtn.css("display", "block") : $toTopBtn.css("display", "none");
+  var toTopButton = $("#to-top-btn");
+  window.scrollY &gt; 20 ? toTopButton.css("display", "block") : toTopButton.css("display", "none");
 });
 
-$(".scroll-link").click(function (e) {
-  e.preventDefault();
-  var targetOffset = $(this.getAttribute("href")).offset().top;
-  smoothScrollTo(targetOffset);
+$(".scroll-link").click(function (event) {
+  event.preventDefault();
+  smoothScrollTo($($(this).attr("href")).offset().top);
 });
 
-let smoothScrollTo = (targetOffset) =&gt; {
+let smoothScrollTo = (targetScroll) =&gt; {
   var currentScroll = window.scrollY,
-    scrollDifference = targetOffset - currentScroll,
-    animationFrame = null;
+    scrollDifference = targetScroll - currentScroll,
+    startTime = null;
 
-  let scrollAnimation = (timestamp) =&gt; {
-    animationFrame || (animationFrame = timestamp);
-    var progress = timestamp - animationFrame,
-      newPosition = easeInOutQuad(progress, currentScroll, scrollDifference, 500);
+  let animateScroll = (timestamp) =&gt; {
+    startTime || (startTime = timestamp);
+    var elapsedTime = timestamp - startTime,
+      nextScroll = easeInOutQuad(elapsedTime, currentScroll, scrollDifference, 500);
 
-    window.scrollTo(0, newPosition);
+    window.scrollTo(0, nextScroll);
 
-    if (progress &lt; 500) {
-      window.requestAnimationFrame(scrollAnimation);
+    if (elapsedTime &lt; 500) {
+      window.requestAnimationFrame(animateScroll);
     }
   };
 
-  window.requestAnimationFrame(scrollAnimation);
+  window.requestAnimationFrame(animateScroll);
 };
 
-let easeInOutQuad = (progress, current, change, duration) =&gt; {
-  return (progress /= duration / 2) &lt; 1
-    ? (change / 2) * progress * progress + current
-    : (-change / 2) * (--progress * (progress - 2) - 1) + current;
-};
+let easeInOutQuad = (time, start, change, duration) =&gt;
+  (time /= duration / 2) &lt; 1
+    ? (change / 2) * time * time + start
+    : (-change / 2) * (--time * (time - 2) - 1) + start;
 						</code>
           </pre>
         </section>
@@ -273,22 +295,22 @@ let easeInOutQuad = (progress, current, change, duration) =&gt; {
           <h2>Zmiana zawartości strony podczas aktywnego zalogowania</h2>
           <pre>
             <code class="language-javascript">
-let getCookie = (e) =&gt; {
-  let match = document.cookie.match("(^|[^;]+)\\s*" + e + "\\s*=\\s*([^;]+)");
-  return match ? match.pop() : "";
-};
+function getCookie(name) {
+  let cookieMatch = document.cookie.match("(^|[^;]+)\\s*" + name + "\\s*=\\s*([^;]+)");
+  return cookieMatch ? cookieMatch.pop() : "";
+}
 
-const cookieName = getCookie("login_cookie");
-const accountElements = $(".yourAccount, .about-code, .show-new-post, .comment-add");
-const loginNavElements = $(".login-nav");
-const notLoginElements = $(".not-login");
+const cookieName = getCookie("login_cookie"),
+  accountElements = $(".yourAccount, .about-code, .show-new-post, .comment-add"),
+  loginNavElements = $(".login-nav"),
+  notLoginElements = $(".not-login");
 
-if ("" === cookieName) {
+if (cookieName === "") {
   $.ajax({
-    url: "/php/check_session.php",
+    url: "./php/check_session.php",
     dataType: "json",
-    success: function (data) {
-      if (!0 === data.login) {
+    success: function (response) {
+      if (response.login) {
         accountElements.removeClass("hidden");
         loginNavElements.addClass("hidden");
         notLoginElements.addClass("hidden");
@@ -310,39 +332,37 @@ if ("" === cookieName) {
           <h2>Zamiana klas pomiędzy sekcjami w 'Twoje konto'</h2>
           <pre>
             <code class="language-javascript">
-$(document).ready(function () {
-  const sections = $(".settings &gt; div"),
-    userButton = $("#user-button"),
-    privacyButton = $("#privacy-button"),
-    sectionUser = $(".settings__user"),
-    sectionPrivacy = $(".settings__privacy"),
-    emailInput = $("#settings-email"),
-    nickInput = $("#settings-nick"),
-    message = $(".message"),
-    changebtn = $("#change-data");
+const sections = $(".settings &gt; div"),
+  userButton = $("#user-button"),
+  privacyButton = $("#privacy-button"),
+  sectionUser = $(".settings__user"),
+  sectionPrivacy = $(".settings__privacy"),
+  emailInput = $("#settings-email"),
+  nickInput = $("#settings-nick"),
+  message = $(".message"),
+  changebtn = $("#change-data");
 
-  const showSection = (element) =&gt; {
-    sections.not(element).addClass("hidden");
-    element.removeClass("hidden");
-  };
+function showSection(section) {
+  sections.not(section).addClass("hidden");
+  section.removeClass("hidden");
+}
 
-  const changeUserData = () =&gt; {
-    emailInput.removeAttr("readonly");
-    nickInput.removeAttr("readonly");
-    message.removeClass("hidden");
-  };
+function changeUserData() {
+  emailInput.removeAttr("readonly");
+  nickInput.removeAttr("readonly");
+  message.removeClass("hidden");
+}
 
-  changebtn.on("click", function () {
-    changeUserData();
-  });
+changebtn.on("click", function () {
+  changeUserData();
+});
 
-  userButton.on("click", function () {
-    showSection(sectionUser);
-  });
+userButton.on("click", function () {
+  showSection(sectionUser);
+});
 
-  privacyButton.on("click", function () {
-    showSection(sectionPrivacy);
-  });
+privacyButton.on("click", function () {
+  showSection(sectionPrivacy);
 });
             </code>
           </pre>
@@ -351,17 +371,17 @@ $(document).ready(function () {
           <h2>Walidacja rozmiaru dodawanego obrazka w poście</h2>
           <pre>
             <code class="language-javascript">
-let validateImageSize = (fileInput) =&gt; {
-  var maxFileSize = 10 * 1024 * 1024;
-  var files = fileInput.files;
+function validateImageSize(t) {
+  var files = t.files;
 
   for (var i = 0; i &lt; files.length; i++) {
     var file = files[i];
-    if (file.size &gt; maxFileSize) {
+
+    if (file.size &gt; 3145728) {
       Swal.fire({
         title: "Przepraszamy",
         text:
-          "Rozmiar pliku " + file.name + " przekracza limit 10 megabajtów. Wybierz mniejszy plik.",
+          "Rozmiar pliku " + file.name + " przekracza limit 3 megabajtów. Wybierz mniejszy plik.",
         icon: "error",
         confirmButtonText: "OK",
         customClass: {
@@ -372,28 +392,24 @@ let validateImageSize = (fileInput) =&gt; {
         },
       });
 
-      $(fileInput).val("");
+      $(t).val("");
       return false;
     }
   }
+
   return true;
-};
+}
             </code>
           </pre>
         </section>
       </div>
     </main>
     <footer>
-      <p>
-        &copy; Copyright 2023 by
-        <span><a href="https://github.com/itzL1m4k"> Kamil Popiołek</a></span>
-      </p>
+      <p>&copy; Copyright 2023 by <span><a href="https://github.com/itzL1m4k"> Kamil Popiołek</a></span></p>
     </footer>
   </div>
   <div id="cookies">
-    <p>
-      Strona wykorzystuje pliki cookies. Klikając "<b>Akceptuję</b>", zgadzasz się na ich użycie.
-    </p>
+    <p>Strona wykorzystuje pliki cookies. Klikając "<b>Akceptuję</b>", zgadzasz się na ich użycie.</p>
     <button id="accept"><b>Akceptuję</b></button>
   </div>
   <script src="js/jquery-3.7.1.min.js"></script>
@@ -401,9 +417,7 @@ let validateImageSize = (fileInput) =&gt; {
   <script src="js/user_content_handler.js"></script>
   <script src="js/smooth_scroll.js"></script>
   <script src="js/cookies_handler.js"></script>
-  <script>
-    Prism.highlightAll();
-  </script>
+  <script>Prism.highlightAll();</script>
 </body>
 
 </html>
