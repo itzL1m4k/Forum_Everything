@@ -1,6 +1,6 @@
 function togglePasswordFieldVisibility(a) {
-  let inputField = $("#" + a);
-  let icon = inputField.next();
+  let inputField = $("#" + a),
+    icon = inputField.next();
 
   inputField.attr("type", inputField.attr("type") === "password" ? "text" : "password");
   icon.html(

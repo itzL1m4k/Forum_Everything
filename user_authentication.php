@@ -11,7 +11,6 @@
 </head>
 
 <body>
-
   <div class="container" id="container">
     <div class="form-container sign-up">
       <form action="php/user_registration.php" method="POST">
@@ -34,7 +33,6 @@
         <button id="register-button" type="submit">Zarejestruj się</button>
       </form>
     </div>
-
     <div class="form-container sign-in">
       <form action="php/user_login.php" method="POST">
         <h1>Zaloguj się</h1>
@@ -50,7 +48,6 @@
         <button id="login-in-button" type="submit">Zaloguj się</button>
       </form>
     </div>
-
     <div class="toggle-container">
       <div class="toggle">
         <div class="toggle-panel toggle-left">
@@ -66,7 +63,6 @@
       </div>
     </div>
   </div>
-
   <script src="js/jquery-3.7.1.min.js"></script>
   <script src="js/sweetalert2.all.min.js"></script>
   <script src="js/password_validation.js"></script>
@@ -103,7 +99,6 @@
           ';
     echo '</script>';
   } ?>
-
 </body>
 
 </html>

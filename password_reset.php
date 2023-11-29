@@ -27,7 +27,6 @@
         <button id="change-password" type="submit">Zmień hasło</button>
       </form>
     </div>
-
     <div class="toggle-container">
       <div class="toggle">
         <div class="toggle-panel toggle-right">

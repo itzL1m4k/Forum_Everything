@@ -1,23 +1,17 @@
-<?php require_once("database_connection.php");
-
-function sanitizeInput($input)
-{
-  global $conn;
-  return mysqli_real_escape_string($conn, $input);
-}
+<?php
+require_once("database_connection.php");
 
 if (isset($_GET['id']) && isset($_POST['tresc'])) {
-  $postId = sanitizeInput($_GET['id']);
-  $tresc = sanitizeInput($_POST['tresc']);
+  $postId = mysqli_real_escape_string($conn, $_GET['id']);
+  $tresc = mysqli_real_escape_string($conn, $_POST['tresc']);
 
   $updateSql = "UPDATE komentarze SET tresc = ? WHERE id = ?";
   $stmt = mysqli_prepare($conn, $updateSql);
-
   mysqli_stmt_bind_param($stmt, "si", $tresc, $postId);
 
   if (mysqli_stmt_execute($stmt) && mysqli_stmt_affected_rows($stmt) > 0) {
     header("Location: ../index.php");
-    exit();
+    exit;
   } else {
     header("Location ../notification.php?error=edit_comment");
     exit;
@@ -26,11 +20,10 @@ if (isset($_GET['id']) && isset($_POST['tresc'])) {
   mysqli_stmt_close($stmt);
 } else {
   if (isset($_GET['id'])) {
-    $postId = sanitizeInput($_GET['id']);
+    $postId = mysqli_real_escape_string($conn, $_GET['id']);
 
     $selectSql = "SELECT * FROM komentarze WHERE id = ?";
     $stmtSelect = mysqli_prepare($conn, $selectSql);
-
     mysqli_stmt_bind_param($stmtSelect, "i", $postId);
     mysqli_stmt_execute($stmtSelect);
 

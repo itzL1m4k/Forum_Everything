@@ -15,13 +15,6 @@ Witaj w naszym społecznościowym forum. Tutaj możesz dzielić się wiedzą, za
 - **Posty:** Dodawaj posty na ktore inni moga odpowiadac.
 - **Komentarze:** Dodawaj komentarze do wątków, aby wyrazić swoją opinię lub udzielić odpowiedzi.
 
-## Instalacja
-
-1. Sklonuj repozytorium: `git clone https://github.com/itzL1m4k/Forum_Everything`
-2. Wejdź do katalogu projektu: `cd Forum_Everything`
-3. Zainstaluj zależności: `npm install`
-4. Uruchom serwer lokalny: `npm start`
-
 ## Technologie
 
 - Frontend: HTML, CSS, JQuery, Boostrap 5

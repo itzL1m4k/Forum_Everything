@@ -1,11 +1,7 @@
 var $cookies = $("#cookies"),
   $acceptBtn = $("#accept");
 
-if ("true" === sessionStorage.getItem("logged")) {
-  $cookies.hide();
-} else {
-  $cookies.show();
-}
+"true" === sessionStorage.getItem("logged") ? $cookies.hide() : $cookies.show();
 
 $acceptBtn.on("click", function () {
   $cookies.hide();

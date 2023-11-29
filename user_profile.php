@@ -1,13 +1,3 @@
-<?php
-if (isset($_POST['log-out'])) {
-  session_start();
-  session_unset();
-  session_destroy();
-  setcookie('login_cookie', '', time() - 3600 * 7, '/');
-  header("Location: index.php");
-  exit();
-}
-?>
 <!DOCTYPE html>
 <html lang="pl-PL">
 
@@ -66,7 +56,6 @@ if (isset($_POST['log-out'])) {
               $user_id = $_SESSION['user_id'] ?? null;
 
               $sql = "SELECT email, nickname, data_publikacji FROM uzytkownicy WHERE user_id = ?";
-
               $stmt = mysqli_prepare($conn, $sql);
               mysqli_stmt_bind_param($stmt, "i", $user_id);
               mysqli_stmt_execute($stmt);
@@ -99,16 +88,6 @@ if (isset($_POST['log-out'])) {
               <div class="message hidden">
                 Możesz teraz edytować swoje dane
               </div>
-              <?php
-              $error_messages = [
-                'invalid-email' => 'Adres e-mail jest niepoprawny!',
-                'change_failed' => 'Nieudało się zapisać zmian',
-                'change_success' => 'Zmiany zostały zapisane'
-              ];
-              if (isset($_GET['error']) && array_key_exists($_GET['error'], $error_messages)) {
-                echo '<div class="error-message">' . $error_messages[$_GET['error']] . '</div>';
-              }
-              ?>
             </form>
           </div>
           <div class="settings__privacy hidden">
@@ -145,8 +124,46 @@ if (isset($_POST['log-out'])) {
       <p>&copy; Copyright by <span><a href="https://github.com/itzL1m4k"> Kamil Popiołek</a></span></p>
     </footer>
   </div>
-  <script src="js/jquery-3.7.1.min.js"></script>
+
   <script src="js/sweetalert2.all.min.js"></script>
+
+  <?php
+  $messages = [
+    'invalid-email' => 'Adres e-mail jest niepoprawny!',
+    'change_failed' => 'Nieudało się zapisać zmian',
+    'change_success' => 'Zmiany zostały zapisane'
+  ];
+  if (isset($_GET['error']) || isset($_GET['success'])) {
+    $message_key = $_GET['error'] ?? $_GET['success'];
+    $message = array_key_exists($message_key, $messages) ? $messages[$message_key] : '';
+    $isSuccess = isset($messages[$message_key]) && isset($_GET['success']);
+    echo '<script>';
+    echo 'Swal.fire({
+                icon: "' . ($isSuccess ? "success" : "error") . '",
+                title: "' . $message . '",
+                showConfirmButton: false,
+                  timer: 2000,
+                  toast: true,
+                  position: "top",
+                  customClass: {
+                    popup: "my-custom-popup-class",
+                    title: "my-custom-title-class",
+                    content: "my-custom-content-class",
+                  }
+                });
+                ';
+    echo '</script>';
+  }
+  if (isset($_POST['log-out'])) {
+    session_unset();
+    session_destroy();
+    setcookie('login_cookie', '', time() - 3600 * 7, '/');
+    header("Location: index.php");
+    exit();
+  }
+  ?>
+
+  <script src="js/jquery-3.7.1.min.js"></script>
   <script src="js/user_content_handler.js"></script>
   <script src="js/user_settings_toggle.js"></script>
   <script src="js/password_validation.js"></script>

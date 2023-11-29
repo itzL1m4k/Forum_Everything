@@ -13,7 +13,6 @@ if (userExists($conn, $email, $nickname)) {
 $hashedPass = password_hash($password, PASSWORD_DEFAULT);
 
 if (insertUser($conn, $nickname, $email, $hashedPass)) {
-  $password = $hashedPass = '';
   header('Location: ../user_authentication.php?success=account_create&config=login');
   exit;
 }

@@ -1,7 +1,3 @@
-<?php
-session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="pl-PL">
 
@@ -18,12 +14,10 @@ session_start();
   <button id="to-top-btn" onclick="scrollToTop()">
     <img id="arrow-up" src="assets/img/arrow_up.svg" alt="strzałka do góry" />
   </button>
-
   <div class="container">
     <div class="logo">
       <h1><a href="index.php">Forum Everything</a></h1>
     </div>
-
     <header>
       <ul>
         <li><a href="index.php">Wpisy</a></li>
@@ -37,30 +31,23 @@ session_start();
         <li class="yourAccount hidden"><a href="user_profile.php">Twoje konto</a></li>
       </ul>
     </header>
-
     <section class="content">
-
       <div class="show-new-post hidden">
         <button type="button" id="post-button">Utwórz Post</button>
       </div>
-
       <div class="create-new-post hidden">
         <form action="php/new_post_handler.php" method="POST" enctype="multipart/form-data">
           <label for="post-title">Tytuł:</label>
           <input type="text" id="post-title" name="post-title" placeholder="Napisz tutaj tytuł swojego postu!" required>
-
           <label for="post-content">Treść:</label>
           <textarea id="post-content" name="post-content" placeholder="Napisz treść swojego postu!" required></textarea>
-
           <label for="image-input">Obrazek: &lt; 3Mb </label>
           <input type="file" name="post-image" accept="image/*" id="image-input" onchange="validateImageSize(this)">
-
           <button type="submit">Dodaj post</button>
           <button type="reset">Wyczyść</button>
           <button type="button" id="post-button-decline">Anuluj</button>
         </form>
       </div>
-
       <?php
       function generateForm($order, $showUserPosts, $showAllPosts)
       {
@@ -148,9 +135,9 @@ session_start();
       }
 
       require_once("php/database_connection.php");
+      session_start();
 
       $currentUserId = $_SESSION['user_id'] ?? null;
-
       $order = $_POST['order'] ?? 'DESC';
       $showPostsOption = $_POST['show-posts'] ?? '';
       $showUserPosts = $showPostsOption === 'mine';
@@ -173,20 +160,16 @@ session_start();
         ?>
 
           <div class='post-section'>
-
-            <h2><?= $row["tytul"] ?></h2>
-            <p><strong>Autor: </strong><?= $row["nickname"] ?></p>
-            <p><?= $row["tresc"] ?></p>
-
+            <h2> <?= $row["tytul"] ?> </h2>
+            <p><strong>Autor: </strong> <?= $row["nickname"] ?> </p>
+            <p> <?= $row["tresc"] ?> </p>
             <div class='image-container'>
               <img src='data:image/jpeg;base64,<?= base64_encode($row['obrazek']) ?>' alt='' class='post-image' onclick='showImage(this)'>
             </div>
-
             <div id="overlay" onclick="hideImage()">
               <img id="enlarged-image" src="" alt="Powiększony obrazek">
             </div>
-
-            <p><strong>Data publikacji: </strong><?= $row["data_publikacji"] ?></p>
+            <p><strong>Data publikacji: </strong> <?= $row["data_publikacji"] ?> </p>
 
         <?php
           if ($currentUserId == $row["autor_id"]) {

@@ -1,6 +1,7 @@
-<?php require_once("database_connection.php");
-
+<?php
+require_once("database_connection.php");
 session_start();
+
 $userId = $_SESSION['user_id'];
 
 $sqlDeleteComments = "DELETE FROM komentarze WHERE autor_id = ?";
@@ -25,6 +26,7 @@ if ($stmtDeleteUser && mysqli_stmt_execute($stmtDeleteUser)) {
   setcookie('login_cookie', '', time() - 3600 * 7, '/');
 } else {
   header("Location: ../notification.php?error=account_error");
+  exit;
 }
 
 mysqli_stmt_close($stmtDeleteUser);

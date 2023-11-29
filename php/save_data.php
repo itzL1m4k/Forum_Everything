@@ -19,7 +19,7 @@ $stmt = mysqli_prepare($conn, "UPDATE uzytkownicy SET nickname = ?, email = ? WH
 mysqli_stmt_bind_param($stmt, "ssi", $nickname, $email, $id);
 
 if (mysqli_stmt_execute($stmt)) {
-  redirectToProfileWithError('change_success');
+  redirectToProfileWithSuccess('change_success');
 } else {
   redirectToProfileWithError('change_failed');
 }
@@ -27,5 +27,10 @@ if (mysqli_stmt_execute($stmt)) {
 function redirectToProfileWithError($error)
 {
   header("Location: ../user_profile.php?error=$error");
+  exit;
+}
+function redirectToProfileWithSuccess($success)
+{
+  header("Location: ../user_profile.php?error=$success");
   exit;
 }

@@ -1,4 +1,5 @@
-<?php require_once("database_connection.php");
+<?php
+require_once("database_connection.php");
 
 if (isset($_GET['id'])) {
   $comment_id = $_GET['id'];
@@ -16,18 +17,22 @@ if (isset($_GET['id'])) {
 
     if (mysqli_stmt_execute($stmt_delete) && mysqli_stmt_affected_rows($stmt_delete) > 0) {
       header('Location: ../notification.php?success=comment_deleted');
+      exit;
     } else {
       header('Location: ../notification.php?error=delete_error');
+      exit;
     }
 
     mysqli_stmt_close($stmt_delete);
   } else {
     header('Location: ../notification.php?error=comment_not_found');
+    exit;
   }
 
   mysqli_stmt_close($stmt_check);
 } else {
   header('Location: ../notification.php?error=invalid_request');
+  exit;
 }
 
 mysqli_close($conn);

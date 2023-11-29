@@ -1,4 +1,5 @@
-<?php require_once("database_connection.php");
+<?php
+require_once("database_connection.php");
 session_start();
 
 $autor_id = $_SESSION['user_id'];
@@ -10,8 +11,10 @@ $stmt = mysqli_prepare($conn, $query);
 
 if ($stmt && mysqli_stmt_bind_param($stmt, "iis", $autor_id, $wpis_id, $tresc) && mysqli_stmt_execute($stmt)) {
   header('Location: ../notification.php?success=comment_added');
+  exit;
 } else {
   header('Location: ../notification.php?error=comment_error');
+  exit;
 }
 
 mysqli_stmt_close($stmt);
