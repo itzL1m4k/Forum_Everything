@@ -2,9 +2,9 @@
 require_once("database_connection.php");
 session_start();
 
-$autor_id = $_SESSION['user_id'];
-$wpis_id = $_POST['wpis_id'];
-$tresc = $_POST['tresc'];
+$autor_id = intval($_SESSION['user_id']);
+$wpis_id = intval($_POST['wpis_id']);
+$tresc = mysqli_real_escape_string($conn, $_POST['tresc']);
 
 $query = "INSERT INTO komentarze (autor_id, wpis_id, tresc) VALUES (?, ?, ?)";
 $stmt = mysqli_prepare($conn, $query);

@@ -31,6 +31,6 @@ function redirectToProfileWithError($error)
 }
 function redirectToProfileWithSuccess($success)
 {
-  header("Location: ../user_profile.php?error=$success");
+  header("Location: ../user_profile.php?success=$success");
   exit;
 }

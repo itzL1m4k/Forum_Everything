@@ -1,16 +1,26 @@
 @import url(https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap);
+#cookies,
+.code-script-all,
+.info-code h2,
+.logo,
+.post h2,
+.show-new-post,
+footer,
+main {
+  text-align: center;
+}
+#cookies button,
 #image-input,
 .info-code a,
+.info-code p,
 .post a,
+.post p,
 body,
 footer,
-footer span {
+footer a,
+footer span,
+header {
   color: var(--primary-color);
-}
-a,
-footer,
-ul li {
-  position: relative;
 }
 #to-top-btn,
 a:before,
@@ -56,9 +66,9 @@ ul li a:hover {
 :root {
   --primary-color: #f2f1fd;
   --secondary-color: #151515;
-  --primary-button-color: #cd18be;
+  --primary-button-color: #512da8;
   --secondary-button-color: #1b1918;
-  --accent-color: #f7bbf2;
+  --accent-color: #512da8;
 }
 .logo,
 header {
@@ -106,7 +116,10 @@ header {
 ul li a:before {
   background-color: var(--primary-button-color);
 }
+.info-code a:hover,
 .not-login,
+.post a:hover,
+a:hover,
 ul li a:hover {
   color: var(--accent-color);
 }
@@ -118,15 +131,6 @@ ul li a:hover {
 footer,
 header {
   padding: 10px;
-}
-#cookies,
-.code-script-all,
-.info-code h2,
-.logo,
-.post h2,
-footer,
-main {
-  text-align: center;
 }
 footer span,
 ul li a {
@@ -144,20 +148,9 @@ li {
   display: inline;
   margin-right: 20px;
 }
-a {
-  color: #000;
-}
-#cookies button,
-.info-code p,
-.post p,
-footer a,
-header {
-  color: var(--primary-color);
-}
 a:before {
   height: 1px;
   bottom: -3px;
-  background-color: #000;
 }
 footer a:hover {
   color: var(--accent-color);
@@ -255,9 +248,7 @@ main {
   display: block;
 }
 .show-new-post {
-  margin-left: 46%;
-  margin-top: -20px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 .info-code,
 .post {
@@ -409,4 +400,16 @@ footer {
 }
 ::selection {
   background-color: var(--accent-color);
+}
+a,
+footer,
+ul li {
+  position: relative;
+  color: var(--primary-color);
+}
+.nav-link {
+  color: #fff;
+}
+.navbar-nav {
+  --bs-nav-link-hover-color: var(--accent-color);
 }

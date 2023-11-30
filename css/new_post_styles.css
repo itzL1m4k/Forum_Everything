@@ -66,7 +66,6 @@ textarea:hover:focus {
 button[type="button"],
 button[type="reset"],
 button[type="submit"] {
-  background-color: var(--primary-button-color);
   border: none;
   border-radius: 10px;
   color: var(--primary-color);

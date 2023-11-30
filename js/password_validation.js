@@ -48,13 +48,32 @@ function validate2(a) {
   return !errorMessage || (showErrorMessage(errorMessage), false);
 }
 
+function validate3(a) {
+  let pass1 = $("#password").val(),
+    pass2 = $("#again-password").val();
+
+  let errorMessage;
+
+  if (pass1 !== pass2) {
+    errorMessage = "Hasła nie są takie same!";
+  }
+
+  if (!errorMessage) {
+    errorMessage = validatePassword(
+      a,
+      /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,})/
+    );
+  }
+
+  return !errorMessage || (showErrorMessage(errorMessage), false);
+}
+
 function showErrorMessage(errorMessage) {
   Swal.fire({
     icon: "error",
     title: errorMessage,
     showConfirmButton: false,
     timer: 5000,
-    toast: true,
     position: "top",
     customClass: {
       popup: "my-custom-popup-class",
@@ -64,10 +83,14 @@ function showErrorMessage(errorMessage) {
   });
 }
 
-$("#register-button").on("click", function (event) {
-  validate1("password1", "email", "nickname", "privacyPolicy") || event.preventDefault();
+$("#register-button").click(function (e) {
+  validate1("password1", "email", "nickname", "privacyPolicy") || e.preventDefault();
 });
 
-$("#change-password").on("click", function (event) {
-  validate2("password") || event.preventDefault();
+$("#change-password").click(function (e) {
+  validate2("password") || e.preventDefault();
+});
+
+$("#new-password").click(function (e) {
+  validate3("password") || e.preventDefault();
 });

@@ -1,3 +1,13 @@
+<?php
+if (isset($_POST['log-out'])) {
+  session_start();
+  session_unset();
+  session_destroy();
+  setcookie('login_cookie', '', time() - 3600 * 7, '/');
+  header("Location: index.php");
+  exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="pl-PL">
 
@@ -5,7 +15,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-  <link rel="shortcut icon" href="assets/img/page_icon.png" type="image/x-icon" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon" />
   <link rel="stylesheet" href="css/global_styles.css" />
   <link rel="stylesheet" href="css/profile_data_styles.css" />
   <title>Forum | Twoje Konto</title>
@@ -19,17 +30,26 @@
     <div class="logo">
       <h1><a href="index.php">Forum Everything</a></h1>
     </div>
-    <header>
-      <ul>
-        <li><a href="index.php">Wpisy</a></li>
-        <li><a href="https://github.com/itzL1m4k/Forum_Everything" target="_blank" rel="noopener">Dokumentacja</a></li>
-        <li><a href="about_code_2.html">Kod JavaScript</a></li>
-      </ul>
-      <ul>
-        <li class="login-nav"><a href="user_authentication.php?config=login">Zaloguj się</a></li>
-        <li class="login-nav"><a href="user_authentication.php?config=register">Zarejestruj się</a></li>
-        <li class="yourAccount hidden"><a href="user_profile.php">Twoje konto</a></li>
-      </ul>
+    <header class="d-flex mt-3">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item"><a href="index.php" class="nav-link">Wpisy</a></li>
+              <li class="nav-item"><a href="https://github.com/itzL1m4k/Forum_Everything" target="_blank" rel="noopener" class="nav-link">Dokumentacja</a></li>
+              <li class="nav-item"><a href="about_code_2.html" class="nav-link">Kod JavaScript</a></li>
+            </ul>
+            <ul class="navbar-nav">
+              <li class="nav-item login-nav"><a href="user_authentication.php?config=login" class="nav-link">Zaloguj się</a></li>
+              <li class="nav-item login-nav"><a href="user_authentication.php?config=register" class="nav-link">Zarejestruj się</a></li>
+              <li class="nav-item yourAccount hidden"><a href="user_profile.php" class="nav-link">Twoje konto</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </header>
     <main>
       <section class="user-profile">
@@ -98,7 +118,7 @@
                   <div class="password-container">
                     <label for="password">Podaj Nowe Hasło</label>
                     <input class="password-input" type="password" id="password" name="password" />
-                    <button type="button" class="password-toggle-button" onclick="togglePasswordVisibility('password')"> <i class="fa fa-eye-slash"></i>
+                    <button type="button" class="password-toggle-button" onclick="togglePasswordFieldVisibility('password')"> <i class="fa fa-eye-slash"></i>
                     </button>
                   </div>
                 </div>
@@ -106,12 +126,12 @@
                   <div class="password-container">
                     <label for="again-password">Powtórz Nowe Hasło</label>
                     <input class="password-input" type="password" id="again-password" name="again-password" />
-                    <button type="button" class="password-toggle-button" onclick="togglePasswordVisibility('again-password')"><i class="fa fa-eye-slash"></i>
+                    <button type="button" class="password-toggle-button" onclick="togglePasswordFieldVisibility('again-password')"><i class="fa fa-eye-slash"></i>
                     </button>
                   </div>
                 </div>
                 <div class="save-changes" id="save-pass">
-                  <button type="submit">Zmień Hasło</button>
+                  <button type="submit" id="new-password">Zmień Hasło</button>
                 </div>
               </div>
             </form>
@@ -153,15 +173,8 @@
                 ';
     echo '</script>';
   }
-  if (isset($_POST['log-out'])) {
-    session_unset();
-    session_destroy();
-    setcookie('login_cookie', '', time() - 3600 * 7, '/');
-    header("Location: index.php");
-    exit();
-  }
   ?>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   <script src="js/jquery-3.7.1.min.js"></script>
   <script src="js/user_content_handler.js"></script>
   <script src="js/user_settings_toggle.js"></script>

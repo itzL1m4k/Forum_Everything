@@ -13,7 +13,7 @@ if (isset($_GET['id']) && isset($_POST['tresc'])) {
     header("Location: ../index.php");
     exit;
   } else {
-    header("Location ../notification.php?error=edit_comment");
+    header("Location: ../notification.php?error=edit_comment");
     exit;
   }
 
@@ -31,7 +31,7 @@ if (isset($_GET['id']) && isset($_POST['tresc'])) {
 
     if ($result && mysqli_num_rows($result) > 0) {
       $row = mysqli_fetch_assoc($result);
-      $tresc = $row['tresc'];
+      $tresc = htmlspecialchars($row['tresc']);
 ?>
 
       <!DOCTYPE html>
@@ -41,7 +41,7 @@ if (isset($_GET['id']) && isset($_POST['tresc'])) {
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="../assets/img/page_icon.png" type="image/x-icon">
+        <link rel="shortcut icon" href="../assets/img/favicon.png" type="image/x-icon">
         <link rel="stylesheet" href="../css/content_edit_styles.css">
         <title>Forum | Edytuj komentarz</title>
       </head>
@@ -49,7 +49,7 @@ if (isset($_GET['id']) && isset($_POST['tresc'])) {
       <body>
         <h1>Edytuj komentarz</h1>
         <form method="POST" action="">
-          <textarea name="tresc"><?= htmlspecialchars($tresc); ?></textarea>
+          <textarea name="tresc"><?= $tresc; ?></textarea>
           <div class="buttons">
             <input type="submit" value="Zapisz zmiany">
           </div>
@@ -60,13 +60,13 @@ if (isset($_GET['id']) && isset($_POST['tresc'])) {
 
 <?php
     } else {
-      header("Location ../notification.php?error=invalid_request_comment");
+      header("Location: ../notification.php?error=invalid_request_comment");
       exit;
     }
 
     mysqli_stmt_close($stmtSelect);
   } else {
-    header("Location ../notification.php?error=invalid_request_comment");
+    header("Location: ../notification.php?error=invalid_request_comment");
     exit;
   }
 }

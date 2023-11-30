@@ -4,47 +4,57 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" href="assets/img/page_icon.png" type="image/x-icon" />
+  <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <link rel="stylesheet" href="css/global_styles.css" />
   <link rel="stylesheet" href="css/new_post_styles.css">
   <title>Forum Everything</title>
 </head>
 
 <body>
-  <button id="to-top-btn" onclick="scrollToTop()">
+  <button id="to-top-btn" onclick="scrollToTop()" class="btn btn-primary">
     <img id="arrow-up" src="assets/img/arrow_up.svg" alt="strzałka do góry" />
   </button>
   <div class="container">
-    <div class="logo">
-      <h1><a href="index.php">Forum Everything</a></h1>
+    <div class="logo text-center mt-3">
+      <h1 class="display-4"><a href="index.php" class="text-decoration-none">Forum Everything</a></h1>
     </div>
-    <header>
-      <ul>
-        <li><a href="index.php">Wpisy</a></li>
-        <li><a href="https://github.com/itzL1m4k/Forum_Everything" target="_blank" rel="noopener">Dokumentacja</a></li>
-        <li><a href="about_code_2.html">Kod JavaScript</a></li>
-      </ul>
-      <ul>
-        <li class="login-nav"><a href="user_authentication.php?config=login">Zaloguj się</a></li>
-        <li class="login-nav"><a href="user_authentication.php?config=register">Zarejestruj się</a></li>
-        <li class="yourAccount hidden"><a href="user_profile.php">Twoje konto</a></li>
-      </ul>
+    <header class="d-flex mt-3">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item"><a href="index.php" class="nav-link">Wpisy</a></li>
+              <li class="nav-item"><a href="https://github.com/itzL1m4k/Forum_Everything" target="_blank" rel="noopener" class="nav-link">Dokumentacja</a></li>
+              <li class="nav-item"><a href="about_code_2.html" class="nav-link">Kod JavaScript</a></li>
+            </ul>
+            <ul class="navbar-nav">
+              <li class="nav-item login-nav"><a href="user_authentication.php?config=login" class="nav-link">Zaloguj się</a></li>
+              <li class="nav-item login-nav"><a href="user_authentication.php?config=register" class="nav-link">Zarejestruj się</a></li>
+              <li class="nav-item yourAccount hidden"><a href="user_profile.php" class="nav-link">Twoje konto</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </header>
     <section class="content">
       <div class="show-new-post hidden">
-        <button type="button" id="post-button">Utwórz Post</button>
+        <button type="button" id="post-button" class="btn btn-primary">Utwórz Post</button>
       </div>
       <div class="create-new-post hidden">
         <form action="php/new_post_handler.php" method="POST" enctype="multipart/form-data">
-          <label for="post-title">Tytuł:</label>
+          <label for="post-title" class="form-label">Tytuł:</label>
           <input type="text" id="post-title" name="post-title" placeholder="Napisz tutaj tytuł swojego postu!" required>
-          <label for="post-content">Treść:</label>
+          <label for="post-content" class="form-label">Treść:</label>
           <textarea id="post-content" name="post-content" placeholder="Napisz treść swojego postu!" required></textarea>
-          <label for="image-input">Obrazek: &lt; 3Mb </label>
+          <label for="image-input" class="form-label">Obrazek: &lt; 3Mb </label>
           <input type="file" name="post-image" accept="image/*" id="image-input" onchange="validateImageSize(this)">
-          <button type="submit">Dodaj post</button>
-          <button type="reset">Wyczyść</button>
-          <button type="button" id="post-button-decline">Anuluj</button>
+          <button type="submit" class="btn btn-primary">Dodaj post</button>
+          <button type="reset" class="btn btn-secondary">Wyczyść</button>
+          <button type="button" id="post-button-decline" class="btn btn-danger">Anuluj</button>
         </form>
       </div>
       <?php
@@ -218,17 +228,15 @@
       mysqli_close($conn);
         ?>
     </section>
-
-    <footer>
+    <footer class="mt-3">
       <p>&copy; Copyright by <span><a href="https://github.com/itzL1m4k">Kamil Popiołek</a></span></p>
     </footer>
   </div>
-
   <div id="cookies">
     <p>Strona wykorzystuje pliki cookies. Klikając "<b>Akceptuję</b>", zgadzasz się na ich użycie.</p>
-    <button id="accept"><b>Akceptuję</b></button>
+    <button id="accept" class="btn btn-primary"><b>Akceptuję</b></button>
   </div>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   <script src="js/jquery-3.7.1.min.js"></script>
   <script src="js/sweetalert2.all.min.js"></script>
   <script src="js/user_content_handler.js"></script>
