@@ -11,11 +11,11 @@ textarea {
   font-weight: 700 !important;
 }
 :root {
-  --text: #fafcff;
-  --background: #010a18;
-  --primary: #220cca;
-  --secondary: #25033a;
-  --accent: #9e18f2;
+  --text: #f2f1fd;
+  --background: #151515;
+  --primary: #512da8;
+  --secondary: #1b1918;
+  --accent: #512da8;
 }
 input[type="text"],
 textarea {
