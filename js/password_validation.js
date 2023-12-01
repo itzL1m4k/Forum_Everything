@@ -74,6 +74,7 @@ function showErrorMessage(errorMessage) {
     title: errorMessage,
     showConfirmButton: false,
     timer: 5000,
+    toast: true,
     position: "top",
     customClass: {
       popup: "my-custom-popup-class",
